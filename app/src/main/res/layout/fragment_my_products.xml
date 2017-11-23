@@ -109,73 +109,15 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp">
 
-            <TextView
 
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:id="@+id/show"
-                android:layout_height="20dp"
-                android:layout_marginEnd="5dp"
-                android:text="Show"
-                android:lines="1"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textAllCaps="false"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true">
 
 
-
-
-                />
-
-            <RelativeLayout
-                android:layout_width="60dp"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:layout_toEndOf="@+id/show"
-                android:id="@+id/rl_spinner"
-                android:background="@drawable/rectangular_background_light_gray"
-                android:orientation="horizontal">
-
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:spinnerMode="dropdown" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/arrow_down" />
-
-            </RelativeLayout>
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:id="@+id/entries"
-                android:layout_height="20dp"
-                android:layout_marginStart="5dp"
-                android:text="entries"
-                android:lines="1"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textAllCaps="false"
-                android:layout_toEndOf="@+id/rl_spinner"
-
-
-
-                />
             <EditText
                 android:id="@+id/etSearch"
                 android:paddingStart="10dp"
@@ -184,13 +126,84 @@
                 android:layout_height="22dp"
                 android:textStyle="normal"
                 android:lines="1"
-                android:drawableEnd="@drawable/icon_search"
-                android:layout_alignParentEnd="true"
                 android:textColor="@color/dark_gray"
                 android:textColorHint="@color/dark_gray"
                 android:textSize="12sp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/rectangular_background_light_gray"
                 android:hint="Search"/>
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:id="@+id/show"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Show"
+                    android:lines="1"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textAllCaps="false"
+
+
+
+
+                    />
+
+                <RelativeLayout
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:layout_toEndOf="@+id/show"
+                    android:id="@+id/rl_spinner"
+                    android:background="@drawable/rectangular_background_light_gray"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:spinnerMode="dropdown" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/arrow_down" />
+
+                </RelativeLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:id="@+id/entries"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="5dp"
+                    android:text="entries"
+                    android:lines="1"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_toEndOf="@+id/rl_spinner"
+
+
+
+                    />
+
+
+            </LinearLayout>
 
         </RelativeLayout>
 

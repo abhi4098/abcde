@@ -219,12 +219,16 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                newlyUpdatedAdapter.getFilter().filter(s.toString());
+                if (updateProductList !=null) {
+                    newlyUpdatedAdapter.getFilter().filter(s.toString());
+                }
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                newlyUpdatedAdapter.notifyDataSetChanged();
+                if (updateProductList !=null) {
+                    newlyUpdatedAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override

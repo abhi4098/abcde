@@ -240,13 +240,18 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                myProductAdapter.getFilter().filter(s.toString());
+
+                if (myProductList != null) {
+                    myProductAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+                if (myProductList != null) {
+                    myProductAdapter.notifyDataSetChanged();
+                }
 
-                myProductAdapter.notifyDataSetChanged();
             }
 
             @Override
