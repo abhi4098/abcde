@@ -12,6 +12,7 @@
         android:layout_height="20dp"
         android:layout_marginEnd="55dp"
         android:layout_gravity="end"
+        android:visibility="gone"
         android:layout_marginTop="15dp"
         android:background="@drawable/rectangular_background_light_gray"
         android:orientation="horizontal">
@@ -46,15 +47,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginStart="55dp"
+        android:weightSum="1"
         android:layout_marginTop="15dp">
 
 
 
 
         <LinearLayout
-            android:layout_width="250dp"
-            android:layout_height="140dp"
+            android:layout_width="0dp"
+            android:layout_height="110dp"
             android:orientation="vertical"
+            android:layout_weight=".25"
+            android:id="@+id/ll_my_products"
             android:background="@drawable/round_corners_profit"
             >
 
@@ -62,33 +66,35 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/transparent_layer_white"
                 android:layout_height="25dp"
-                android:text="PROFIT"
+                android:text="MY PRODUCTS"
                 android:textSize="13dp"
                 android:textColor="@color/white"
                 android:gravity="center"
                 />
 
            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-               android:text="$108"
+               android:id="@+id/my_products"
+               android:layout_width="match_parent"
+               android:layout_height="60dp"
+               android:layout_marginTop="15dp"
+               android:text="0"
                android:paddingTop="8dp"
                android:typeface="sans"
                android:gravity="center_horizontal"
                android:textColor="@color/white"
-               android:textSize="45dp"
+               android:textSize="25dp"
                />
 
-            <TextView
+        <!--    <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:textColor="@color/white"
                 android:text="16 July to 22 July"
                 android:gravity="center_horizontal"
                 android:textSize="13dp"
-                />
+                />-->
 
-            <LinearLayout
+      <!--      <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:orientation="horizontal"
@@ -113,7 +119,7 @@
                     />
 
 
-            </LinearLayout>
+            </LinearLayout>-->
 
 
         </LinearLayout>
@@ -122,17 +128,19 @@
 
 
         <LinearLayout
-            android:layout_width="250dp"
-            android:layout_height="140dp"
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:layout_weight=".25"
             android:orientation="vertical"
-            android:layout_marginStart="55dp"
+            android:id="@+id/ll_product_updates"
+            android:layout_marginStart="20dp"
             android:background="@drawable/round_corner_revenue"
             >
 
             <TextView
                 android:layout_width="match_parent"
                 android:background="@drawable/transparent_layer_white"
-                android:text="REVENUE"
+                android:text="PRODUCTS UPDATES"
                 android:textSize="13dp"
                 android:textColor="@color/white"
                 android:gravity="center"
@@ -140,17 +148,19 @@
                 />
 
             <TextView
+                android:id="@+id/product_updates"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="$128"
+                android:text="0"
                 android:paddingTop="8dp"
                 android:typeface="sans"
+                android:layout_marginTop="15dp"
                 android:gravity="center_horizontal"
                 android:textColor="@color/white"
-                android:textSize="45dp"
+                android:textSize="25dp"
                 />
 
-            <TextView
+          <!--  <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:textColor="@color/white"
@@ -184,16 +194,18 @@
 
 
             </LinearLayout>
-
+-->
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="250dp"
-            android:layout_height="140dp"
+            android:layout_width="0dp"
+            android:layout_height="110dp"
             android:orientation="vertical"
-            android:layout_marginStart="55dp"
+            android:layout_weight=".25"
+            android:layout_marginStart="20dp"
+            android:id="@+id/ll_affected_products"
             android:background="@drawable/round_corners_updates"
             >
 
@@ -201,7 +213,7 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/transparent_layer_white"
                 android:layout_height="25dp"
-                android:text="UPDATES"
+                android:text="AFFECTED PRODUCTS"
                 android:textSize="13dp"
                 android:textColor="@color/white"
                 android:gravity="center"
@@ -210,15 +222,90 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="65"
+                android:id="@+id/effected_products"
+                android:text="0"
                 android:paddingTop="8dp"
                 android:typeface="sans"
+                android:layout_marginTop="15dp"
                 android:gravity="center_horizontal"
                 android:textColor="@color/white"
-                android:textSize="45dp"
+                android:textSize="25dp"
+                />
+
+        <!--    <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="@color/white"
+                android:text="New Products"
+                android:gravity="center_horizontal"
+                android:textSize="13dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:background="@drawable/round_corner_transparent"
+                android:layout_gravity="bottom">
+
+                <TextView
+                    android:layout_width="240dp"
+                    android:layout_height="25dp"
+                    android:text="Product Updates "
+                    android:textSize="13dp"
+                    android:textColor="#80ffffff"
+                    android:paddingStart="10dp"
+                    android:gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/arrow_widget"
+                    />
+
+
+            </LinearLayout>-->
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:layout_weight=".25"
+            android:orientation="vertical"
+            android:id="@+id/ll_missing_margins"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="55dp"
+            android:background="@drawable/round_corners_missing_updates"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:background="@drawable/transparent_layer_white"
+                android:layout_height="25dp"
+                android:text="PRODUCTS MISSING MARGINS"
+                android:textSize="13dp"
+                android:textColor="@color/white"
+                android:gravity="center"
                 />
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="0"
+                android:id="@+id/product_missing_margins"
+                android:paddingTop="8dp"
+                android:layout_marginTop="15dp"
+                android:typeface="sans"
+                android:gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                />
+
+         <!--   <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:textColor="@color/white"
@@ -252,11 +339,12 @@
 
 
             </LinearLayout>
-
+-->
 
         </LinearLayout>
 
     </LinearLayout>
+<!--
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -357,6 +445,7 @@
 
 
         </LinearLayout>
+-->
 
 
 

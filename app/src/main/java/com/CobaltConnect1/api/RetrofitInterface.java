@@ -1,6 +1,8 @@
 package com.CobaltConnect1.api;
 
 
+import com.CobaltConnect1.generated.model.DashboardData;
+import com.CobaltConnect1.generated.model.DashboardDataResponse;
 import com.CobaltConnect1.generated.model.ForgotPassword;
 import com.CobaltConnect1.generated.model.ForgotPasswordResponse;
 import com.CobaltConnect1.generated.model.MarginUpdate;
@@ -102,6 +104,13 @@ public class RetrofitInterface {
 
         @POST("api/")
         Call<MarginUpdateAllResponse> merchantFetchFromClover(@Body MarginUpdateAll marginUpdate);
+
+    }
+
+    public interface DashboardDataClient {
+
+        @POST("api/")
+        Call<DashboardDataResponse> merchantDashboardData(@Body DashboardData dashboardData);
 
     }
 }

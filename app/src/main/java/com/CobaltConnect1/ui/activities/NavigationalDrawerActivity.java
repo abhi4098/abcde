@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -55,14 +56,14 @@ public class NavigationalDrawerActivity extends ConnectCobaltBaseActivity
     }
 
 
-    TextView tvAppTitle;
+    public TextView tvAppTitle;
     TextView tvMerchantId;
+    public Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         tvMerchantId = (TextView) findViewById(R.id.merchant_id);
         tvAppTitle = (TextView) findViewById(R.id.tv_app_title);
         setSupportActionBar(toolbar);
@@ -101,11 +102,17 @@ public class NavigationalDrawerActivity extends ConnectCobaltBaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+        }
+        else if (getFragmentManager().getBackStackEntryCount() == 0)
+        {
+            super.onBackPressed();
+            tvAppTitle.setText("DashBoard");
+
+        }
+        else
+        {
+            getFragmentManager().popBackStack();
+
         }
     }
 
@@ -242,5 +249,7 @@ public class NavigationalDrawerActivity extends ConnectCobaltBaseActivity
         popup.show();
 
     }
+
+
 
 }
