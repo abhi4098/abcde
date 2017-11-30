@@ -14,9 +14,9 @@
             android:icon="@drawable/icon_updates_gray"
             android:title="Products Updates " />
         <item
-            android:id="@+id/revenue"
+            android:id="@+id/manage_categories"
             android:icon="@drawable/icon_revnue_gray"
-            android:title="Revenue" />
+            android:title="Manage Categories" />
         <item
             android:id="@+id/my_products"
             android:icon="@drawable/iconproduct_gray"

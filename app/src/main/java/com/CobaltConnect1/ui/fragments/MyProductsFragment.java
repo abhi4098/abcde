@@ -67,6 +67,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
     int pageNum =1;
     Spinner spDropdown,spCategoryDropdown;
     int spSelectedItem = 10;
+    String spCategorySelectedItem;
     int totalItems = 0;
     int  totalNoPages = 0;
     LinearLayout llAscName,llDscName,llAscWholesaler,llDscWholesaler,llAscNewCost,llDscNewCost,llDscPrevCost,llAscPrevCost,llAscPrevPrice,llDscPrevPrice,
@@ -240,6 +241,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
 
             }
         });
+
         etSearch.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -279,13 +281,8 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
 
                     if (response.isSuccessful()) {
 
-                        if (response.body().getType()!= 0 )
-                            Log.e("abhi", "onResponse: "+response.body().getList().size() );
-
-                        else
-                        {
-                            LoadingDialog.cancelLoading();
-
+                        if (response.body().getType()!= 0 ) {
+                            setCategoryList(response);
                         }
 
 
@@ -308,6 +305,38 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
 
 
 
+    }
+
+    private void setCategoryList(Response<CategoryListResponse> response) {
+
+        Log.e("abhi", "onResponse: "+response.body().getList().size() );
+        categoryList = new ArrayList<>();
+        categoryList.add("All");
+        for (int i = 0; i < response.body().getList().size(); i++) {
+
+            categoryList.add(response.body().getList().get(i).getTitle());
+
+        }
+
+        final ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_layout, categoryList);
+        spCategoryDropdown.setAdapter(categoryAdapter);
+        spCategoryDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                spCategorySelectedItem = spCategoryDropdown.getSelectedItem().toString();
+                Log.e("abhi", "onItemSelected: " + spCategorySelectedItem);
+               /* if (!spCategorySelectedItem.equals("All")) {
+                    categoryAdapter.getFilter().filter(spCategorySelectedItem);
+                    myProductAdapter.notifyDataSetChanged();
+                }*/
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
 

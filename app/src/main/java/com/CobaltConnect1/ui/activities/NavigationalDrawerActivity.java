@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -21,6 +20,7 @@ import com.CobaltConnect1.ui.fragments.DashboardFragment;
 import com.CobaltConnect1.ui.fragments.EditProfileFragment;
 import com.CobaltConnect1.ui.fragments.MyProductsFragment;
 import com.CobaltConnect1.ui.fragments.NewlyUpdatedFragment;
+import com.CobaltConnect1.ui.fragments.ManageCategoriesfragment;
 import com.CobaltConnect1.ui.fragments.ViewProfileFragment;
 import com.CobaltConnect1.utils.PrefUtils;
 
@@ -160,9 +160,9 @@ public class NavigationalDrawerActivity extends ConnectCobaltBaseActivity
 
                 break;
 
-            case R.id.revenue:
-                /*fragment = new StockDetailsfragment();
-                tvAppTitle.setText(item.getTitle());*/
+            case R.id.manage_categories:
+                fragment = new ManageCategoriesfragment();
+                tvAppTitle.setText(item.getTitle());
                 break;
 
             case R.id.my_products:
