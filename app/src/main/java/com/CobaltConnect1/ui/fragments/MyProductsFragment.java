@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.CobaltConnect1.R;
 import com.CobaltConnect1.api.ApiAdapter;
 import com.CobaltConnect1.api.RetrofitInterface;
+import com.CobaltConnect1.generated.model.CategoryListResponse;
 import com.CobaltConnect1.generated.model.Inventory;
 import com.CobaltConnect1.generated.model.MarginLocalData;
 import com.CobaltConnect1.generated.model.MarginUpdateAll;
@@ -49,9 +50,11 @@ import static com.CobaltConnect1.api.ApiEndPoints.BASE_URL;
 public class MyProductsFragment extends Fragment implements AdapterView.OnItemClickListener,View.OnClickListener{
 
     private RetrofitInterface.MerchantMyProductClient MyProductAdapter;
+    private RetrofitInterface.MerchantMyProductCategoryClient MyProductCategoryAdapter;
     private RetrofitInterface.MerchantFetchFromCloverClient MyCloverFetchAdapter;
 
     static ArrayList<Inventory> myProductList = null;
+    ArrayList<String> categoryList;
     ArrayList<InventoryItems> dataList = new ArrayList<>();
     private RecyclerView newlyUpdatedRecyclerView;
     private com.CobaltConnect1.ui.adapters.MyProductAdapter myProductAdapter;
@@ -62,7 +65,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
     Button updateToClover, btPrev, btNext;
     String orderField,orderType = " ";
     int pageNum =1;
-    Spinner spDropdown;
+    Spinner spDropdown,spCategoryDropdown;
     int spSelectedItem = 10;
     int totalItems = 0;
     int  totalNoPages = 0;
@@ -86,6 +89,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
         etSearch = (EditText) rootView.findViewById(R.id.etSearch);
         listview = (ListView) rootView.findViewById(R.id.listview);
         emptyMessage = (TextView) rootView.findViewById(R.id.empty);
+        spCategoryDropdown =(Spinner) rootView.findViewById(R.id.category_spinner);
         spDropdown = (Spinner) rootView.findViewById(R.id.spinner);
         tvLastFetch = (TextView) rootView.findViewById(R.id.last_fetch_time_date);
         tvPageNum = (TextView) rootView.findViewById(R.id.page_num);
@@ -260,13 +264,56 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
             }
         });
         setUpRestAdapter();
+        getCategoryList();
         MyProductDetails();
         return rootView;
+    }
+
+    private void getCategoryList() {
+        Call<CategoryListResponse> call = MyProductCategoryAdapter.merchantMyProductCategory(new MyCloverProduct(PrefUtils.getAuthToken(getContext()), "listCategories",orderField,orderType));
+        if (NetworkUtils.isNetworkConnected(getActivity())) {
+            call.enqueue(new Callback<CategoryListResponse>() {
+
+                @Override
+                public void onResponse(Call<CategoryListResponse> call, Response<CategoryListResponse> response) {
+
+                    if (response.isSuccessful()) {
+
+                        if (response.body().getType()!= 0 )
+                            Log.e("abhi", "onResponse: "+response.body().getList().size() );
+
+                        else
+                        {
+                            LoadingDialog.cancelLoading();
+
+                        }
+
+
+
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CategoryListResponse> call, Throwable t) {
+
+                }
+
+
+            });
+
+        } else {
+            SnakBarUtils.networkConnected(getActivity());
+        }
+
+
+
     }
 
 
     private void setUpRestAdapter() {
         MyProductAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.MerchantMyProductClient.class, BASE_URL, getActivity());
+        MyProductCategoryAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.MerchantMyProductCategoryClient.class, BASE_URL, getActivity());
         MyCloverFetchAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.MerchantFetchFromCloverClient.class, BASE_URL, getActivity());
 
     }

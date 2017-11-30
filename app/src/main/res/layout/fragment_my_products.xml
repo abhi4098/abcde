@@ -118,12 +118,64 @@
                 android:layout_alignParentEnd="true">
 
 
-            <EditText
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:id="@+id/category_dropdown"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Category:"
+                    android:lines="1"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textAllCaps="false"
+
+
+
+
+                    />
+
+                <RelativeLayout
+                    android:layout_width="150dp"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:id="@+id/rl_category_spinner"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/rectangular_background_light_gray"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/category_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:spinnerMode="dropdown" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/arrow_down" />
+
+                </RelativeLayout>
+
+
+
+                <EditText
                 android:id="@+id/etSearch"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:layout_width="150dp"
-                android:layout_height="22dp"
+                android:layout_height="20dp"
                 android:textStyle="normal"
                 android:lines="1"
                 android:textColor="@color/dark_gray"

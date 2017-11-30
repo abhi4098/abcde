@@ -1,6 +1,7 @@
 package com.CobaltConnect1.api;
 
 
+import com.CobaltConnect1.generated.model.CategoryListResponse;
 import com.CobaltConnect1.generated.model.DashboardData;
 import com.CobaltConnect1.generated.model.DashboardDataResponse;
 import com.CobaltConnect1.generated.model.ForgotPassword;
@@ -111,6 +112,13 @@ public class RetrofitInterface {
 
         @POST("api/")
         Call<DashboardDataResponse> merchantDashboardData(@Body DashboardData dashboardData);
+
+    }
+
+    public interface MerchantMyProductCategoryClient {
+
+        @POST("api/")
+        Call<CategoryListResponse> merchantMyProductCategory(@Body MyCloverProduct myCloverProduct);
 
     }
 }
