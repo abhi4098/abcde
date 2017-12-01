@@ -12,6 +12,11 @@ public class MarginLocalData {
     @SerializedName("productId")
     @Expose
     private String productId;
+
+    @SerializedName("categoryId")
+    @Expose
+    private String categoryId;
+
     @SerializedName("margin")
     @Expose
     private String margin;
@@ -25,6 +30,30 @@ public class MarginLocalData {
     @SerializedName("status")
     @Expose
     private String status;
+
+    @SerializedName("minStock")
+    @Expose
+    private String minStock;
+    @SerializedName("defaultMargin")
+    @Expose
+    private String defaultMargin;
+
+    public String getMinStock() {
+        return minStock;
+    }
+
+    public void setMinStock(String minStock) {
+        this.minStock = minStock;
+    }
+
+    public String getDefaultMargin() {
+        return defaultMargin;
+    }
+
+    public void setDefaultMargin(String defaultMargin) {
+        this.defaultMargin = defaultMargin;
+    }
+
 
     public String getStatus() {
         return status;
@@ -64,6 +93,14 @@ public class MarginLocalData {
 
     public void setBUpdate(Integer bUpdate) {
         this.bUpdate = bUpdate;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
 }

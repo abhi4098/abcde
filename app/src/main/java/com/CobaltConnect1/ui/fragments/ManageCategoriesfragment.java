@@ -159,13 +159,12 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                         showManageCategoriesList.add(categoryList);
 
                     }
-                   /* manageCategoriesAdapter = new ManageCategoriesAdapter(getActivity(), R.layout.manage_product_list_layout, R.id.item_name, showManageCategoriesList,productTestId, manageCategoryList);
+                    manageCategoriesAdapter = new ManageCategoriesAdapter(getActivity(), R.layout.manage_product_list_layout, R.id.item_name, showManageCategoriesList,productTestId, manageCategoryList);
                     listview.setAdapter(manageCategoriesAdapter);
                     LoadingDialog.cancelLoading();
                     listview.setDivider(new ColorDrawable(getResources().getColor(R.color.background_light)));
                     listview.setDividerHeight(1);
                     listview.setTextFilterEnabled(true);
-*/
                 }
 
             }
@@ -182,7 +181,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if (manageCategoryList != null) {
-                    manageCategoriesAdapter.notifyDataSetChanged();
+                    manageCategoriesAdapter.getFilter().filter(s.toString());
                 }
             }
 
@@ -488,13 +487,13 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
 
         }
 
-        /*manageCategoriesAdapter = new ManageCategoriesAdapter(getActivity(), R.layout.manage_product_list_layout, R.id.item_name, showManageCategoriesList,productTestId, manageCategoryList);
+        manageCategoriesAdapter = new ManageCategoriesAdapter(getActivity(), R.layout.manage_product_list_layout, R.id.item_name, showManageCategoriesList,productTestId, manageCategoryList);
         listview.setAdapter(manageCategoriesAdapter);
         LoadingDialog.cancelLoading();
         listview.setDivider(new ColorDrawable(getResources().getColor(R.color.background_light)));
         listview.setDividerHeight(1);
         listview.setTextFilterEnabled(true);
-        listview.setOnItemClickListener(this);*/
+        listview.setOnItemClickListener(this);
     }
 
 

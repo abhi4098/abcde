@@ -4,12 +4,14 @@ package com.CobaltConnect1.api;
 import com.CobaltConnect1.generated.model.CategoryListResponse;
 import com.CobaltConnect1.generated.model.DashboardData;
 import com.CobaltConnect1.generated.model.DashboardDataResponse;
+import com.CobaltConnect1.generated.model.DefaultMarginUpdate;
 import com.CobaltConnect1.generated.model.ForgotPassword;
 import com.CobaltConnect1.generated.model.ForgotPasswordResponse;
 import com.CobaltConnect1.generated.model.MarginUpdate;
 import com.CobaltConnect1.generated.model.MarginUpdateAll;
 import com.CobaltConnect1.generated.model.MarginUpdateAllResponse;
 import com.CobaltConnect1.generated.model.MarginUpdateResponse;
+import com.CobaltConnect1.generated.model.MinimumStockUpdate;
 import com.CobaltConnect1.generated.model.MyCloverProduct;
 import com.CobaltConnect1.generated.model.MyCloverProductResponse;
 import com.CobaltConnect1.generated.model.ProductUpdate;
@@ -87,10 +89,25 @@ public class RetrofitInterface {
 
     }
 
+    //This api is used for updating margin ,minimum stock and default margin
     public interface MerchantMarginUpdateClient {
 
         @POST("api/")
         Call<MarginUpdateResponse> merchantMarginUpdate(@Body MarginUpdate marginUpdate);
+
+    }
+
+    public interface MerchantDefaultMarginUpdateClient {
+
+        @POST("api/")
+        Call<MarginUpdateResponse> merchantDefaultMarginUpdate(@Body DefaultMarginUpdate marginUpdate);
+
+    }
+
+    public interface MerchantMinStockUpdateClient {
+
+        @POST("api/")
+        Call<MarginUpdateResponse> merchantMinStockUpdate(@Body MinimumStockUpdate marginUpdate);
 
     }
 

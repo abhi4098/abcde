@@ -19,6 +19,10 @@ public class MarginUpdateResponse {
     @Expose
     private String newPrice;
 
+    @SerializedName("stock")
+    @Expose
+    private String stock;
+
     public Integer getType() {
         return type;
     }
@@ -41,6 +45,13 @@ public class MarginUpdateResponse {
 
     public void setMargin(String margin) {
         this.margin = margin;
+    }
+    public String getStock() {
+        return stock;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
     }
 
     public String getNewPrice() {

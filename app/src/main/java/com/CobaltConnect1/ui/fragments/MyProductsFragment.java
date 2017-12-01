@@ -248,7 +248,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if (myProductList != null) {
-                    myProductAdapter.notifyDataSetChanged();
+                    myProductAdapter.getFilter().filter(s.toString());
                 }
             }
 

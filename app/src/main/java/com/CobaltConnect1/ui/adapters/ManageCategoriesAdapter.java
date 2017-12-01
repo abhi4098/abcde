@@ -22,10 +22,12 @@ import com.CobaltConnect1.R;
 import com.CobaltConnect1.api.ApiAdapter;
 import com.CobaltConnect1.api.RetrofitInterface;
 import com.CobaltConnect1.generated.model.CategoryList;
+import com.CobaltConnect1.generated.model.DefaultMarginUpdate;
 import com.CobaltConnect1.generated.model.Inventory;
 import com.CobaltConnect1.generated.model.MarginLocalData;
 import com.CobaltConnect1.generated.model.MarginUpdate;
 import com.CobaltConnect1.generated.model.MarginUpdateResponse;
+import com.CobaltConnect1.generated.model.MinimumStockUpdate;
 import com.CobaltConnect1.utils.NetworkUtils;
 import com.CobaltConnect1.utils.PrefUtils;
 import com.CobaltConnect1.utils.SnakBarUtils;
@@ -41,7 +43,8 @@ import static com.CobaltConnect1.api.ApiEndPoints.BASE_URL;
 
 
 public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implements Filterable {
-    private RetrofitInterface.MerchantMarginUpdateClient UpdateMarginAdapter;
+    private RetrofitInterface.MerchantDefaultMarginUpdateClient UpdateMarginAdapter;
+    private RetrofitInterface.MerchantMinStockUpdateClient UpdateMinStockAdapter;
     int groupid;
     ArrayList<CategoryList> itemList;
     ArrayList<CategoryList> filterItemList;
@@ -49,10 +52,12 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
     ArrayList<CategoryList> tempItemList;
     Context context;
     String listItemId = null;
-    String updatedMargin;
+    String updatedMargin,updateStock;
     int count =1;
     boolean isChecked =false;
+   // ArrayList<MarginLocalData> productTestId;
     ArrayList<MarginLocalData> productTestId;
+
     String newPrice;
     ArrayList<CategoryList> myProductList;
 
@@ -67,6 +72,8 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
         displayItemList = new ArrayList<>();
         this.itemList=itemList;
         this.productTestId = new ArrayList<>();
+        //this.productTestId = new ArrayList<>();
+
         this.myProductList = myProductList;
 
     }
@@ -140,13 +147,14 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
 */
 
 
-/*
-            holder.updateButton.setOnClickListener(new View.OnClickListener() {
+
+
+            holder.defaultMarginButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    updatedMargin = holder.margin.getText().toString();
-                    UpdateMarginAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.MerchantMarginUpdateClient.class, BASE_URL, getContext());
-                    Call<MarginUpdateResponse> call = UpdateMarginAdapter.merchantMarginUpdate(new MarginUpdate("marginMyProducts", PrefUtils.getAuthToken(getContext()),inventoryItems.getProductId(),updatedMargin));
+                    updatedMargin = holder.defaultMargin.getText().toString();
+                    UpdateMarginAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.MerchantDefaultMarginUpdateClient.class, BASE_URL, getContext());
+                    Call<MarginUpdateResponse> call = UpdateMarginAdapter.merchantDefaultMarginUpdate(new DefaultMarginUpdate("updateCategoryMargin", PrefUtils.getAuthToken(getContext()),categoryList.getCategoryId(),updatedMargin));
                     if (NetworkUtils.isNetworkConnected(getContext())) {
                         call.enqueue(new Callback<MarginUpdateResponse>() {
 
@@ -155,28 +163,28 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
 
                                 if (response.isSuccessful()) {
 
-                                    if (response.body().getMsg().equals("Margin Updated")) {
-                                        inventoryItems.setNewPrice(response.body().getNewPrice());
-                                        inventoryItems.setMargin(response.body().getMargin());
-                                        inventoryItems.setStatus("Queued");
+                                    if (response.body().getMsg().equals("Margin updated!")) {
+
+                                        categoryList.setDefaultMargin(response.body().getMargin());
+                                        categoryList.setMinStock(response.body().getStock());
                                         ManageCategoriesAdapter.this.notifyDataSetChanged();
 
                                         MarginLocalData marginLocalData = new MarginLocalData();
+
                                         if (productTestId.size() !=0) {
                                             for (int j = 0; j < productTestId.size(); j++) {
-                                                if (inventoryItems.getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
-                                                    productTestId.get(j).setMargin(response.body().getMargin());
-                                                    productTestId.get(j).setNewPrice(response.body().getNewPrice());
-                                                    productTestId.get(j).setStatus("Queued");
+                                                if (categoryList.getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
+                                                    productTestId.get(j).setDefaultMargin(response.body().getMargin());
+                                                    productTestId.get(j).setMinStock(response.body().getStock());
+                                                    Log.e("abhi", "onResponse: margin ---id matches"  );
                                                     break;
                                                 }
 
                                                 if ( j==(productTestId.size()-1))
                                                 {
-                                                    marginLocalData.setProductId(inventoryItems.getProductId());
-                                                    marginLocalData.setNewPrice(response.body().getNewPrice());
-                                                    marginLocalData.setMargin(response.body().getMargin());
-                                                    marginLocalData.setStatus("Queued");
+                                                    marginLocalData.setCategoryId(categoryList.getCategoryId());
+                                                    marginLocalData.setDefaultMargin(response.body().getMargin());
+                                                    marginLocalData.setMinStock(response.body().getStock());
                                                     productTestId.add(marginLocalData);
                                                 }
                                             }
@@ -186,11 +194,11 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                         }
                                         else
                                         {
-                                            marginLocalData.setProductId(inventoryItems.getProductId());
-                                            marginLocalData.setNewPrice(response.body().getNewPrice());
-                                            marginLocalData.setMargin(response.body().getMargin());
-                                            marginLocalData.setStatus("Queued");
+                                            marginLocalData.setCategoryId(categoryList.getCategoryId());
+                                            marginLocalData.setDefaultMargin(response.body().getMargin());
+                                            marginLocalData.setMinStock(response.body().getStock());
                                             productTestId.add(marginLocalData);
+
                                         }
 
 
@@ -213,8 +221,84 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                     }
 
                 }
-            });*/
+            });
 
+
+            holder.minimumStockButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    updateStock = holder.minimumStock.getText().toString();
+                    UpdateMinStockAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.MerchantMinStockUpdateClient.class, BASE_URL, getContext());
+                    Call<MarginUpdateResponse> call = UpdateMinStockAdapter.merchantMinStockUpdate(new MinimumStockUpdate("updateCategoryStock", PrefUtils.getAuthToken(getContext()),categoryList.getCategoryId(),updateStock));
+                    if (NetworkUtils.isNetworkConnected(getContext())) {
+                        call.enqueue(new Callback<MarginUpdateResponse>() {
+
+                            @Override
+                            public void onResponse(Call<MarginUpdateResponse> call, Response<MarginUpdateResponse> response) {
+
+                                if (response.isSuccessful()) {
+
+                                    if (response.body().getMsg().equals("Stock level updated!")) {
+                                        categoryList.setDefaultMargin(response.body().getMargin());
+                                        categoryList.setMinStock(response.body().getStock());
+
+                                        ManageCategoriesAdapter.this.notifyDataSetChanged();
+
+                                        MarginLocalData marginLocalData = new MarginLocalData();
+                                        ;
+                                        if (productTestId.size() !=0) {
+                                            for (int j = 0; j < productTestId.size(); j++) {
+                                                if (categoryList.getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
+
+                                                    productTestId.get(j).setDefaultMargin(response.body().getMargin());
+                                                    productTestId.get(j).setMinStock(response.body().getStock());
+
+                                                    break;
+                                                }
+
+                                                if ( j==(productTestId.size()-1))
+                                                {
+                                                    marginLocalData.setCategoryId(categoryList.getCategoryId());
+                                                    marginLocalData.setDefaultMargin(response.body().getMargin());
+                                                    marginLocalData.setMinStock(response.body().getStock());
+
+                                                    productTestId.add(marginLocalData);
+                                                }
+                                            }
+
+
+
+                                        }
+                                        else
+                                        {
+                                            marginLocalData.setCategoryId(categoryList.getCategoryId());
+                                            marginLocalData.setDefaultMargin(response.body().getMargin());
+                                            marginLocalData.setMinStock(response.body().getStock());
+                                            productTestId.add(marginLocalData);
+
+                                        }
+
+
+
+                                    }
+
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<MarginUpdateResponse> call, Throwable t) {
+
+                            }
+
+
+                        });
+
+                    } else {
+                        SnakBarUtils.networkConnected(getContext());
+                    }
+
+                }
+            });
 
         }
 
@@ -222,7 +306,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
 
         return rowView;
     }
-   /* @Override
+    @Override
     public Filter getFilter() {
         Filter filter = new Filter() {
 
@@ -234,13 +318,13 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                     notifyDataSetInvalidated();
                 }
                 else {
-                    displayItemList = (ArrayList<Inventory>) results.values;
+                    displayItemList = (ArrayList<CategoryList>) results.values;
 
                     if (results != null && results.count > 0) {
                         clear();
-                        for (Inventory inventoryItems : new ArrayList<>(displayItemList)) {
+                        for (CategoryList categoryList  : new ArrayList<>(displayItemList)) {
 
-                            add(inventoryItems);
+                            add(categoryList);
                             notifyDataSetChanged();
                         }
                     }
@@ -251,8 +335,8 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults results = new FilterResults();        // Holds the results of a filtering operation in values
-                ArrayList<Inventory> FilteredArrList = new ArrayList<>();
-                ArrayList<Inventory> FilteredArrList1 = new ArrayList<>();
+                ArrayList<CategoryList> FilteredArrList = new ArrayList<>();
+                ArrayList<CategoryList> FilteredArrList1 = new ArrayList<>();
                 if (filterItemList ==null)
                 {
                     filterItemList =new ArrayList<>(itemList);
@@ -271,23 +355,23 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                 } else {
                     constraint = constraint.toString().toLowerCase();
                     for (int i = 0; i < tempItemList.size(); i++) {
-                        String data = tempItemList.get(i).getName();
+                        String data = tempItemList.get(i).getTitle();
                         if (data.toLowerCase().startsWith(constraint.toString())) {
-                            Inventory inventoryItems = new Inventory();
-                            inventoryItems.setName(tempItemList.get(i).getName());
-                            inventoryItems.setPreviousPrice(tempItemList.get(i).getPreviousPrice());
+                            CategoryList categoryList = new CategoryList();
+                            categoryList.setTitle(tempItemList.get(i).getTitle());
+                            categoryList.setCategoryId(tempItemList.get(i).getCategoryId());
 
 
                             if (productTestId.size() !=0) {
                                 for (int j = 0; j < productTestId.size(); j++) {
-                                    if (tempItemList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
+                                    if (tempItemList.get(i).getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
                                         // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
-                                        inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
-                                        inventoryItems.setMargin(productTestId.get(j).getMargin());
+                                        categoryList.setDefaultMargin(productTestId.get(j).getMargin());
+                                        categoryList.setMinStock(productTestId.get(j).getMinStock());
                                         break;
                                     }
-                                    inventoryItems.setNewPrice(tempItemList.get(i).getNewPrice());
-                                    inventoryItems.setMargin(tempItemList.get(i).getMargin());
+                                    categoryList.setDefaultMargin(tempItemList.get(i).getDefaultMargin());
+                                    categoryList.setMinStock(tempItemList.get(i).getMinStock());
 
                                 }
 
@@ -295,43 +379,33 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                             }
                             else
                             {
-                                inventoryItems.setNewPrice(tempItemList.get(i).getNewPrice());
-                                inventoryItems.setMargin(tempItemList.get(i).getMargin());
-
+                                categoryList.setDefaultMargin(tempItemList.get(i).getDefaultMargin());
+                                categoryList.setMinStock(tempItemList.get(i).getMinStock());
                             }
 
 
 
-                            inventoryItems.setNewCost(tempItemList.get(i).getNewCost());
+                            /*inventoryItems.setNewCost(tempItemList.get(i).getNewCost());
                             inventoryItems.setStatus(tempItemList.get(i).getStatus());
                             inventoryItems.setPreviousCost(tempItemList.get(i).getPreviousCost());
                             inventoryItems.setWholeSaler(tempItemList.get(i).getWholeSaler());
                             inventoryItems.setCloverId(tempItemList.get(i).getCloverId());
                             inventoryItems.setProductId(tempItemList.get(i).getProductId());
                             inventoryItems.setCategory(tempItemList.get(i).getCategory());
-                            inventoryItems.setStock(tempItemList.get(i).getStock());
-                            FilteredArrList.add(inventoryItems);
+                            inventoryItems.setStock(tempItemList.get(i).getStock());*/
+                            FilteredArrList.add(categoryList);
 
                         }
                     }
                     // set the Filtered result to return
 
                     for (int i = 0; i < filterItemList.size()&& i < FilteredArrList.size(); i++) {
-                        Inventory inventoryItems = new Inventory();
-                        inventoryItems.setName(FilteredArrList.get(i).getName());
-                        inventoryItems.setNewPrice(FilteredArrList.get(i).getNewPrice());
-                        inventoryItems.setPreviousCost(FilteredArrList.get(i).getPreviousCost());
-                        inventoryItems.setMargin(FilteredArrList.get(i).getMargin());
-                        inventoryItems.setWholeSaler(FilteredArrList.get(i).getWholeSaler());
-                        inventoryItems.setNewCost(FilteredArrList.get(i).getNewCost());
-                        inventoryItems.setStatus(FilteredArrList.get(i).getStatus());
-                        inventoryItems.setBUpdate(FilteredArrList.get(i).getBUpdate());
-                        inventoryItems.setPreviousPrice(FilteredArrList.get(i).getPreviousPrice());
-                        inventoryItems.setProductId(FilteredArrList.get(i).getProductId());
-                        inventoryItems.setCloverId(FilteredArrList.get(i).getCloverId());
-                        inventoryItems.setCategory(FilteredArrList.get(i).getCategory());
-                        inventoryItems.setStock(FilteredArrList.get(i).getStock());
-                        FilteredArrList1.add(inventoryItems);
+                        CategoryList categoryList = new CategoryList();
+                        categoryList.setTitle(FilteredArrList.get(i).getTitle());
+                        categoryList.setCategoryId(FilteredArrList.get(i).getCategoryId());
+                        categoryList.setMinStock(FilteredArrList.get(i).getMinStock());
+                        categoryList.setDefaultMargin(FilteredArrList.get(i).getDefaultMargin());
+                        FilteredArrList1.add(categoryList);
                     }
 
 
@@ -344,7 +418,6 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
         return filter;
     }
 
-*/
 
 
 

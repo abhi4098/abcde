@@ -96,7 +96,6 @@
                 android:layout_height="15dp"
                 android:background="@drawable/update_button_selector"
                 android:layout_marginEnd="10dp"
-                android:onClick="increaseInteger"
                 />
 
 
@@ -149,7 +148,6 @@
                 android:layout_height="15dp"
                 android:background="@drawable/update_button_selector"
                 android:layout_marginEnd="10dp"
-                android:onClick="increaseInteger"
                 />
 
 
