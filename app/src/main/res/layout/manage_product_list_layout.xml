@@ -9,9 +9,9 @@
     >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="40dp"
-        android:layout_weight=".25">
+        >
 
         <TextView
             android:id="@+id/item_id"
@@ -28,19 +28,19 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="355dp"
         android:layout_height="40dp"
-        android:layout_weight=".25">
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="8sp"
             android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
             android:paddingBottom="8sp"
             android:maxLength="10"
-            android:gravity="center"
+            android:gravity="start"
             android:textSize="12sp"
             android:id="@+id/item_category"
             android:textStyle="normal"
@@ -53,16 +53,17 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_weight=".25">
+        android:gravity="center"
+        >
 
         <LinearLayout
             android:id="@+id/minimum_stock"
             android:background="@drawable/rectangular_transparent_gray"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:layout_marginEnd="5dp"
             android:focusable="false"
             android:layout_marginStart="5dp"
@@ -81,7 +82,7 @@
 
             <EditText
                 android:id="@+id/stock_quantity"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="0"
@@ -106,15 +107,15 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_weight=".25">
+        android:gravity="center"
+       >
         <LinearLayout
             android:id="@+id/margin"
             android:background="@drawable/rectangular_transparent_gray"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginEnd="5dp"
             android:focusable="false"
             android:layout_marginStart="5dp"
@@ -133,7 +134,7 @@
 
             <EditText
                 android:id="@+id/margin_int"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="0"

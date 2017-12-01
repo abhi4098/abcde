@@ -5,7 +5,6 @@
     android:layout_height="40dp"
     android:background="@color/background_light"
     android:orientation="horizontal"
-    android:weightSum="1"
 
     >
 
@@ -15,14 +14,14 @@
         android:orientation="horizontal"
         android:gravity="start"
         android:layout_height="match_parent"
-        android:layout_width="0dp"
-        android:layout_weight=".25">
+        android:layout_width="60dp"
+       >
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Product Id"
+            android:text="Id"
             android:gravity="start"
             android:maxLength="25"
             android:textSize="13sp"
@@ -43,7 +42,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:id="@+id/ll_name_asc"
+                android:id="@+id/ll_id_asc"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="top">
 
@@ -61,7 +60,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:id="@+id/ll_name_dsc"
+                android:id="@+id/ll_id_dsc"
                 android:layout_gravity="bottom">
 
 
@@ -93,19 +92,19 @@
 
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:gravity="center"
+        android:layout_width="355dp"
+        android:gravity="start"
         android:orientation="horizontal"
-        android:layout_weight=".25"
         android:layout_height="match_parent" >
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="315dp"
             android:layout_height="wrap_content"
             android:paddingTop="8sp"
             android:paddingBottom="8sp"
-            android:gravity="center"
+            android:gravity="start"
             android:maxLength="10"
+            android:layout_marginStart="20dp"
             android:layout_gravity="center_vertical"
             android:textSize="13sp"
             android:text="Category"
@@ -117,7 +116,7 @@
         <LinearLayout
             android:layout_width="15dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:gravity="end"
             android:orientation="vertical"
             >
 
@@ -125,7 +124,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:id="@+id/ll_product_id_asc"
+                android:id="@+id/ll_category_asc"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="top">
 
@@ -143,7 +142,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:id="@+id/ll_product_id_dsc"
+                android:id="@+id/ll_category_dsc"
                 android:layout_gravity="bottom">
 
 
@@ -175,20 +174,20 @@
 
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="250dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_weight=".25"
         android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:paddingTop="8sp"
             android:paddingBottom="8sp"
             android:gravity="center"
             android:layout_gravity="center_vertical"
             android:textSize="13sp"
+            android:layout_marginStart="20dp"
             android:textStyle="bold"
             android:text="Minimum stock"
 
@@ -207,7 +206,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:id="@+id/ll_wholesaler_asc"
+                android:id="@+id/ll_min_stock_asc"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="top">
 
@@ -225,7 +224,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:id="@+id/ll_wholesaler_dsc"
+                android:id="@+id/ll_min_stock_dsc"
                 android:layout_gravity="bottom">
 
 
@@ -259,21 +258,21 @@
 
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="250dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_weight=".25"
         android:layout_height="match_parent" >
 
         <TextView
 
-            android:layout_width="match_parent"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:paddingTop="8sp"
             android:paddingBottom="8sp"
             android:gravity="center"
             android:text="Default Margin"
             android:textStyle="bold"
+            android:layout_marginStart="20dp"
             android:layout_gravity="center_vertical"
             android:textSize="13sp"
 
@@ -292,7 +291,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:id="@+id/ll_margin_asc"
+                android:id="@+id/ll_default_margin_asc"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="top">
 
@@ -310,7 +309,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:id="@+id/ll_margin_dsc"
+                android:id="@+id/ll_default_margin_dsc"
                 android:layout_gravity="bottom">
 
 

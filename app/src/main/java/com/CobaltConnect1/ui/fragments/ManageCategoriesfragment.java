@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -71,6 +72,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
     String[] items = new String[]{"10", "25", "50", "100"};
     Button updateToClover, btPrev, btNext;
     TextView emptyMessage,tvLastFetch,tvPageNum, tvShowStats,tvProcessing,tvLast;
+    LinearLayout llAscId,llDscId,llAscCategory,llDscCategory,llAscMinStock,llDscMinStock,llDscDefaultMargin,llAscDefaultMargin;
 
 
 
@@ -92,6 +94,24 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
         btNext = (Button) rootView.findViewById(R.id.next);
         btPrev = (Button) rootView.findViewById(R.id.prev);
 
+        llAscId = (LinearLayout) rootView.findViewById(R.id.ll_id_asc);
+        llDscId = (LinearLayout) rootView.findViewById(R.id.ll_id_dsc);
+        llAscCategory = (LinearLayout) rootView.findViewById(R.id.ll_category_asc);
+        llDscCategory = (LinearLayout) rootView.findViewById(R.id.ll_category_dsc);
+        llAscDefaultMargin = (LinearLayout) rootView.findViewById(R.id.ll_default_margin_asc);
+        llDscDefaultMargin = (LinearLayout) rootView.findViewById(R.id.ll_default_margin_dsc);
+        llAscMinStock = (LinearLayout) rootView.findViewById(R.id.ll_min_stock_asc);
+        llDscMinStock = (LinearLayout) rootView.findViewById(R.id.ll_min_stock_dsc);
+
+
+        llAscId.setOnClickListener(this);
+        llDscId.setOnClickListener(this);
+        llAscCategory.setOnClickListener(this);
+        llDscCategory.setOnClickListener(this);
+        llAscMinStock.setOnClickListener(this);
+        llDscMinStock .setOnClickListener(this);
+        llAscDefaultMargin.setOnClickListener(this);
+        llDscDefaultMargin.setOnClickListener(this);
 
         btNext.setOnClickListener(this);
         btPrev.setOnClickListener(this);
@@ -447,6 +467,135 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                     btPrev.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rectangular_background_light_gray));
                 }
                 break;
+
+            case R.id.ll_id_asc:
+                orderType = "asc";
+                orderField = "title";
+                LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
+                getCategoryList();
+                llAscId.setVisibility(View.INVISIBLE);
+                llDscId.setVisibility(View.VISIBLE);
+                llAscCategory.setVisibility(View.VISIBLE);
+                llDscCategory.setVisibility(View.VISIBLE);
+                llAscMinStock.setVisibility(View.VISIBLE);
+                llDscMinStock.setVisibility(View.VISIBLE);
+                llAscDefaultMargin.setVisibility(View.VISIBLE);
+                llDscDefaultMargin.setVisibility(View.VISIBLE);
+
+                break;
+
+            case R.id.ll_id_dsc:
+                orderType = "desc";
+                orderField = "title";
+                LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
+                getCategoryList();
+                llAscId.setVisibility(View.VISIBLE);
+                llDscId.setVisibility(View.INVISIBLE);
+                llAscCategory.setVisibility(View.VISIBLE);
+                llDscCategory.setVisibility(View.VISIBLE);
+                llAscMinStock.setVisibility(View.VISIBLE);
+                llDscMinStock.setVisibility(View.VISIBLE);
+                llAscDefaultMargin.setVisibility(View.VISIBLE);
+                llDscDefaultMargin.setVisibility(View.VISIBLE);
+                break;
+
+            case R.id.ll_category_asc:
+                orderType = "asc";
+                orderField = "categoryId";
+                LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
+                getCategoryList();
+                llAscId.setVisibility(View.VISIBLE);
+                llDscId.setVisibility(View.VISIBLE);
+                llAscCategory.setVisibility(View.INVISIBLE);
+                llDscCategory.setVisibility(View.VISIBLE);
+                llAscMinStock.setVisibility(View.VISIBLE);
+                llDscMinStock.setVisibility(View.VISIBLE);
+                llAscDefaultMargin.setVisibility(View.VISIBLE);
+                llDscDefaultMargin.setVisibility(View.VISIBLE);
+
+                break;
+
+            case R.id.ll_category_dsc:
+                orderType = "desc";
+                orderField = "categoryId";
+                LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
+                getCategoryList();
+                llAscId.setVisibility(View.VISIBLE);
+                llDscId.setVisibility(View.VISIBLE);
+                llAscCategory.setVisibility(View.VISIBLE);
+                llDscCategory.setVisibility(View.INVISIBLE);
+                llAscMinStock.setVisibility(View.VISIBLE);
+                llDscMinStock.setVisibility(View.VISIBLE);
+                llAscDefaultMargin.setVisibility(View.VISIBLE);
+                llDscDefaultMargin.setVisibility(View.VISIBLE);
+
+                break;
+
+            case R.id.ll_min_stock_asc:
+                orderType = "asc";
+                orderField = "minStock";
+                LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
+                getCategoryList();
+                llAscId.setVisibility(View.VISIBLE);
+                llDscId.setVisibility(View.VISIBLE);
+                llAscCategory.setVisibility(View.VISIBLE);
+                llDscCategory.setVisibility(View.VISIBLE);
+                llAscMinStock.setVisibility(View.INVISIBLE);
+                llDscMinStock.setVisibility(View.VISIBLE);
+                llAscDefaultMargin.setVisibility(View.VISIBLE);
+                llDscDefaultMargin.setVisibility(View.VISIBLE);
+
+                break;
+
+            case R.id.ll_min_stock_dsc:
+                orderType = "desc";
+                orderField = "minStock";
+                LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
+                getCategoryList();
+                llAscId.setVisibility(View.VISIBLE);
+                llDscId.setVisibility(View.VISIBLE);
+                llAscCategory.setVisibility(View.VISIBLE);
+                llDscCategory.setVisibility(View.VISIBLE);
+                llAscMinStock.setVisibility(View.VISIBLE);
+                llDscMinStock.setVisibility(View.INVISIBLE);
+                llAscDefaultMargin.setVisibility(View.VISIBLE);
+                llDscDefaultMargin.setVisibility(View.VISIBLE);
+
+                break;
+
+            case R.id.ll_default_margin_asc:
+                orderType = "asc";
+                orderField = "defaultMargin";
+                LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
+                getCategoryList();
+                llAscId.setVisibility(View.VISIBLE);
+                llDscId.setVisibility(View.VISIBLE);
+                llAscCategory.setVisibility(View.VISIBLE);
+                llDscCategory.setVisibility(View.VISIBLE);
+                llAscMinStock.setVisibility(View.VISIBLE);
+                llDscMinStock.setVisibility(View.VISIBLE);
+                llAscDefaultMargin.setVisibility(View.INVISIBLE);
+                llDscDefaultMargin.setVisibility(View.VISIBLE);
+
+
+                break;
+
+            case R.id.ll_default_margin_dsc:
+                orderType = "desc";
+                orderField = "defaultMargin";
+                LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
+                getCategoryList();
+                llAscId.setVisibility(View.VISIBLE);
+                llDscId.setVisibility(View.VISIBLE);
+                llAscCategory.setVisibility(View.VISIBLE);
+                llDscCategory.setVisibility(View.VISIBLE);
+                llAscMinStock.setVisibility(View.VISIBLE);
+                llDscMinStock.setVisibility(View.VISIBLE);
+                llAscDefaultMargin.setVisibility(View.VISIBLE);
+                llDscDefaultMargin.setVisibility(View.INVISIBLE);
+
+                break;
+
 
             default:
                 break;
