@@ -66,6 +66,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
     int totalItems = 0;
     int  totalNoPages = 0;
     ArrayList<CategoryList> showManageCategoriesList = null;
+    ArrayList<CategoryList> searchManageCategoriesList = null;
     int pageNum =1;
     Spinner spDropdown,spCategoryDropdown;
     int spSelectedItem = 10;
@@ -126,6 +127,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
         spDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
+                etSearch.getText().clear();
                 spSelectedItem = Integer.parseInt(spDropdown.getSelectedItem().toString());
                 pageNum = 1;
                 tvPageNum.setText(String.valueOf(pageNum));
@@ -135,33 +137,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                 btNext.setEnabled(true);
                 btNext.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.button_state_selector));
 
-
-
-                if (totalItems != 0)
-
-                {
-
-
-                    if ((totalItems % spSelectedItem) == 0) {
-                        totalNoPages = totalItems / spSelectedItem;
-                        tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
-                    }
-
-                    else if(totalItems<spSelectedItem)
-                    {
-                        totalNoPages = 1;
-                        tvShowStats.setText("Showing " +pageNum + " to " +totalItems + " of "  +totalItems );
-                    }
-
-                    else {
-
-                        totalNoPages = ((totalItems / spSelectedItem)+1);
-                        Log.e("abhi", "onItemSelected: ------------total num of pages" + totalNoPages );
-                        tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
-                    }
-
-
-                }
+                setPageInformation();
 
 
                 if (manageCategoryList != null)
@@ -199,17 +175,30 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                pageNum = 1;
+                tvPageNum.setText(String.valueOf(pageNum));
+                btNext.setEnabled(true);
+                btPrev.setEnabled(false);
+                btNext.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.button_state_selector));
+                btPrev.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rectangular_background_light_gray));
 
-                if (manageCategoryList != null) {
-                    manageCategoriesAdapter.getFilter().filter(s.toString());
+
+                if (manageCategoryList != null&& !etSearch.getText().toString().equals("")) {
+                    //manageCategoriesAdapter.getFilter().filter(s.toString());
+                    filterSearch(s.toString());
+                }
+                else
+                {
+
+                    getCategoryList();
                 }
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,int after) {
-                if (manageCategoryList != null) {
+               /* if (manageCategoryList != null) {
                     manageCategoriesAdapter.notifyDataSetChanged();
-                }
+                }*/
 
             }
 
@@ -301,6 +290,74 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
         return rootView;
     }
 
+    private void setPageInformation() {
+        if (totalItems != 0)
+
+        {
+
+
+            if ((totalItems % spSelectedItem) == 0) {
+                totalNoPages = totalItems / spSelectedItem;
+                tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
+            }
+
+            else if(totalItems<spSelectedItem)
+            {
+                totalNoPages = 1;
+                tvShowStats.setText("Showing " +pageNum + " to " +totalItems + " of "  +totalItems );
+            }
+
+            else {
+
+                totalNoPages = ((totalItems / spSelectedItem)+1);
+                Log.e("abhi", "onItemSelected: ------------total num of pages" + totalNoPages );
+                tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
+            }
+
+
+        }
+
+    }
+
+    private void filterSearch(String constraint) {
+       // Log.e("abhi", "filterSearch: ----------" +constraint );
+        constraint = constraint.toString().toLowerCase();
+        searchManageCategoriesList =new ArrayList<>();
+        for (int i = 0; i < manageCategoryList.size(); i++) {
+            String data = manageCategoryList.get(i).getTitle();
+            if (data.toLowerCase().startsWith(constraint.toString())) {
+                CategoryList categoryList = new CategoryList();
+                categoryList.setTitle(manageCategoryList.get(i).getTitle());
+                categoryList.setCategoryId(manageCategoryList.get(i).getCategoryId());
+                categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
+                categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
+                searchManageCategoriesList.add(categoryList);
+
+            }
+        }
+        // set the Filtered result to return
+
+        totalItems = searchManageCategoriesList.size();
+        setPageInformation();
+        showManageCategoriesList = new ArrayList<>();
+        for (int i = 0;  i < spSelectedItem&& i<totalItems; i++) {
+            CategoryList categoryList = new CategoryList();
+            categoryList.setTitle(searchManageCategoriesList.get(i).getTitle());
+            categoryList.setCategoryId(searchManageCategoriesList.get(i).getCategoryId());
+            categoryList.setMinStock(searchManageCategoriesList.get(i).getMinStock());
+            categoryList.setDefaultMargin(searchManageCategoriesList.get(i).getDefaultMargin());
+            showManageCategoriesList.add(categoryList);
+        }
+
+        manageCategoriesAdapter = new ManageCategoriesAdapter(getActivity(), R.layout.manage_product_list_layout, R.id.item_name, showManageCategoriesList,productTestId, searchManageCategoriesList);
+        listview.setAdapter(manageCategoriesAdapter);
+        LoadingDialog.cancelLoading();
+        listview.setDivider(new ColorDrawable(getResources().getColor(R.color.background_light)));
+        listview.setDividerHeight(1);
+        listview.setTextFilterEnabled(true);
+
+    }
+
 
     private void setUpRestAdapter() {
 
@@ -366,25 +423,8 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
         }
 
         totalItems = manageCategoryList.size();
+        setPageInformation();
 
-        if (totalItems != 0)
-
-        {
-
-            if ((totalItems % spSelectedItem) == 0) {
-                totalNoPages = totalItems / spSelectedItem;
-            }
-
-            else {
-
-                totalNoPages = ((totalItems / spSelectedItem)+1);
-
-            }
-
-
-
-        }
-        tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
 
 
         for (int i = 0; i < spSelectedItem&& i<totalItems; i++) {
@@ -405,25 +445,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
         listview.setTextFilterEnabled(true);
         listview.setOnItemClickListener(this);
 
-     /*   final ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_layout, categoryList);
-        spCategoryDropdown.setAdapter(categoryAdapter);
-        spCategoryDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                spCategorySelectedItem = spCategoryDropdown.getSelectedItem().toString();
-                Log.e("abhi", "onItemSelected: " + spCategorySelectedItem);
-               *//* if (!spCategorySelectedItem.equals("All")) {
-                    categoryAdapter.getFilter().filter(spCategorySelectedItem);
-                    myProductAdapter.notifyDataSetChanged();
-                }*//*
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });*/
     }
 
 
@@ -470,7 +492,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
 
             case R.id.ll_id_asc:
                 orderType = "asc";
-                orderField = "title";
+                orderField = "categoryId";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 getCategoryList();
                 llAscId.setVisibility(View.INVISIBLE);
@@ -486,7 +508,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
 
             case R.id.ll_id_dsc:
                 orderType = "desc";
-                orderField = "title";
+                orderField = "categoryId";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 getCategoryList();
                 llAscId.setVisibility(View.VISIBLE);
@@ -501,7 +523,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
 
             case R.id.ll_category_asc:
                 orderType = "asc";
-                orderField = "categoryId";
+                orderField = "title";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 getCategoryList();
                 llAscId.setVisibility(View.VISIBLE);
@@ -517,7 +539,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
 
             case R.id.ll_category_dsc:
                 orderType = "desc";
-                orderField = "categoryId";
+                orderField = "title";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 getCategoryList();
                 llAscId.setVisibility(View.VISIBLE);
@@ -605,44 +627,66 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
 
 
     private void filterListPages() {
-        etSearch.getText().clear();
-        if (pageNum == 1)
-        {
-            tvShowStats.setText("Showing " + pageNum+ " to " + pageNum * spSelectedItem + " of " + totalItems);
-        }
-        else if(pageNum*spSelectedItem >= totalItems)
+        //  etSearch.getText().clear();
+        if (pageNum == 1) {
+            tvShowStats.setText("Showing " + pageNum + " to " + pageNum * spSelectedItem + " of " + totalItems);
+        } else if (pageNum * spSelectedItem >= totalItems)
 
         {
             tvShowStats.setText("Showing " + (pageNum - 1) * spSelectedItem + " to " + totalItems + " of " + totalItems);
-        }
-        else {
+        } else {
             tvShowStats.setText("Showing " + (pageNum - 1) * spSelectedItem + " to " + pageNum * spSelectedItem + " of " + totalItems);
         }
         tvPageNum.setText(String.valueOf(pageNum));
         showManageCategoriesList = new ArrayList<>();
 
+        if (etSearch.getText().toString().equals(""))
 
-
-
-        for (int i = (pageNum-1)*spSelectedItem; i < pageNum*spSelectedItem && i<totalItems; i++)
         {
 
-            CategoryList categoryList = new CategoryList();
-            categoryList.setCategoryId(manageCategoryList.get(i).getCategoryId());
-            categoryList.setTitle(manageCategoryList.get(i).getTitle());
-            categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
-            categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
-            showManageCategoriesList.add(categoryList);
+            for (int i = (pageNum - 1) * spSelectedItem; i < pageNum * spSelectedItem && i < totalItems; i++) {
 
+                CategoryList categoryList = new CategoryList();
+                categoryList.setCategoryId(manageCategoryList.get(i).getCategoryId());
+                categoryList.setTitle(manageCategoryList.get(i).getTitle());
+                categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
+                categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
+                showManageCategoriesList.add(categoryList);
+
+            }
+
+            manageCategoriesAdapter = new ManageCategoriesAdapter(getActivity(), R.layout.manage_product_list_layout, R.id.item_name, showManageCategoriesList, productTestId, manageCategoryList);
+            listview.setAdapter(manageCategoriesAdapter);
+            LoadingDialog.cancelLoading();
+            listview.setDivider(new ColorDrawable(getResources().getColor(R.color.background_light)));
+            listview.setDividerHeight(1);
+            listview.setTextFilterEnabled(true);
+            listview.setOnItemClickListener(this);
         }
 
-        manageCategoriesAdapter = new ManageCategoriesAdapter(getActivity(), R.layout.manage_product_list_layout, R.id.item_name, showManageCategoriesList,productTestId, manageCategoryList);
-        listview.setAdapter(manageCategoriesAdapter);
-        LoadingDialog.cancelLoading();
-        listview.setDivider(new ColorDrawable(getResources().getColor(R.color.background_light)));
-        listview.setDividerHeight(1);
-        listview.setTextFilterEnabled(true);
-        listview.setOnItemClickListener(this);
+        else
+        {
+            Log.e("abhi", "filterListPages: pagenum  " +pageNum +" spselected item " +spSelectedItem );
+
+            for (int i = (pageNum - 1) * spSelectedItem; i < pageNum * spSelectedItem && i < totalItems; i++) {
+                Log.e("abhi", "filterListPages: " +i );
+                CategoryList categoryList = new CategoryList();
+                categoryList.setCategoryId(searchManageCategoriesList.get(i).getCategoryId());
+                categoryList.setTitle(searchManageCategoriesList.get(i).getTitle());
+                categoryList.setDefaultMargin(searchManageCategoriesList.get(i).getDefaultMargin());
+                categoryList.setMinStock(searchManageCategoriesList.get(i).getMinStock());
+                showManageCategoriesList.add(categoryList);
+
+            }
+
+            manageCategoriesAdapter = new ManageCategoriesAdapter(getActivity(), R.layout.manage_product_list_layout, R.id.item_name, showManageCategoriesList, productTestId, manageCategoryList);
+            listview.setAdapter(manageCategoriesAdapter);
+            LoadingDialog.cancelLoading();
+            listview.setDivider(new ColorDrawable(getResources().getColor(R.color.background_light)));
+            listview.setDividerHeight(1);
+            listview.setTextFilterEnabled(true);
+            listview.setOnItemClickListener(this);
+        }
     }
 
 

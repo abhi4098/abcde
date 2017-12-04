@@ -49,7 +49,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private RetrofitInterface.DashboardDataClient MyDashboardAdapter;
     TextView tvMyProducts,tvProductUpdates,tvAffectedProducts,tvMissingMargins;
     PieChart pieChart;
-    LinearLayout llMyProducts,llProductUpdates;
+    LinearLayout llMyProducts,llProductUpdates,llAffectedProducts,llMissingProducts;
     TextView tvAppTitle;
     String[] items = new String[]{"Time Interval", "Time Interval1", "Time Interval2","Time Interval3"};
 
@@ -68,6 +68,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         llMyProducts = (LinearLayout) rootView.findViewById(R.id.ll_my_products);
         llProductUpdates = (LinearLayout) rootView.findViewById(R.id.ll_product_updates);
+        llAffectedProducts = (LinearLayout) rootView.findViewById(R.id.ll_affected_products);
+        llMissingProducts = (LinearLayout) rootView.findViewById(R.id.ll_missing_margins);
+        llMyProducts = (LinearLayout) rootView.findViewById(R.id.ll_my_products);
+        llProductUpdates = (LinearLayout) rootView.findViewById(R.id.ll_product_updates);
         tvMyProducts = (TextView) rootView.findViewById(R.id.my_products);
         tvProductUpdates = (TextView) rootView.findViewById(R.id.product_updates);
         tvAffectedProducts = (TextView) rootView.findViewById(R.id.effected_products);
@@ -78,6 +82,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         //pieChart.setUsePercentValues(true);
         llMyProducts.setOnClickListener(this);
         llProductUpdates.setOnClickListener(this);
+        llAffectedProducts.setOnClickListener(this);
+        llMissingProducts.setOnClickListener(this);
         setUpRestAdapter();
         MyDashboardDetails();
 
@@ -204,6 +210,22 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 ((NavigationalDrawerActivity) getActivity()).tvAppTitle.setText("Products Updates");
                 FragmentManager fragmentManager1 = getFragmentManager();
                 fragmentManager1.beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment1).commit();
+
+                break;
+
+            case R.id.ll_affected_products:
+                Fragment fragment2 = new MyProductsFragment();
+                ((NavigationalDrawerActivity) getActivity()).tvAppTitle.setText("My Products");
+                FragmentManager fragmentManager2 = getFragmentManager();
+                fragmentManager2.beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment2).commit();
+
+                break;
+
+            case R.id.ll_missing_margins:
+                Fragment fragment3 = new MyProductsFragment();
+                ((NavigationalDrawerActivity) getActivity()).tvAppTitle.setText("My Products");
+                FragmentManager fragmentManager3 = getFragmentManager();
+                fragmentManager3.beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment3).commit();
 
                 break;
 

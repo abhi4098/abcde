@@ -5,6 +5,7 @@ package com.CobaltConnect1.ui.adapters;
  */
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.CobaltConnect1.R;
@@ -85,6 +87,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
         public EditText defaultMargin;
         public Button minimumStockButton;
         public Button defaultMarginButton;
+        public LinearLayout llMargin,llMinStock;
 
 
 
@@ -105,6 +108,8 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
             viewHolder.defaultMargin= (EditText) rowView.findViewById(R.id.margin_int);
             viewHolder.minimumStockButton= (Button) rowView.findViewById(R.id.update_stock);
             viewHolder.defaultMarginButton= (Button) rowView.findViewById(R.id.update_margin);
+            viewHolder.llMargin= (LinearLayout) rowView.findViewById(R.id.margin);
+            viewHolder.llMinStock= (LinearLayout) rowView.findViewById(R.id.minimum_stock);
 
 
 
@@ -122,29 +127,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
             holder.itemId.setText(categoryList.getCategoryId());
             holder.minimumStock.setText(categoryList.getMinStock());
             holder.defaultMargin.setText(categoryList.getDefaultMargin());
-            /*holder.category.setText(inventoryItems.getCategory());
-            holder.stock.setText(String.valueOf(inventoryItems.getStock()));
-            holder.wholesaler.setText(inventoryItems.getWholeSaler());
-            holder.status.setText(String.valueOf(inventoryItems.getStatus()));
-            switch (inventoryItems.getStatus()) {
-                case "New":
-                    holder.status.setBackground(ContextCompat.getDrawable(context, R.drawable.rectangular_background_new));
-                    break;
-                case "Queued":
-                    holder.status.setBackground(ContextCompat.getDrawable(context, R.drawable.rectangular_background_queued));
-                    break;
-                case "Processed":
-                    holder.status.setBackground(ContextCompat.getDrawable(context, R.drawable.rectangular_background_processed));
-                    break;
-                default:
-                    holder.status.setBackground(ContextCompat.getDrawable(context, R.drawable.rectangular_background_others));
-                    break;
-            }
 
-            holder.newCost.setText(inventoryItems.getNewCost());
-            holder.margin.setText(inventoryItems.getMargin());
-            holder.itemId.setText(inventoryItems.getCloverId());
-*/
 
 
 
@@ -152,6 +135,8 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
             holder.defaultMarginButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+
                     updatedMargin = holder.defaultMargin.getText().toString();
                     UpdateMarginAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.MerchantDefaultMarginUpdateClient.class, BASE_URL, getContext());
                     Call<MarginUpdateResponse> call = UpdateMarginAdapter.merchantDefaultMarginUpdate(new DefaultMarginUpdate("updateCategoryMargin", PrefUtils.getAuthToken(getContext()),categoryList.getCategoryId(),updatedMargin));
@@ -164,7 +149,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                 if (response.isSuccessful()) {
 
                                     if (response.body().getMsg().equals("Margin updated!")) {
-
+                                       holder.llMargin.setBackgroundColor(Color.rgb(223,240,216));
                                         categoryList.setDefaultMargin(response.body().getMargin());
                                         categoryList.setMinStock(response.body().getStock());
                                         ManageCategoriesAdapter.this.notifyDataSetChanged();
@@ -239,6 +224,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                 if (response.isSuccessful()) {
 
                                     if (response.body().getMsg().equals("Stock level updated!")) {
+                                        holder.llMinStock.setBackgroundColor(Color.rgb(223,240,216));
                                         categoryList.setDefaultMargin(response.body().getMargin());
                                         categoryList.setMinStock(response.body().getStock());
 
