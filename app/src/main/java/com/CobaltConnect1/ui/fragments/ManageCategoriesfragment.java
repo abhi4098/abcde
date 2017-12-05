@@ -183,22 +183,18 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                 btPrev.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rectangular_background_light_gray));
 
 
-                if (manageCategoryList != null&& !etSearch.getText().toString().equals("")) {
+                if (manageCategoryList != null) {
                     //manageCategoriesAdapter.getFilter().filter(s.toString());
                     filterSearch(s.toString());
                 }
-                else
-                {
 
-                    getCategoryList();
-                }
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,int after) {
-               /* if (manageCategoryList != null) {
+                if (manageCategoryList != null) {
                     manageCategoriesAdapter.notifyDataSetChanged();
-                }*/
+                }
 
             }
 

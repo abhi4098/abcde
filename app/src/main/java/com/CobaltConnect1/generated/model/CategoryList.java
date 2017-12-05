@@ -19,6 +19,19 @@ public class CategoryList {
     @Expose
     private String defaultMargin;
 
+    @SerializedName("bUpdate")
+    @Expose
+    private Integer bUpdate = 0;
+
+    public Integer getBUpdate() {
+        return bUpdate;
+    }
+
+    public void setBUpdate(Integer bUpdate) {
+        this.bUpdate = bUpdate;
+    }
+
+
     public String getCategoryId() {
         return categoryId;
     }

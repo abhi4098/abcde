@@ -119,6 +119,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
         // Set text to each TextView of ListView item
         final CategoryList categoryList = getItem(position);
         final ViewHolder holder = (ViewHolder) rowView.getTag();
+        final View finalRowView = rowView;
 
         if (categoryList !=null) {
 
@@ -129,7 +130,14 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
             holder.defaultMargin.setText(categoryList.getDefaultMargin());
 
 
-
+            if(categoryList.getBUpdate() == 1)
+            {
+                holder.llMargin.setBackgroundColor(Color.rgb(223,240,216));
+            }
+            else if (categoryList.getBUpdate() == 2)
+            {
+                holder.llMinStock.setBackgroundColor(Color.rgb(223,240,216));
+            }
 
 
             holder.defaultMarginButton.setOnClickListener(new View.OnClickListener() {
@@ -150,9 +158,11 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
 
                                     if (response.body().getMsg().equals("Margin updated!")) {
 
-                                       holder.llMargin.setBackgroundColor(Color.rgb(223,240,216));
+                                      // holder.llMargin.setBackgroundColor(Color.rgb(223,240,216));
+                                      //  finalRowView.setBackgroundColor(Color.rgb(223,240,216));
                                         categoryList.setDefaultMargin(response.body().getMargin());
                                         categoryList.setMinStock(response.body().getStock());
+                                        categoryList.setBUpdate(1);
                                         ManageCategoriesAdapter.this.notifyDataSetChanged();
 
                                         MarginLocalData marginLocalData = new MarginLocalData();
@@ -162,6 +172,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                                 if (categoryList.getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
                                                     productTestId.get(j).setDefaultMargin(response.body().getMargin());
                                                     productTestId.get(j).setMinStock(response.body().getStock());
+                                                    productTestId.get(j).setBUpdate(1);
                                                     Log.e("abhi", "onResponse: margin ---id matches"  );
                                                     break;
                                                 }
@@ -171,6 +182,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                                     marginLocalData.setCategoryId(categoryList.getCategoryId());
                                                     marginLocalData.setDefaultMargin(response.body().getMargin());
                                                     marginLocalData.setMinStock(response.body().getStock());
+                                                    marginLocalData.setBUpdate(1);
                                                     productTestId.add(marginLocalData);
                                                 }
                                             }
@@ -183,6 +195,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                             marginLocalData.setCategoryId(categoryList.getCategoryId());
                                             marginLocalData.setDefaultMargin(response.body().getMargin());
                                             marginLocalData.setMinStock(response.body().getStock());
+                                            marginLocalData.setBUpdate(1);
                                             productTestId.add(marginLocalData);
 
                                         }
@@ -225,9 +238,11 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                 if (response.isSuccessful()) {
 
                                     if (response.body().getMsg().equals("Stock level updated!")) {
-                                        holder.llMinStock.setBackgroundColor(Color.rgb(223,240,216));
+                                       // holder.llMinStock.setBackgroundColor(Color.rgb(223,240,216));
+                                       // finalRowView.setBackgroundColor(Color.rgb(223,240,216));
                                         categoryList.setDefaultMargin(response.body().getMargin());
                                         categoryList.setMinStock(response.body().getStock());
+                                        categoryList.setBUpdate(2);
 
                                         ManageCategoriesAdapter.this.notifyDataSetChanged();
 
@@ -239,6 +254,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
 
                                                     productTestId.get(j).setDefaultMargin(response.body().getMargin());
                                                     productTestId.get(j).setMinStock(response.body().getStock());
+                                                    productTestId.get(j).setBUpdate(2);
 
                                                     break;
                                                 }
@@ -248,6 +264,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                                     marginLocalData.setCategoryId(categoryList.getCategoryId());
                                                     marginLocalData.setDefaultMargin(response.body().getMargin());
                                                     marginLocalData.setMinStock(response.body().getStock());
+                                                    marginLocalData.setBUpdate(2);
 
                                                     productTestId.add(marginLocalData);
                                                 }
@@ -261,6 +278,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                             marginLocalData.setCategoryId(categoryList.getCategoryId());
                                             marginLocalData.setDefaultMargin(response.body().getMargin());
                                             marginLocalData.setMinStock(response.body().getStock());
+                                            marginLocalData.setBUpdate(2);
                                             productTestId.add(marginLocalData);
 
                                         }
