@@ -547,8 +547,23 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "name";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+
                 llAscName.setVisibility(View.INVISIBLE);
                 llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_name_dsc:
@@ -558,6 +573,20 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 updateProductDetails();
                 llAscName.setVisibility(View.VISIBLE);
                 llDscName.setVisibility(View.INVISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_wholesaler_asc:
@@ -565,8 +594,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "wholeSaler";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
                 llAscWholesaler.setVisibility(View.INVISIBLE);
                 llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
 
                 break;
 
@@ -575,8 +618,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "wholeSaler";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
                 llAscWholesaler.setVisibility(View.VISIBLE);
                 llDscWholesaler.setVisibility(View.INVISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_prev_price_asc:
@@ -584,8 +641,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "previousPrice";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
                 llAscPrevPrice.setVisibility(View.INVISIBLE);
                 llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_prev_price_dsc:
@@ -593,8 +664,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "previousPrice";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
                 llAscPrevPrice.setVisibility(View.VISIBLE);
                 llDscPrevPrice.setVisibility(View.INVISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_new_price_asc:
@@ -602,8 +687,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "newPrice";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
                 llAscNewPrice.setVisibility(View.INVISIBLE);
                 llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_new_price_dsc:
@@ -611,8 +710,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "newPrice";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
                 llAscNewPrice.setVisibility(View.VISIBLE);
                 llDscNewPrice.setVisibility(View.INVISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_new_cost_asc:
@@ -620,8 +733,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "newCost";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
                 llAscNewCost.setVisibility(View.INVISIBLE);
-                llDscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_new_cost_dsc:
@@ -629,8 +756,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "newCost";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
                 llAscNewCost.setVisibility(View.VISIBLE);
-                llDscNewCost.setVisibility(View.INVISIBLE);
+                llDscNewCost .setVisibility(View.INVISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_prev_cost_asc:
@@ -638,8 +779,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "previousCost";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
                 llAscPrevCost.setVisibility(View.INVISIBLE);
                 llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_prev_cost_dsc:
@@ -647,8 +802,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "previousCost";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
                 llAscPrevCost.setVisibility(View.VISIBLE);
                 llDscPrevCost.setVisibility(View.INVISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_margin_asc:
@@ -656,8 +825,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "margin";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
                 llAscMargin.setVisibility(View.INVISIBLE);
                 llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.ll_margin_dsc:
@@ -665,8 +848,22 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "margin";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
                 llAscMargin.setVisibility(View.VISIBLE);
                 llDscMargin.setVisibility(View.INVISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
+                llAscStatus.setVisibility(View.VISIBLE);
+                llDscStatus.setVisibility(View.VISIBLE);
 
                 break;
 
@@ -675,6 +872,20 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "status";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
                 llAscStatus.setVisibility(View.INVISIBLE);
                 llDscStatus.setVisibility(View.VISIBLE);
                 break;
@@ -684,6 +895,20 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 orderField = "status";
                 LoadingDialog.showLoadingDialog(getActivity(), "Loading...");
                 updateProductDetails();
+                llAscName.setVisibility(View.VISIBLE);
+                llDscName.setVisibility(View.VISIBLE);
+                llAscWholesaler.setVisibility(View.VISIBLE);
+                llDscWholesaler.setVisibility(View.VISIBLE);
+                llAscNewCost.setVisibility(View.VISIBLE);
+                llDscNewCost .setVisibility(View.VISIBLE);
+                llAscPrevCost.setVisibility(View.VISIBLE);
+                llDscPrevCost.setVisibility(View.VISIBLE);
+                llAscNewPrice.setVisibility(View.VISIBLE);
+                llDscNewPrice.setVisibility(View.VISIBLE);
+                llAscMargin.setVisibility(View.VISIBLE);
+                llDscMargin.setVisibility(View.VISIBLE);
+                llAscPrevPrice.setVisibility(View.VISIBLE);
+                llDscPrevPrice.setVisibility(View.VISIBLE);
                 llAscStatus.setVisibility(View.VISIBLE);
                 llDscStatus.setVisibility(View.INVISIBLE);
                 break;
@@ -722,15 +947,41 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
 
                 Inventory inventoryItems = new Inventory();
                 inventoryItems.setName(updateProductList.get(i).getName());
-                inventoryItems.setNewPrice(updateProductList.get(i).getNewPrice());
+                //inventoryItems.setNewPrice(updateProductList.get(i).getNewPrice());
                 inventoryItems.setPreviousCost(updateProductList.get(i).getPreviousCost());
-                inventoryItems.setMargins(updateProductList.get(i).getMargins());
+                //inventoryItems.setMargins(updateProductList.get(i).getMargins());
                 inventoryItems.setWholeSaler(updateProductList.get(i).getWholeSaler());
                 inventoryItems.setNewCost(updateProductList.get(i).getNewCost());
-                inventoryItems.setStatus(updateProductList.get(i).getStatus());
-                inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
+                //inventoryItems.setStatus(updateProductList.get(i).getStatus());
+                //inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
                 inventoryItems.setPreviousPrice(updateProductList.get(i).getPreviousPrice());
                 inventoryItems.setProductId(updateProductList.get(i).getProductId());
+                if (productTestId.size() !=0) {
+                    for (int j = 0; j < productTestId.size(); j++) {
+                        if (updateProductList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
+                            inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
+                            inventoryItems.setMargins(productTestId.get(j).getMargin());
+                            inventoryItems.setBUpdate(productTestId.get(j).getBUpdate());
+                            inventoryItems.setStatus(productTestId.get(j).getStatus());
+                            break;
+                        }
+                        inventoryItems.setNewPrice(updateProductList.get(i).getNewPrice());
+                        inventoryItems.setMargins(updateProductList.get(i).getMargins());
+                        inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
+                        inventoryItems.setStatus(updateProductList.get(i).getStatus());
+                        Log.e(TAG, "performFiltering: ============"+ updateProductList.get(i).getMargins() );
+                    }
+
+
+                }
+                else
+                {
+                    inventoryItems.setNewPrice(updateProductList.get(i).getNewPrice());
+                    inventoryItems.setMargins(updateProductList.get(i).getMargins());
+                    inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
+                    inventoryItems.setStatus(updateProductList.get(i).getStatus());
+                    Log.e(TAG, "performFiltering: ============"+ updateProductList.get(i).getMargins() );
+                }
                 showUpdateProductList.add(inventoryItems);
 
             }
@@ -748,15 +999,42 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
 
                 Inventory inventoryItems = new Inventory();
                 inventoryItems.setName(searchUpdateProductList.get(i).getName());
-                inventoryItems.setNewPrice(searchUpdateProductList.get(i).getNewPrice());
+                //inventoryItems.setNewPrice(searchUpdateProductList.get(i).getNewPrice());
                 inventoryItems.setPreviousCost(searchUpdateProductList.get(i).getPreviousCost());
-                inventoryItems.setMargins(searchUpdateProductList.get(i).getMargins());
+               // inventoryItems.setMargins(searchUpdateProductList.get(i).getMargins());
                 inventoryItems.setWholeSaler(searchUpdateProductList.get(i).getWholeSaler());
                 inventoryItems.setNewCost(searchUpdateProductList.get(i).getNewCost());
-                inventoryItems.setStatus(searchUpdateProductList.get(i).getStatus());
-                inventoryItems.setBUpdate(searchUpdateProductList.get(i).getBUpdate());
+                //inventoryItems.setStatus(searchUpdateProductList.get(i).getStatus());
+                //inventoryItems.setBUpdate(searchUpdateProductList.get(i).getBUpdate());
                 inventoryItems.setPreviousPrice(searchUpdateProductList.get(i).getPreviousPrice());
                 inventoryItems.setProductId(searchUpdateProductList.get(i).getProductId());
+                if (productTestId.size() !=0) {
+                    for (int j = 0; j < productTestId.size(); j++) {
+                        if (searchUpdateProductList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
+                            inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
+                            inventoryItems.setMargins(productTestId.get(j).getMargin());
+                            inventoryItems.setBUpdate(productTestId.get(j).getBUpdate());
+                            inventoryItems.setStatus(productTestId.get(j).getStatus());
+                            break;
+                        }
+                        inventoryItems.setNewPrice(searchUpdateProductList.get(i).getNewPrice());
+                        inventoryItems.setMargins(searchUpdateProductList.get(i).getMargins());
+                        inventoryItems.setBUpdate(searchUpdateProductList.get(i).getBUpdate());
+                        inventoryItems.setStatus(searchUpdateProductList.get(i).getStatus());
+                        Log.e(TAG, "performFiltering: ============"+ searchUpdateProductList.get(i).getMargins() );
+                    }
+
+
+                }
+                else
+                {
+                    inventoryItems.setNewPrice(searchUpdateProductList.get(i).getNewPrice());
+                    inventoryItems.setMargins(searchUpdateProductList.get(i).getMargins());
+                    inventoryItems.setBUpdate(searchUpdateProductList.get(i).getBUpdate());
+                    inventoryItems.setStatus(searchUpdateProductList.get(i).getStatus());
+
+                    Log.e(TAG, "performFiltering: ============"+ searchUpdateProductList.get(i).getMargins() );
+                }
                 showUpdateProductList.add(inventoryItems);
 
             }

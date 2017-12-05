@@ -320,7 +320,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
                 //inventoryItems.setMargin(myProductList.get(i).getMargin());
                 inventoryItems.setWholeSaler(myProductList.get(i).getWholeSaler());
                 inventoryItems.setNewCost(myProductList.get(i).getNewCost());
-                inventoryItems.setStatus(myProductList.get(i).getStatus());
+                //inventoryItems.setStatus(myProductList.get(i).getStatus());
                 inventoryItems.setBUpdate(myProductList.get(i).getBUpdate());
                 inventoryItems.setPreviousPrice(myProductList.get(i).getPreviousPrice());
                 inventoryItems.setProductId(myProductList.get(i).getProductId());
@@ -333,12 +333,14 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
                             // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
                             inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
                             inventoryItems.setMargin(productTestId.get(j).getMargin());
+                            inventoryItems.setStatus(productTestId.get(j).getStatus());
 
 
                             break;
                         }
                         inventoryItems.setNewPrice(myProductList.get(i).getNewPrice());
                         inventoryItems.setMargin(myProductList.get(i).getMargin());
+                        inventoryItems.setStatus(myProductList.get(i).getStatus());
 
 
                     }
@@ -349,6 +351,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
                 {
                     inventoryItems.setNewPrice(myProductList.get(i).getNewPrice());
                     inventoryItems.setMargin(myProductList.get(i).getMargin());
+                    inventoryItems.setStatus(myProductList.get(i).getStatus());
 
 
                 }
@@ -365,12 +368,12 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
 
                     Inventory inventoryItems = new Inventory();
                     inventoryItems.setName(categoryFilteredProductList.get(i).getName());
-                    inventoryItems.setNewPrice(categoryFilteredProductList.get(i).getNewPrice());
+                   // inventoryItems.setNewPrice(categoryFilteredProductList.get(i).getNewPrice());
                     inventoryItems.setPreviousCost(categoryFilteredProductList.get(i).getPreviousCost());
-                    inventoryItems.setMargin(categoryFilteredProductList.get(i).getMargin());
+                    //inventoryItems.setMargin(categoryFilteredProductList.get(i).getMargin());
                     inventoryItems.setWholeSaler(categoryFilteredProductList.get(i).getWholeSaler());
                     inventoryItems.setNewCost(categoryFilteredProductList.get(i).getNewCost());
-                    inventoryItems.setStatus(categoryFilteredProductList.get(i).getStatus());
+                    //inventoryItems.setStatus(categoryFilteredProductList.get(i).getStatus());
                     inventoryItems.setBUpdate(categoryFilteredProductList.get(i).getBUpdate());
                     inventoryItems.setPreviousPrice(categoryFilteredProductList.get(i).getPreviousPrice());
                     inventoryItems.setProductId(categoryFilteredProductList.get(i).getProductId());
@@ -383,11 +386,13 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
                                 // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
                                 inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
                                 inventoryItems.setMargin(productTestId.get(j).getMargin());
+                                inventoryItems.setStatus(productTestId.get(j).getStatus());
 
                                 break;
                             }
                             inventoryItems.setNewPrice(categoryFilteredProductList.get(i).getNewPrice());
                             inventoryItems.setMargin(categoryFilteredProductList.get(i).getMargin());
+                            inventoryItems.setStatus(categoryFilteredProductList.get(i).getStatus());
 
 
                         }
@@ -398,6 +403,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
                     {
                         inventoryItems.setNewPrice(categoryFilteredProductList.get(i).getNewPrice());
                         inventoryItems.setMargin(categoryFilteredProductList.get(i).getMargin());
+                        inventoryItems.setStatus(categoryFilteredProductList.get(i).getStatus());
 
 
                     }
@@ -1458,18 +1464,46 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
                 Log.e("abhi", "filterListPages: All----------------" );
                 Inventory inventoryItems = new Inventory();
                 inventoryItems.setName(myProductList.get(i).getName());
-                inventoryItems.setNewPrice(myProductList.get(i).getNewPrice());
+                //inventoryItems.setNewPrice(myProductList.get(i).getNewPrice());
                 inventoryItems.setPreviousCost(myProductList.get(i).getPreviousCost());
-                inventoryItems.setMargin(myProductList.get(i).getMargin());
+                //inventoryItems.setMargin(myProductList.get(i).getMargin());
                 inventoryItems.setWholeSaler(myProductList.get(i).getWholeSaler());
                 inventoryItems.setNewCost(myProductList.get(i).getNewCost());
-                inventoryItems.setStatus(myProductList.get(i).getStatus());
+                //inventoryItems.setStatus(myProductList.get(i).getStatus());
                 inventoryItems.setBUpdate(myProductList.get(i).getBUpdate());
                 inventoryItems.setPreviousPrice(myProductList.get(i).getPreviousPrice());
                 inventoryItems.setProductId(myProductList.get(i).getProductId());
                 inventoryItems.setCloverId(myProductList.get(i).getCloverId());
                 inventoryItems.setCategory(myProductList.get(i).getCategory());
                 inventoryItems.setStock(myProductList.get(i).getStock());
+                if (productTestId.size() !=0) {
+                    for (int j = 0; j < productTestId.size(); j++) {
+                        if (myProductList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
+                            // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
+                            inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
+                            inventoryItems.setMargin(productTestId.get(j).getMargin());
+                            inventoryItems.setStatus(productTestId.get(j).getStatus());
+
+
+                            break;
+                        }
+                        inventoryItems.setNewPrice(myProductList.get(i).getNewPrice());
+                        inventoryItems.setMargin(myProductList.get(i).getMargin());
+                        inventoryItems.setStatus(myProductList.get(i).getStatus());
+
+
+                    }
+
+
+                }
+                else
+                {
+                    inventoryItems.setNewPrice(myProductList.get(i).getNewPrice());
+                    inventoryItems.setMargin(myProductList.get(i).getMargin());
+                    inventoryItems.setStatus(myProductList.get(i).getStatus());
+
+
+                }
                 showUpdateProductList.add(inventoryItems);
 
             }
@@ -1492,18 +1526,46 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
 
                 Inventory inventoryItems = new Inventory();
                 inventoryItems.setName(searchMyProductList.get(i).getName());
-                inventoryItems.setNewPrice(searchMyProductList.get(i).getNewPrice());
+                //inventoryItems.setNewPrice(searchMyProductList.get(i).getNewPrice());
                 inventoryItems.setPreviousCost(searchMyProductList.get(i).getPreviousCost());
-                inventoryItems.setMargin(searchMyProductList.get(i).getMargin());
+                //inventoryItems.setMargin(searchMyProductList.get(i).getMargin());
                 inventoryItems.setWholeSaler(searchMyProductList.get(i).getWholeSaler());
                 inventoryItems.setNewCost(searchMyProductList.get(i).getNewCost());
-                inventoryItems.setStatus(searchMyProductList.get(i).getStatus());
+                //inventoryItems.setStatus(searchMyProductList.get(i).getStatus());
                 inventoryItems.setBUpdate(searchMyProductList.get(i).getBUpdate());
                 inventoryItems.setPreviousPrice(searchMyProductList.get(i).getPreviousPrice());
                 inventoryItems.setProductId(searchMyProductList.get(i).getProductId());
                 inventoryItems.setCloverId(searchMyProductList.get(i).getCloverId());
                 inventoryItems.setCategory(searchMyProductList.get(i).getCategory());
                 inventoryItems.setStock(searchMyProductList.get(i).getStock());
+                if (productTestId.size() !=0) {
+                    for (int j = 0; j < productTestId.size(); j++) {
+                        if (searchMyProductList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
+                            // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
+                            inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
+                            inventoryItems.setMargin(productTestId.get(j).getMargin());
+                            inventoryItems.setStatus(productTestId.get(j).getStatus());
+
+
+                            break;
+                        }
+                        inventoryItems.setNewPrice(searchMyProductList.get(i).getNewPrice());
+                        inventoryItems.setMargin(searchMyProductList.get(i).getMargin());
+                        inventoryItems.setStatus(searchMyProductList.get(i).getStatus());
+
+
+                    }
+
+
+                }
+                else
+                {
+                    inventoryItems.setNewPrice(searchMyProductList.get(i).getNewPrice());
+                    inventoryItems.setMargin(searchMyProductList.get(i).getMargin());
+                    inventoryItems.setStatus(searchMyProductList.get(i).getStatus());
+
+
+                }
                 showUpdateProductList.add(inventoryItems);
 
             }
@@ -1525,18 +1587,45 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
 
                 Inventory inventoryItems = new Inventory();
                 inventoryItems.setName(categoryFilteredProductList.get(i).getName());
-                inventoryItems.setNewPrice(categoryFilteredProductList.get(i).getNewPrice());
+                //inventoryItems.setNewPrice(categoryFilteredProductList.get(i).getNewPrice());
                 inventoryItems.setPreviousCost(categoryFilteredProductList.get(i).getPreviousCost());
-                inventoryItems.setMargin(categoryFilteredProductList.get(i).getMargin());
+                //inventoryItems.setMargin(categoryFilteredProductList.get(i).getMargin());
                 inventoryItems.setWholeSaler(categoryFilteredProductList.get(i).getWholeSaler());
                 inventoryItems.setNewCost(categoryFilteredProductList.get(i).getNewCost());
-                inventoryItems.setStatus(categoryFilteredProductList.get(i).getStatus());
+                //inventoryItems.setStatus(categoryFilteredProductList.get(i).getStatus());
                 inventoryItems.setBUpdate(categoryFilteredProductList.get(i).getBUpdate());
                 inventoryItems.setPreviousPrice(categoryFilteredProductList.get(i).getPreviousPrice());
                 inventoryItems.setProductId(categoryFilteredProductList.get(i).getProductId());
                 inventoryItems.setCloverId(categoryFilteredProductList.get(i).getCloverId());
                 inventoryItems.setCategory(categoryFilteredProductList.get(i).getCategory());
                 inventoryItems.setStock(categoryFilteredProductList.get(i).getStock());
+                if (productTestId.size() !=0) {
+                    for (int j = 0; j < productTestId.size(); j++) {
+                        if (categoryFilteredProductList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
+                            // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
+                            inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
+                            inventoryItems.setMargin(productTestId.get(j).getMargin());
+                            inventoryItems.setStatus(productTestId.get(j).getStatus());
+
+                            break;
+                        }
+                        inventoryItems.setNewPrice(categoryFilteredProductList.get(i).getNewPrice());
+                        inventoryItems.setMargin(categoryFilteredProductList.get(i).getMargin());
+                        inventoryItems.setStatus(categoryFilteredProductList.get(i).getStatus());
+
+
+                    }
+
+
+                }
+                else
+                {
+                    inventoryItems.setNewPrice(categoryFilteredProductList.get(i).getNewPrice());
+                    inventoryItems.setMargin(categoryFilteredProductList.get(i).getMargin());
+                    inventoryItems.setStatus(categoryFilteredProductList.get(i).getStatus());
+
+
+                }
                 showUpdateProductList.add(inventoryItems);
 
             }

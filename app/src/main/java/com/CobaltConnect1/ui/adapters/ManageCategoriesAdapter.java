@@ -149,7 +149,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                 if (response.isSuccessful()) {
 
                                     if (response.body().getMsg().equals("Margin updated!")) {
-                                        Log.e("abhi", "onResponse: change margin button color ");
+
                                        holder.llMargin.setBackgroundColor(Color.rgb(223,240,216));
                                         categoryList.setDefaultMargin(response.body().getMargin());
                                         categoryList.setMinStock(response.body().getStock());
@@ -353,7 +353,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                 for (int j = 0; j < productTestId.size(); j++) {
                                     if (tempItemList.get(i).getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
                                         // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
-                                        categoryList.setDefaultMargin(productTestId.get(j).getMargin());
+                                        categoryList.setDefaultMargin(productTestId.get(j).getDefaultMargin());
                                         categoryList.setMinStock(productTestId.get(j).getMinStock());
                                         break;
                                     }
@@ -372,14 +372,6 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
 
 
 
-                            /*inventoryItems.setNewCost(tempItemList.get(i).getNewCost());
-                            inventoryItems.setStatus(tempItemList.get(i).getStatus());
-                            inventoryItems.setPreviousCost(tempItemList.get(i).getPreviousCost());
-                            inventoryItems.setWholeSaler(tempItemList.get(i).getWholeSaler());
-                            inventoryItems.setCloverId(tempItemList.get(i).getCloverId());
-                            inventoryItems.setProductId(tempItemList.get(i).getProductId());
-                            inventoryItems.setCategory(tempItemList.get(i).getCategory());
-                            inventoryItems.setStock(tempItemList.get(i).getStock());*/
                             FilteredArrList.add(categoryList);
 
                         }

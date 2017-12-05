@@ -331,11 +331,11 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                 categoryList.setCategoryId(manageCategoryList.get(i).getCategoryId());
                 categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
                 categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
-              /*  if (productTestId.size() !=0) {
+                if (productTestId.size() !=0) {
                     for (int j = 0; j < productTestId.size(); j++) {
                         if (manageCategoryList.get(i).getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
                             // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
-                            categoryList.setDefaultMargin(productTestId.get(j).getMargin());
+                            categoryList.setDefaultMargin(productTestId.get(j).getDefaultMargin());
                             categoryList.setMinStock(productTestId.get(j).getMinStock());
                             break;
                         }
@@ -350,7 +350,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                 {
                     categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
                     categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
-                }*/
+                }
 
 
                 searchManageCategoriesList.add(categoryList);
@@ -671,8 +671,30 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                 CategoryList categoryList = new CategoryList();
                 categoryList.setCategoryId(manageCategoryList.get(i).getCategoryId());
                 categoryList.setTitle(manageCategoryList.get(i).getTitle());
-                categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
-                categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
+                //categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
+                //categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
+                if (productTestId.size() !=0) {
+                    for (int j = 0; j < productTestId.size(); j++) {
+                        if (manageCategoryList.get(i).getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
+                            // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
+                            categoryList.setDefaultMargin(productTestId.get(j).getDefaultMargin());
+                            categoryList.setMinStock(productTestId.get(j).getMinStock());
+                            Log.e("abhi1", "filterListPages:"+ productTestId.get(j).getDefaultMargin());
+                            break;
+                        }
+                        categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
+                        categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
+
+                    }
+
+
+                }
+                else
+                {
+                    categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
+                    categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
+                }
+
                 showManageCategoriesList.add(categoryList);
 
             }
