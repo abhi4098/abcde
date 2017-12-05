@@ -61,7 +61,7 @@ public class NewlyUpdatedAdapter extends ArrayAdapter<Inventory> implements Filt
         tempItemList = new ArrayList<>(updateProductList);
         displayItemList = new ArrayList<>();
         filterItemList = new ArrayList<>(itemList);
-        this.productTestId = new ArrayList<>();
+        this.productTestId = productTestId;
         this.itemList=itemList;
         this.updateProductList = updateProductList;
 

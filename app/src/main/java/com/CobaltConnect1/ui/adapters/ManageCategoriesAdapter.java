@@ -73,7 +73,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
         filterItemList = new ArrayList<>(itemList);
         displayItemList = new ArrayList<>();
         this.itemList=itemList;
-        this.productTestId = new ArrayList<>();
+        this.productTestId = productTestId;
         //this.productTestId = new ArrayList<>();
 
         this.myProductList = myProductList;
@@ -149,6 +149,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                 if (response.isSuccessful()) {
 
                                     if (response.body().getMsg().equals("Margin updated!")) {
+                                        Log.e("abhi", "onResponse: change margin button color ");
                                        holder.llMargin.setBackgroundColor(Color.rgb(223,240,216));
                                         categoryList.setDefaultMargin(response.body().getMargin());
                                         categoryList.setMinStock(response.body().getStock());
@@ -231,7 +232,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                         ManageCategoriesAdapter.this.notifyDataSetChanged();
 
                                         MarginLocalData marginLocalData = new MarginLocalData();
-                                        ;
+
                                         if (productTestId.size() !=0) {
                                             for (int j = 0; j < productTestId.size(); j++) {
                                                 if (categoryList.getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {

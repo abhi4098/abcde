@@ -65,7 +65,7 @@ public class MyProductAdapter extends ArrayAdapter<Inventory> implements Filtera
         filterItemList = new ArrayList<>(itemList);
         displayItemList = new ArrayList<>();
         this.itemList=itemList;
-        this.productTestId = new ArrayList<>();
+        this.productTestId = productTestId;
         this.myProductList = myProductList;
 
     }

@@ -58,7 +58,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
     BarChart revenueBarChart;
     String orderField,orderType = " ";
     EditText etSearch;
-    static ArrayList<MarginLocalData> productTestId = null;
+    static ArrayList<MarginLocalData> productTestId = new ArrayList<>();
     private com.CobaltConnect1.ui.adapters.ManageCategoriesAdapter manageCategoriesAdapter;
     ListView listview;
     ArrayList<CategoryList> manageCategoryList = null;
@@ -331,6 +331,28 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                 categoryList.setCategoryId(manageCategoryList.get(i).getCategoryId());
                 categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
                 categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
+              /*  if (productTestId.size() !=0) {
+                    for (int j = 0; j < productTestId.size(); j++) {
+                        if (manageCategoryList.get(i).getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
+                            // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
+                            categoryList.setDefaultMargin(productTestId.get(j).getMargin());
+                            categoryList.setMinStock(productTestId.get(j).getMinStock());
+                            break;
+                        }
+                        categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
+                        categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
+
+                    }
+
+
+                }
+                else
+                {
+                    categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
+                    categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
+                }*/
+
+
                 searchManageCategoriesList.add(categoryList);
 
             }
@@ -666,10 +688,10 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
 
         else
         {
-            Log.e("abhi", "filterListPages: pagenum  " +pageNum +" spselected item " +spSelectedItem );
+
 
             for (int i = (pageNum - 1) * spSelectedItem; i < pageNum * spSelectedItem && i < totalItems; i++) {
-                Log.e("abhi", "filterListPages: " +i );
+
                 CategoryList categoryList = new CategoryList();
                 categoryList.setCategoryId(searchManageCategoriesList.get(i).getCategoryId());
                 categoryList.setTitle(searchManageCategoriesList.get(i).getTitle());
@@ -679,7 +701,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
 
             }
 
-            manageCategoriesAdapter = new ManageCategoriesAdapter(getActivity(), R.layout.manage_product_list_layout, R.id.item_name, showManageCategoriesList, productTestId, manageCategoryList);
+            manageCategoriesAdapter = new ManageCategoriesAdapter(getActivity(), R.layout.manage_product_list_layout, R.id.item_name, showManageCategoriesList, productTestId, searchManageCategoriesList);
             listview.setAdapter(manageCategoriesAdapter);
             LoadingDialog.cancelLoading();
             listview.setDivider(new ColorDrawable(getResources().getColor(R.color.background_light)));

@@ -27,6 +27,14 @@ public class MarginLocalData {
     @Expose
     private Integer bUpdate;
 
+    @SerializedName("stockUpdate")
+    @Expose
+    private Integer stockUpdate;
+
+    @SerializedName("marginUpdate")
+    @Expose
+    private Integer marginUpdate;
+
     @SerializedName("status")
     @Expose
     private String status;
@@ -93,6 +101,22 @@ public class MarginLocalData {
 
     public void setBUpdate(Integer bUpdate) {
         this.bUpdate = bUpdate;
+    }
+
+    public Integer getStockUpdate() {
+        return stockUpdate;
+    }
+
+    public void setStockUpdate(Integer stockUpdate) {
+        this.stockUpdate = stockUpdate;
+    }
+
+    public Integer getMarginUpdate() {
+        return marginUpdate;
+    }
+
+    public void setMarginUpdate(Integer marginUpdate) {
+        this.marginUpdate = marginUpdate;
     }
 
     public String getCategoryId() {

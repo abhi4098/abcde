@@ -29,6 +29,7 @@ import com.CobaltConnect1.generated.model.MarginUpdateAllResponse;
 import com.CobaltConnect1.generated.model.ProductUpdate;
 import com.CobaltConnect1.generated.model.ProductUpdateResponse;
 import com.CobaltConnect1.ui.activities.LoadingDialog;
+import com.CobaltConnect1.ui.adapters.MyProductAdapter;
 import com.CobaltConnect1.ui.adapters.NewlyUpdatedAdapter;
 import com.CobaltConnect1.utils.NetworkUtils;
 import com.CobaltConnect1.utils.PrefUtils;
@@ -48,8 +49,10 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
     String TAG = "CobaltConnect";
     ArrayList<Inventory> updateProductList = null;
     ArrayList<Inventory> showUpdateProductList = null;
+    ArrayList<Inventory> searchUpdateProductList = null;
+
     private NewlyUpdatedAdapter newlyUpdatedAdapter;
-    static ArrayList<MarginLocalData> productTestId = null;
+    static ArrayList<MarginLocalData> productTestId = new ArrayList<>();
     String orderField,orderType = "";
     EditText etSearch;
     ListView listview;
@@ -137,7 +140,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
         spDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int j, long l) {
-
+                etSearch.getText().clear();
                 spSelectedItem = Integer.parseInt(spDropdown.getSelectedItem().toString());
                 pageNum = 1;
                 tvPageNum.setText(String.valueOf(pageNum));
@@ -148,33 +151,8 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 btNext.setEnabled(true);
                 btNext.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.button_state_selector));
 
+                setPageInformation();
 
-
-                if (totalItems != 0)
-
-                {
-                    if ((totalItems % spSelectedItem) == 0) {
-                        totalNoPages = totalItems / spSelectedItem;
-                        Log.e(TAG, "onItemSelected: total pages-----------" +totalNoPages );
-                        tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
-                    }
-
-                    else if(totalItems<spSelectedItem)
-                    {
-                        totalNoPages = 1;
-                        tvShowStats.setText("Showing " +pageNum + " to " +totalItems + " of "  +totalItems );
-                    }
-
-                    else {
-
-                        totalNoPages = ((totalItems / spSelectedItem)+1);
-                        Log.e("abhi", "onItemSelected: ------------total num of pages" + totalNoPages );
-                        tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
-                    }
-
-
-
-                }
 
 
                 if (updateProductList != null)
@@ -219,9 +197,21 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                pageNum = 1;
+                tvPageNum.setText(String.valueOf(pageNum));
+                btNext.setEnabled(true);
+                btPrev.setEnabled(false);
+                btNext.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.button_state_selector));
+                btPrev.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rectangular_background_light_gray));
+
                 if (updateProductList !=null) {
-                    newlyUpdatedAdapter.getFilter().filter(s.toString());
+                    filterSearch(s.toString());
                 }
+               /* if (updateProductList !=null) {
+                    newlyUpdatedAdapter.getFilter().filter(s.toString());
+                }*/
+
+
             }
 
             @Override
@@ -241,6 +231,110 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
         setUpRestAdapter();
         updateProductDetails();
         return rootView;
+    }
+
+    private void filterSearch(String constraint) {
+        // Log.e("abhi", "filterSearch: ----------" +constraint );
+        constraint = constraint.toString().toLowerCase();
+        searchUpdateProductList =new ArrayList<>();
+
+        for (int i = 0; i < updateProductList.size(); i++) {
+            String data = updateProductList.get(i).getName();
+            if (data.toLowerCase().startsWith(constraint.toString())) {
+                Inventory inventoryItems = new Inventory();
+                inventoryItems.setName(updateProductList.get(i).getName());
+                //inventoryItems.setNewPrice(updateProductList.get(i).getNewPrice());
+                inventoryItems.setPreviousCost(updateProductList.get(i).getPreviousCost());
+                //inventoryItems.setMargins(updateProductList.get(i).getMargins());
+                inventoryItems.setWholeSaler(updateProductList.get(i).getWholeSaler());
+                inventoryItems.setNewCost(updateProductList.get(i).getNewCost());
+                inventoryItems.setStatus(updateProductList.get(i).getStatus());
+                //inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
+                inventoryItems.setPreviousPrice(updateProductList.get(i).getPreviousPrice());
+                inventoryItems.setProductId(updateProductList.get(i).getProductId());
+                if (productTestId.size() !=0) {
+                    for (int j = 0; j < productTestId.size(); j++) {
+                        if (updateProductList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
+                            inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
+                            inventoryItems.setMargins(productTestId.get(j).getMargin());
+                            inventoryItems.setBUpdate(productTestId.get(j).getBUpdate());
+                            break;
+                        }
+                        inventoryItems.setNewPrice(updateProductList.get(i).getNewPrice());
+                        inventoryItems.setMargins(updateProductList.get(i).getMargins());
+                        inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
+                        Log.e(TAG, "performFiltering: ============"+ updateProductList.get(i).getMargins() );
+                    }
+
+
+                }
+                else
+                {
+                    inventoryItems.setNewPrice(updateProductList.get(i).getNewPrice());
+                    inventoryItems.setMargins(updateProductList.get(i).getMargins());
+                    inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
+                    Log.e(TAG, "performFiltering: ============"+ updateProductList.get(i).getMargins() );
+                }
+                searchUpdateProductList.add(inventoryItems);
+            }
+        }
+
+        totalItems = searchUpdateProductList.size();
+        setPageInformation();
+        showUpdateProductList = new ArrayList<>();
+
+        for (int i = 0;  i < spSelectedItem&& i<totalItems; i++) {
+            Inventory inventoryItems = new Inventory();
+            inventoryItems.setName(searchUpdateProductList.get(i).getName());
+            inventoryItems.setNewPrice(searchUpdateProductList.get(i).getNewPrice());
+            inventoryItems.setPreviousCost(searchUpdateProductList.get(i).getPreviousCost());
+            inventoryItems.setMargins(searchUpdateProductList.get(i).getMargins());
+            inventoryItems.setWholeSaler(searchUpdateProductList.get(i).getWholeSaler());
+            inventoryItems.setNewCost(searchUpdateProductList.get(i).getNewCost());
+            inventoryItems.setStatus(searchUpdateProductList.get(i).getStatus());
+            inventoryItems.setBUpdate(searchUpdateProductList.get(i).getBUpdate());
+            inventoryItems.setPreviousPrice(searchUpdateProductList.get(i).getPreviousPrice());
+            inventoryItems.setProductId(searchUpdateProductList.get(i).getProductId());
+            showUpdateProductList.add(inventoryItems);
+        }
+        newlyUpdatedAdapter = new NewlyUpdatedAdapter(getActivity(), R.layout.items_rowlayout, R.id.item_name, showUpdateProductList, productTestId, searchUpdateProductList);
+        listview.setAdapter(newlyUpdatedAdapter);
+        LoadingDialog.cancelLoading();
+        listview.setDivider(new ColorDrawable(getResources().getColor(R.color.background_light)));
+        listview.setDividerHeight(1);
+        listview.setTextFilterEnabled(true);
+        listview.setOnItemClickListener(this);
+
+    }
+
+    private void setPageInformation() {
+
+
+        if (totalItems != 0)
+
+        {
+            if ((totalItems % spSelectedItem) == 0) {
+                totalNoPages = totalItems / spSelectedItem;
+                Log.e(TAG, "onItemSelected: total pages-----------" +totalNoPages );
+                tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
+            }
+
+            else if(totalItems<spSelectedItem)
+            {
+                totalNoPages = 1;
+                tvShowStats.setText("Showing " +pageNum + " to " +totalItems + " of "  +totalItems );
+            }
+
+            else {
+
+                totalNoPages = ((totalItems / spSelectedItem)+1);
+                Log.e("abhi", "onItemSelected: ------------total num of pages" + totalNoPages );
+                tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
+            }
+
+
+
+        }
     }
 
 
@@ -603,7 +697,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
 
     private void filterListPages() {
         Log.e(TAG, "filterListPages: ------------- pagenum " + pageNum + " " + spSelectedItem );
-        etSearch.getText().clear();
+        //etSearch.getText().clear();
         if (pageNum == 1)
         {
             tvShowStats.setText("Showing " + pageNum+ " to " + pageNum * spSelectedItem + " of " + totalItems);
@@ -619,30 +713,63 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
         }
         tvPageNum.setText(String.valueOf(pageNum));
         showUpdateProductList = new ArrayList<>();
-      for (int i = (pageNum-1)*spSelectedItem; i < pageNum*spSelectedItem && i<totalItems; i++)
-      {
 
-          Inventory inventoryItems = new Inventory();
-          inventoryItems.setName(updateProductList.get(i).getName());
-          inventoryItems.setNewPrice(updateProductList.get(i).getNewPrice());
-          inventoryItems.setPreviousCost(updateProductList.get(i).getPreviousCost());
-          inventoryItems.setMargins(updateProductList.get(i).getMargins());
-          inventoryItems.setWholeSaler(updateProductList.get(i).getWholeSaler());
-          inventoryItems.setNewCost(updateProductList.get(i).getNewCost());
-          inventoryItems.setStatus(updateProductList.get(i).getStatus());
-          inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
-          inventoryItems.setPreviousPrice(updateProductList.get(i).getPreviousPrice());
-          inventoryItems.setProductId(updateProductList.get(i).getProductId());
-          showUpdateProductList.add(inventoryItems);
-          Log.e(TAG, "filterListPages: ---value of i " + i +  " " + updateProductList.get(i).getName()  );
-      }
+        if (etSearch.getText().toString().equals(""))
 
-        newlyUpdatedAdapter = new NewlyUpdatedAdapter(getActivity(), R.layout.items_rowlayout, R.id.item_name, showUpdateProductList, productTestId, updateProductList);
-        listview.setAdapter(newlyUpdatedAdapter);
-        LoadingDialog.cancelLoading();
-        listview.setDivider(new ColorDrawable(getResources().getColor(R.color.background_light)));
-        listview.setDividerHeight(1);
-        listview.setTextFilterEnabled(true);
+        {
+
+            for (int i = (pageNum - 1) * spSelectedItem; i < pageNum * spSelectedItem && i < totalItems; i++) {
+
+                Inventory inventoryItems = new Inventory();
+                inventoryItems.setName(updateProductList.get(i).getName());
+                inventoryItems.setNewPrice(updateProductList.get(i).getNewPrice());
+                inventoryItems.setPreviousCost(updateProductList.get(i).getPreviousCost());
+                inventoryItems.setMargins(updateProductList.get(i).getMargins());
+                inventoryItems.setWholeSaler(updateProductList.get(i).getWholeSaler());
+                inventoryItems.setNewCost(updateProductList.get(i).getNewCost());
+                inventoryItems.setStatus(updateProductList.get(i).getStatus());
+                inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
+                inventoryItems.setPreviousPrice(updateProductList.get(i).getPreviousPrice());
+                inventoryItems.setProductId(updateProductList.get(i).getProductId());
+                showUpdateProductList.add(inventoryItems);
+
+            }
+
+            newlyUpdatedAdapter = new NewlyUpdatedAdapter(getActivity(), R.layout.items_rowlayout, R.id.item_name, showUpdateProductList, productTestId, updateProductList);
+            listview.setAdapter(newlyUpdatedAdapter);
+            LoadingDialog.cancelLoading();
+            listview.setDivider(new ColorDrawable(getResources().getColor(R.color.background_light)));
+            listview.setDividerHeight(1);
+            listview.setTextFilterEnabled(true);
+        }
+        else
+        {
+            for (int i = (pageNum - 1) * spSelectedItem; i < pageNum * spSelectedItem && i < totalItems; i++) {
+
+                Inventory inventoryItems = new Inventory();
+                inventoryItems.setName(searchUpdateProductList.get(i).getName());
+                inventoryItems.setNewPrice(searchUpdateProductList.get(i).getNewPrice());
+                inventoryItems.setPreviousCost(searchUpdateProductList.get(i).getPreviousCost());
+                inventoryItems.setMargins(searchUpdateProductList.get(i).getMargins());
+                inventoryItems.setWholeSaler(searchUpdateProductList.get(i).getWholeSaler());
+                inventoryItems.setNewCost(searchUpdateProductList.get(i).getNewCost());
+                inventoryItems.setStatus(searchUpdateProductList.get(i).getStatus());
+                inventoryItems.setBUpdate(searchUpdateProductList.get(i).getBUpdate());
+                inventoryItems.setPreviousPrice(searchUpdateProductList.get(i).getPreviousPrice());
+                inventoryItems.setProductId(searchUpdateProductList.get(i).getProductId());
+                showUpdateProductList.add(inventoryItems);
+
+            }
+
+            newlyUpdatedAdapter = new NewlyUpdatedAdapter(getActivity(), R.layout.items_rowlayout, R.id.item_name, showUpdateProductList, productTestId, searchUpdateProductList);
+            listview.setAdapter(newlyUpdatedAdapter);
+            LoadingDialog.cancelLoading();
+            listview.setDivider(new ColorDrawable(getResources().getColor(R.color.background_light)));
+            listview.setDividerHeight(1);
+            listview.setTextFilterEnabled(true);
+        }
+
+
     }
 
 }
