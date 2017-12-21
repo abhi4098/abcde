@@ -15,83 +15,18 @@ import com.CobaltConnect1.utils.PrefUtils;
 public class SplashActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 2000;
     private static final String TAG = LogUtils.makeLogTag(SplashActivity.class);
-  //  private OffSwitchInterface.OffSwitchClient OffSwitchAdapter;
-    //String appName = "connectCobalt";
-   // private String appVersion = "1.0.0";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         splashTimer();
-        //CheckLogin();
-        //SetUpRestAdapter();
-        //offSwitch();
+
 
     }
 
-  /*  private void offSwitch() {
 
-        Call<OffSwitchResponse> call = OffSwitchAdapter.docAppOffSwitch(appName);
-        if (NetworkUtils.isNetworkConnected(getContext())) {
-            call.enqueue(new Callback<OffSwitchResponse>() {
-                @Override
-                public void onResponse(Call<OffSwitchResponse> call, Response<OffSwitchResponse> response) {
-
-                    if (response.isSuccessful()) {
-
-                        String lastSupportedVersion = response.body().getLastSupportedVersion().replace(".", "");
-                        String currentAppVersion = appVersion.replace(".", "");
-
-                        if (Integer.parseInt(currentAppVersion) < Integer.parseInt(lastSupportedVersion)) {
-                            showUpdateDialog();
-                        } else {
-                            splashTimer();
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<OffSwitchResponse> call, Throwable t) {
-                }
-            });
-        } else {
-            SnakBarUtils.networkConnected(SplashActivity.this);
-        }
-
-    }*/
-
-/*
-    private void showUpdateDialog() {
-        final Dialog dialog = new Dialog(SplashActivity.this);
-        dialog.setContentView(R.layout.update_app_layout);
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        Button update = (Button) dialog.findViewById(R.id.btn_update);
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    Intent viewIntent =
-                            new Intent("android.intent.action.VIEW",
-                                    Uri.parse(ApiEndPoints.APP_LINK));
-                    startActivity(viewIntent);
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "Unable to Connect Try Again...",
-                            Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-                SplashActivity.this.finish();
-            }
-        });
-        dialog.show();
-    }*/
-
-
-  /*  private void SetUpRestAdapter() {
-        OffSwitchAdapter = ApiAdapter.createRestAdapter(OffSwitchInterface.OffSwitchClient.class, ApiEndPoints.BASE_URL, getContext());
-
-    }*/
 
 
     private void splashTimer() {

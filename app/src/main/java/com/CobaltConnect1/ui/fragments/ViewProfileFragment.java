@@ -64,17 +64,11 @@ public class ViewProfileFragment extends Fragment {
 
                         Toast.makeText(getActivity(),"profile Details",Toast.LENGTH_SHORT).show();
                         PrefUtils.storeUserName(response.body().getFullName(), getActivity());
-                        Log.e("abhi", "onResponse: username------ "+response.body().getFullName() );
                         PrefUtils.storeStateId(response.body().getStateid(), getActivity());
-                        Log.e("abhi", "onResponse: stateid------ "+response.body().getStateid() );
                         PrefUtils.storeEmail(response.body().getEmailId(), getActivity());
-                        Log.e("abhi", "onResponse: email------ "+response.body().getEmailId() );
                         PrefUtils.storeAuthToken(response.body().getTokenid(), getActivity());
-                        Log.e("abhi", "onResponse: auth token------ "+response.body().getTokenid() );
                         PrefUtils.storeCloverId(response.body().getCloverId(), getActivity());
-                        Log.e("abhi", "onResponse: cloverid------ "+response.body().getCloverId() );
                         PrefUtils.storeCloverToken(response.body().getCloverToken(), getActivity());
-                        Log.e("abhi", "onResponse: clovertoken------ "+response.body().getCloverToken() );
                         setProfileDetails();
 
 

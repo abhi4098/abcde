@@ -57,10 +57,9 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
     String updatedMargin,updateStock;
     int count =1;
     boolean isChecked =false;
-   // ArrayList<MarginLocalData> productTestId;
+
     ArrayList<MarginLocalData> productTestId;
 
-    String newPrice;
     ArrayList<CategoryList> myProductList;
 
 
@@ -74,7 +73,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
         displayItemList = new ArrayList<>();
         this.itemList=itemList;
         this.productTestId = productTestId;
-        //this.productTestId = new ArrayList<>();
+
 
         this.myProductList = myProductList;
 
@@ -123,7 +122,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
 
         if (categoryList !=null) {
 
-            //  count = Integer.parseInt(inventoryItems.getMargin());
+
             holder.itemName.setText(categoryList.getTitle());
             holder.itemId.setText(categoryList.getCategoryId());
             holder.minimumStock.setText(categoryList.getMinStock());
@@ -158,8 +157,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
 
                                     if (response.body().getMsg().equals("Margin updated!")) {
 
-                                      // holder.llMargin.setBackgroundColor(Color.rgb(223,240,216));
-                                      //  finalRowView.setBackgroundColor(Color.rgb(223,240,216));
+
                                         categoryList.setDefaultMargin(response.body().getMargin());
                                         categoryList.setMinStock(response.body().getStock());
                                         categoryList.setBUpdate(1);
@@ -173,7 +171,6 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                                     productTestId.get(j).setDefaultMargin(response.body().getMargin());
                                                     productTestId.get(j).setMinStock(response.body().getStock());
                                                     productTestId.get(j).setBUpdate(1);
-                                                    Log.e("abhi", "onResponse: margin ---id matches"  );
                                                     break;
                                                 }
 
@@ -238,8 +235,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                                 if (response.isSuccessful()) {
 
                                     if (response.body().getMsg().equals("Stock level updated!")) {
-                                       // holder.llMinStock.setBackgroundColor(Color.rgb(223,240,216));
-                                       // finalRowView.setBackgroundColor(Color.rgb(223,240,216));
+
                                         categoryList.setDefaultMargin(response.body().getMargin());
                                         categoryList.setMinStock(response.body().getStock());
                                         categoryList.setBUpdate(2);
@@ -370,7 +366,7 @@ public class ManageCategoriesAdapter extends ArrayAdapter<CategoryList> implemen
                             if (productTestId.size() !=0) {
                                 for (int j = 0; j < productTestId.size(); j++) {
                                     if (tempItemList.get(i).getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
-                                        // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
+
                                         categoryList.setDefaultMargin(productTestId.get(j).getDefaultMargin());
                                         categoryList.setMinStock(productTestId.get(j).getMinStock());
                                         break;

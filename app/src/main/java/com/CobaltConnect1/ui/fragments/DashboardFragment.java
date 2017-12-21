@@ -48,7 +48,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     ArrayList<UnderStockItemPieChart> apiDataList;
     private RetrofitInterface.DashboardDataClient MyDashboardAdapter;
     TextView tvMyProducts,tvProductUpdates,tvAffectedProducts,tvMissingMargins;
-    PieChart pieChart;
+
     LinearLayout llMyProducts,llProductUpdates,llAffectedProducts,llMissingProducts;
     TextView tvAppTitle;
     String[] items = new String[]{"Time Interval", "Time Interval1", "Time Interval2","Time Interval3"};
@@ -78,66 +78,12 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         tvMissingMargins = (TextView) rootView.findViewById(R.id.product_missing_margins);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_layout, items);
         dropdown.setAdapter(adapter);
-        //pieChart = (PieChart) rootView.findViewById(R.id.piechart);
-        //pieChart.setUsePercentValues(true);
         llMyProducts.setOnClickListener(this);
         llProductUpdates.setOnClickListener(this);
         llAffectedProducts.setOnClickListener(this);
         llMissingProducts.setOnClickListener(this);
         setUpRestAdapter();
         MyDashboardDetails();
-
-        // IMPORTANT: In a PieChart, no values (Entry) should have the same
-        // xIndex (even if from different DataSets), since no values can be
-        // drawn above each other.
-      /*  ArrayList<Entry> yvalues = new ArrayList<Entry>();
-        yvalues.add(new Entry(8f, 0));
-        yvalues.add(new Entry(15f, 1));
-        yvalues.add(new Entry(12f, 2));
-        yvalues.add(new Entry(25f, 3));
-        yvalues.add(new Entry(23f, 4));
-        yvalues.add(new Entry(17f, 5));
-
-        PieDataSet dataSet = new PieDataSet(yvalues, "");
-
-        ArrayList<String> xVals = new ArrayList<String>();
-
-        xVals.add("January");
-        xVals.add("February");
-        xVals.add("March");
-        xVals.add("April");
-        xVals.add("May");
-        xVals.add("June");
-
-        PieData data = new PieData(xVals, dataSet);
-        data.setValueFormatter(new PercentFormatter());
-        pieChart.setData(data);
-        pieChart.setDrawHoleEnabled(false);
-        pieChart.getLegend().setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
-        pieChart.setDrawSliceText(false);
-        pieChart.setDescription(null);
-
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.JOYFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.COLORFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.LIBERTY_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.PASTEL_COLORS)
-            colors.add(c);
-
-        colors.add(ColorTemplate.getHoloBlue());
-        dataSet.setColors(colors);
-        data.setValueTextSize(10f);
-        data.setValueTextColor(Color.DKGRAY);*/
 
 
         return rootView;

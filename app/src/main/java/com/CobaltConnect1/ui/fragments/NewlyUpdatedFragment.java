@@ -147,7 +147,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
 
                 btPrev.setEnabled(false);
                 btPrev.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rectangular_background_light_gray));
-                Log.e(TAG, "onItemSelected: -----------------" + spSelectedItem + pageNum);
+
                 btNext.setEnabled(true);
                 btNext.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.button_state_selector));
 
@@ -174,7 +174,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                         inventoryItems.setPreviousPrice(updateProductList.get(i).getPreviousPrice());
                         inventoryItems.setProductId(updateProductList.get(i).getProductId());
                         showUpdateProductList.add(inventoryItems);
-                        Log.e(TAG, "onItemSelected: ---" + showUpdateProductList.get(i).getWholeSaler());
+
                     }
                     newlyUpdatedAdapter = new NewlyUpdatedAdapter(getActivity(), R.layout.items_rowlayout, R.id.item_name, showUpdateProductList, productTestId, updateProductList);
                     listview.setAdapter(newlyUpdatedAdapter);
@@ -234,7 +234,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
     }
 
     private void filterSearch(String constraint) {
-        // Log.e("abhi", "filterSearch: ----------" +constraint );
+
         constraint = constraint.toString().toLowerCase();
         searchUpdateProductList =new ArrayList<>();
 
@@ -263,7 +263,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                         inventoryItems.setNewPrice(updateProductList.get(i).getNewPrice());
                         inventoryItems.setMargins(updateProductList.get(i).getMargins());
                         inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
-                        Log.e(TAG, "performFiltering: ============"+ updateProductList.get(i).getMargins() );
+
                     }
 
 
@@ -273,7 +273,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                     inventoryItems.setNewPrice(updateProductList.get(i).getNewPrice());
                     inventoryItems.setMargins(updateProductList.get(i).getMargins());
                     inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
-                    Log.e(TAG, "performFiltering: ============"+ updateProductList.get(i).getMargins() );
+
                 }
                 searchUpdateProductList.add(inventoryItems);
             }
@@ -315,7 +315,6 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
         {
             if ((totalItems % spSelectedItem) == 0) {
                 totalNoPages = totalItems / spSelectedItem;
-                Log.e(TAG, "onItemSelected: total pages-----------" +totalNoPages );
                 tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
             }
 
@@ -328,7 +327,6 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
             else {
 
                 totalNoPages = ((totalItems / spSelectedItem)+1);
-                Log.e("abhi", "onItemSelected: ------------total num of pages" + totalNoPages );
                 tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
             }
 
@@ -376,7 +374,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
 
 
     private void updateProductDetails() {
-        Log.e("abhi", "updateProductDetails: ----------" +orderField + " " + orderType );
+
         Call<ProductUpdateResponse> call = UpdateProductAdapter.merchantUpdateProduct(new ProductUpdate(PrefUtils.getAuthToken(getContext()), "productUpdate",orderField,orderType));
         if (NetworkUtils.isNetworkConnected(getActivity())) {
             call.enqueue(new Callback<ProductUpdateResponse>() {
@@ -385,7 +383,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 public void onResponse(Call<ProductUpdateResponse> call, Response<ProductUpdateResponse> response) {
 
                     if (response.isSuccessful()) {
-                        Log.e(TAG, "onResponse:avvvvvv ==================" + response.body().getInventory().size());
+
                         tvNew.setText(String.format("New : %s", response.body().getNew().toString()));
                         tvQueued.setText(String.format("Queued : %s", response.body().getQueued().toString()));
                         tvProcessed.setText(String.format("Processed : %s", response.body().getProcessed().toString()));
@@ -422,7 +420,6 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
         tvPageNum.setText(String.valueOf(pageNum));
         btPrev.setEnabled(false);
         btPrev.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rectangular_background_light_gray));
-        Log.e(TAG, "onItemSelected: -----------------" + spSelectedItem + pageNum);
         btNext.setEnabled(true);
         updateProductList = new ArrayList<>();
         showUpdateProductList = new ArrayList<>();
@@ -444,8 +441,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
             inventoryItems.setBUpdate(response.body().getInventory().get(i).getBUpdate());
             inventoryItems.setPreviousPrice(response.body().getInventory().get(i).getPreviousPrice());
             inventoryItems.setProductId(response.body().getInventory().get(i).getProductId());
-            Log.e(TAG, "setUpdateProduct: --------------------" + response.body().getInventory().get(i).getMargins() + " " + response.body().getInventory().get(i).getName());
-            //inventoryItems.setReorder("X");
+
             updateProductList.add(inventoryItems);
         }
 
@@ -456,13 +452,13 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
             if ((totalItems % spSelectedItem) == 0) {
                 // number is even
                 totalNoPages = totalItems / spSelectedItem;
-                Log.e("abhi", "setMyProducts: totalnumber of pages==========" + totalNoPages );
+
             }
 
             else {
 
                 totalNoPages = ((totalItems / spSelectedItem)+1);
-                Log.e("abhi", "setMyProducts: totalnumber of pages==========" + totalNoPages );
+
             }
 
         }
@@ -500,7 +496,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Log.e(TAG, "onItemClick: --------------------------------------------------------------");
+
     }
 
     @Override
@@ -521,7 +517,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                 }
                 if (pageNum == totalNoPages)
                 {
-                    Log.e(TAG, "onClick: ------------------------chak deeeeeeeeeeeeeeeee" );
+
                     btNext.setEnabled(false);
                     btNext.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rectangular_background_light_gray));
                 }
@@ -921,8 +917,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
     }
 
     private void filterListPages() {
-        Log.e(TAG, "filterListPages: ------------- pagenum " + pageNum + " " + spSelectedItem );
-        //etSearch.getText().clear();
+
         if (pageNum == 1)
         {
             tvShowStats.setText("Showing " + pageNum+ " to " + pageNum * spSelectedItem + " of " + totalItems);
@@ -969,7 +964,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                         inventoryItems.setMargins(updateProductList.get(i).getMargins());
                         inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
                         inventoryItems.setStatus(updateProductList.get(i).getStatus());
-                        Log.e(TAG, "performFiltering: ============"+ updateProductList.get(i).getMargins() );
+
                     }
 
 
@@ -980,7 +975,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                     inventoryItems.setMargins(updateProductList.get(i).getMargins());
                     inventoryItems.setBUpdate(updateProductList.get(i).getBUpdate());
                     inventoryItems.setStatus(updateProductList.get(i).getStatus());
-                    Log.e(TAG, "performFiltering: ============"+ updateProductList.get(i).getMargins() );
+
                 }
                 showUpdateProductList.add(inventoryItems);
 
@@ -1021,7 +1016,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                         inventoryItems.setMargins(searchUpdateProductList.get(i).getMargins());
                         inventoryItems.setBUpdate(searchUpdateProductList.get(i).getBUpdate());
                         inventoryItems.setStatus(searchUpdateProductList.get(i).getStatus());
-                        Log.e(TAG, "performFiltering: ============"+ searchUpdateProductList.get(i).getMargins() );
+
                     }
 
 
@@ -1033,7 +1028,7 @@ public class NewlyUpdatedFragment extends Fragment implements AdapterView.OnItem
                     inventoryItems.setBUpdate(searchUpdateProductList.get(i).getBUpdate());
                     inventoryItems.setStatus(searchUpdateProductList.get(i).getStatus());
 
-                    Log.e(TAG, "performFiltering: ============"+ searchUpdateProductList.get(i).getMargins() );
+
                 }
                 showUpdateProductList.add(inventoryItems);
 

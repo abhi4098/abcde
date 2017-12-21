@@ -59,7 +59,6 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
     ArrayList<String> categoryList;
     ArrayList<Inventory> searchMyProductList =null;
     ArrayList<InventoryItems> dataList = new ArrayList<>();
-    private RecyclerView newlyUpdatedRecyclerView;
     private com.CobaltConnect1.ui.adapters.MyProductAdapter myProductAdapter;
     EditText etSearch;
     ListView listview;
@@ -303,7 +302,6 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
     }
 
     private void filterSearch(String constraint) {
-        // Log.e("abhi", "filterSearch: ----------" +constraint );
         constraint = constraint.toString().toLowerCase();
         searchMyProductList =new ArrayList<>();
 
@@ -383,7 +381,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
                     if (productTestId.size() !=0) {
                         for (int j = 0; j < productTestId.size(); j++) {
                             if (categoryFilteredProductList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
-                                // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
+
                                 inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
                                 inventoryItems.setMargin(productTestId.get(j).getMargin());
                                 inventoryItems.setStatus(productTestId.get(j).getStatus());
@@ -466,7 +464,6 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
             else {
 
                 totalNoPages = ((totalItems / spSelectedItem)+1);
-                Log.e("abhi", "onItemSelected: ------------total num of pages" + totalNoPages );
                 tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
             }
 
@@ -518,7 +515,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
 
     private void setCategoryList(Response<CategoryListResponse> response) {
 
-        Log.e("abhi", "onResponse: "+response.body().getList().size() );
+
         categoryList = new ArrayList<>();
         categoryList.add("All");
         for (int i = 0; i < response.body().getList().size(); i++) {
@@ -534,10 +531,8 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 spCategorySelectedItem = spCategoryDropdown.getSelectedItem().toString();
-                Log.e("abhi", "onItemSelected: " + spCategorySelectedItem);
+
                 if (spCategorySelectedItem.equals("All")) {
-                    /*categoryAdapter.getFilter().filter(spCategorySelectedItem);
-                    myProductAdapter.notifyDataSetChanged();*/
                     MyProductDetails();
 
                 }
@@ -581,24 +576,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
                         totalItems = categoryFilteredProductList.size();
                         setPageInformation();
 
-                       /* if (totalItems != 0)
 
-                        {
-
-                            if ((totalItems % spSelectedItem) == 0) {
-                                totalNoPages = totalItems / spSelectedItem;
-                            }
-
-                            else {
-
-                                totalNoPages = ((totalItems / spSelectedItem)+1);
-
-                            }
-
-
-
-                        }
-                        tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );*/
 
                         showUpdateProductList = new ArrayList<>();
                         for (int k = 0; k< spSelectedItem&& k<totalItems; k++) {
@@ -1461,15 +1439,12 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
         if (spCategorySelectedItem.equals("All") && etSearch.getText().toString().equals("")) {
 
             for (int i = (pageNum - 1) * spSelectedItem; i < pageNum * spSelectedItem && i < totalItems; i++) {
-                Log.e("abhi", "filterListPages: All----------------" );
+
                 Inventory inventoryItems = new Inventory();
                 inventoryItems.setName(myProductList.get(i).getName());
-                //inventoryItems.setNewPrice(myProductList.get(i).getNewPrice());
                 inventoryItems.setPreviousCost(myProductList.get(i).getPreviousCost());
-                //inventoryItems.setMargin(myProductList.get(i).getMargin());
                 inventoryItems.setWholeSaler(myProductList.get(i).getWholeSaler());
                 inventoryItems.setNewCost(myProductList.get(i).getNewCost());
-                //inventoryItems.setStatus(myProductList.get(i).getStatus());
                 inventoryItems.setBUpdate(myProductList.get(i).getBUpdate());
                 inventoryItems.setPreviousPrice(myProductList.get(i).getPreviousPrice());
                 inventoryItems.setProductId(myProductList.get(i).getProductId());
@@ -1479,7 +1454,6 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
                 if (productTestId.size() !=0) {
                     for (int j = 0; j < productTestId.size(); j++) {
                         if (myProductList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
-                            // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
                             inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
                             inventoryItems.setMargin(productTestId.get(j).getMargin());
                             inventoryItems.setStatus(productTestId.get(j).getStatus());
@@ -1521,17 +1495,14 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
 
         {
 
-            Log.e("abhi", "filterListPages:  edit text is not empty " );
+
             for (int i = (pageNum - 1) * spSelectedItem; i < pageNum * spSelectedItem && i < totalItems; i++) {
 
                 Inventory inventoryItems = new Inventory();
                 inventoryItems.setName(searchMyProductList.get(i).getName());
-                //inventoryItems.setNewPrice(searchMyProductList.get(i).getNewPrice());
                 inventoryItems.setPreviousCost(searchMyProductList.get(i).getPreviousCost());
-                //inventoryItems.setMargin(searchMyProductList.get(i).getMargin());
                 inventoryItems.setWholeSaler(searchMyProductList.get(i).getWholeSaler());
                 inventoryItems.setNewCost(searchMyProductList.get(i).getNewCost());
-                //inventoryItems.setStatus(searchMyProductList.get(i).getStatus());
                 inventoryItems.setBUpdate(searchMyProductList.get(i).getBUpdate());
                 inventoryItems.setPreviousPrice(searchMyProductList.get(i).getPreviousPrice());
                 inventoryItems.setProductId(searchMyProductList.get(i).getProductId());
@@ -1541,7 +1512,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
                 if (productTestId.size() !=0) {
                     for (int j = 0; j < productTestId.size(); j++) {
                         if (searchMyProductList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
-                            // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
+
                             inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
                             inventoryItems.setMargin(productTestId.get(j).getMargin());
                             inventoryItems.setStatus(productTestId.get(j).getStatus());
@@ -1581,7 +1552,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
 
         else
         {
-            Log.e("abhi", "filterListPages:  else===========================" );
+
 
             for (int i = (pageNum - 1) * spSelectedItem; i < pageNum * spSelectedItem && i < totalItems; i++) {
 
@@ -1602,7 +1573,7 @@ public class MyProductsFragment extends Fragment implements AdapterView.OnItemCl
                 if (productTestId.size() !=0) {
                     for (int j = 0; j < productTestId.size(); j++) {
                         if (categoryFilteredProductList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
-                            // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
+
                             inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
                             inventoryItems.setMargin(productTestId.get(j).getMargin());
                             inventoryItems.setStatus(productTestId.get(j).getStatus());

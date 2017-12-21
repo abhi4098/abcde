@@ -18,8 +18,7 @@ import java.util.ArrayList;
 public class ChangePasswordFragment extends Fragment {
 
 
-    ArrayList<InventoryItems> apiDataList;
-    BarChart revenueBarChart;
+
 
 
 

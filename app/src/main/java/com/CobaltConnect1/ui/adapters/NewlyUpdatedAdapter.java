@@ -97,7 +97,6 @@ public class NewlyUpdatedAdapter extends ArrayAdapter<Inventory> implements Filt
             rowView= inflater.inflate(groupid, parent, false);
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.itemName= (TextView) rowView.findViewById(R.id.item_name);
-            // viewHolder.tableRow= (TableRow) rowView.findViewById(R.id.tableRow);
             viewHolder.previousPrice= (TextView) rowView.findViewById(R.id.prev_price);
             viewHolder.newPrice= (TextView) rowView.findViewById(R.id.new_price);
             viewHolder.prevCost= (TextView) rowView.findViewById(R.id.previous_cost);
@@ -105,10 +104,8 @@ public class NewlyUpdatedAdapter extends ArrayAdapter<Inventory> implements Filt
             viewHolder.margin= (EditText) rowView.findViewById(R.id.integer_number);
             viewHolder.wholesaler= (TextView) rowView.findViewById(R.id.wholesaler);
             viewHolder.status= (TextView) rowView.findViewById(R.id.status);
-            // viewHolder.reorder= (RadioButton) rowView.findViewById(R.id.reorder);
-          //  viewHolder.decreaseButton= (Button) rowView.findViewById(R.id.decrease);
             viewHolder.increaseButton= (Button) rowView.findViewById(R.id.increase);
-          //  viewHolder.llMargin= (LinearLayout) rowView.findViewById(R.id.margin);
+
 
 
             rowView.setTag(viewHolder);
@@ -121,7 +118,7 @@ public class NewlyUpdatedAdapter extends ArrayAdapter<Inventory> implements Filt
 
         if (inventoryItems !=null) {
 
-            //  count = Integer.parseInt(inventoryItems.getMargin());
+
             holder.itemName.setText(inventoryItems.getName());
             holder.previousPrice.setText(inventoryItems.getPreviousPrice());
             holder.newPrice.setText(inventoryItems.getNewPrice());
@@ -159,53 +156,10 @@ public class NewlyUpdatedAdapter extends ArrayAdapter<Inventory> implements Filt
             {
                 finalRowView.setBackgroundColor(Color.WHITE);
             }
-            //holder.reorder.setText(inventoryItems.getReorder());
-           /* holder.reorder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-                    if (holder.reorder.isChecked()) {
-                        Log.e(TAG, "onCheckedChanged: ===");
-                        holder.reorder.setChecked(false);
-                    } else {
-                        holder.reorder.setChecked(true);
-                        Log.e(TAG, "onCheckedChanged: ===============================");
-                    }
-
-
-                }
-            });*/
            holder.margin.setText(inventoryItems.getMargins());
 
 
-
-      /*      holder.decreaseButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    *//*if (count > 0)
-
-                    {
-                       // finalRowView.setBackgroundColor(Color.GREEN);
-                        if (listItemId == null || listItemId.equals(inventoryItems.getProductId())) {
-
-                            count = inventoryItems.getMargins();
-                            inventoryItems.setMargins(--count);
-                            holder.margin.setText(String.valueOf(inventoryItems.getMargins()));
-                            listItemId = inventoryItems.getProductId();
-                            Log.e(TAG, "onClick: if--------------------- " + inventoryItems.getProductId());
-
-
-                        } else {
-                            listItemId = null;
-                            count = inventoryItems.getMargins();
-                            inventoryItems.setMargins(--count);
-                            holder.margin.setText(String.valueOf(inventoryItems.getMargins()));
-                            Log.e(TAG, "onClick: else----------------------" + inventoryItems.getProductId());
-                        }
-
-                    }*//*
-                }
-            });*/
 
 
             holder.increaseButton.setOnClickListener(new View.OnClickListener() {
@@ -221,7 +175,7 @@ public class NewlyUpdatedAdapter extends ArrayAdapter<Inventory> implements Filt
                             public void onResponse(Call<MarginUpdateResponse> call, Response<MarginUpdateResponse> response) {
 
                                 if (response.isSuccessful()) {
-                                    //Log.e(TAG, "onResponse: ==================" +response.body().getMsg() );
+
                                     if (response.body().getMsg().equals("Margin Updated")) {
                                         inventoryItems.setNewPrice(response.body().getNewPrice());
                                         inventoryItems.setMargins(response.body().getMargin());
@@ -281,25 +235,7 @@ public class NewlyUpdatedAdapter extends ArrayAdapter<Inventory> implements Filt
                     } else {
                         SnakBarUtils.networkConnected(getContext());
                     }
-                  // getUpdatedMargin(v);
-                  /*  if (count >=0)
 
-                    {
-                        if (listItemId == null || listItemId.equals(inventoryItems.getProductId())) {
-                            count = inventoryItems.getMargins();
-                            inventoryItems.setMargins(++count);
-                            holder.margin.setText(String.valueOf(inventoryItems.getMargins()));
-                            listItemId = inventoryItems.getProductId();
-                            Log.e(TAG, "onClick: if++++++++++++++++++++++++++++++ " + inventoryItems.getProductId());
-                        } else {
-                            listItemId = null;
-                            count = inventoryItems.getMargins();
-                            inventoryItems.setMargins(++count);
-                            holder.margin.setText(String.valueOf(inventoryItems.getMargins()));
-                            Log.e(TAG, "onClick: else++++++++++++++++++++" + inventoryItems.getProductId());
-                        }
-
-                    }*/
                 }
             });
 
@@ -378,7 +314,7 @@ public class NewlyUpdatedAdapter extends ArrayAdapter<Inventory> implements Filt
                                     inventoryItems.setNewPrice(tempItemList.get(i).getNewPrice());
                                     inventoryItems.setMargins(tempItemList.get(i).getMargins());
                                     inventoryItems.setBUpdate(tempItemList.get(i).getBUpdate());
-                                    Log.e(TAG, "performFiltering: ============"+ tempItemList.get(i).getMargins() );
+
                                 }
 
 
@@ -388,7 +324,7 @@ public class NewlyUpdatedAdapter extends ArrayAdapter<Inventory> implements Filt
                                 inventoryItems.setNewPrice(tempItemList.get(i).getNewPrice());
                                 inventoryItems.setMargins(tempItemList.get(i).getMargins());
                                 inventoryItems.setBUpdate(tempItemList.get(i).getBUpdate());
-                                Log.e(TAG, "performFiltering: ============"+ tempItemList.get(i).getMargins() );
+
                             }
                             inventoryItems.setNewCost(tempItemList.get(i).getNewCost());
                             inventoryItems.setStatus(tempItemList.get(i).getStatus());
@@ -396,12 +332,11 @@ public class NewlyUpdatedAdapter extends ArrayAdapter<Inventory> implements Filt
                             inventoryItems.setWholeSaler(tempItemList.get(i).getWholeSaler());
                             inventoryItems.setProductId(tempItemList.get(i).getProductId());
 
-                            // inventoryItems.setReorder(tempItemList.get(i).getReorder());
                             FilteredArrList.add(inventoryItems);
 
                         }
                     }
-                    Log.e("abhi", "filterlist size" +filterItemList.size() + FilteredArrList.size() );
+
                     for (int i = 0; i < filterItemList.size() && i < FilteredArrList.size(); i++) {
                         Inventory inventoryItems = new Inventory();
                         inventoryItems.setName(FilteredArrList.get(i).getName());
@@ -414,7 +349,6 @@ public class NewlyUpdatedAdapter extends ArrayAdapter<Inventory> implements Filt
                         inventoryItems.setBUpdate(FilteredArrList.get(i).getBUpdate());
                         inventoryItems.setPreviousPrice(FilteredArrList.get(i).getPreviousPrice());
                         inventoryItems.setProductId(FilteredArrList.get(i).getProductId());
-                        //inventoryItems.setCloverId(FilteredArrList.get(i).getCloverId());
                         FilteredArrList1.add(inventoryItems);
                     }
 

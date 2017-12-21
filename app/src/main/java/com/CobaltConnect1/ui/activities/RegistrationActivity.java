@@ -76,7 +76,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         getStateList();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, stateList);
         spUserState.setPrompt("Select");
-        /*adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);*/
         spUserState.setAdapter(adapter);
 
 
@@ -102,8 +101,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                             stateName = response.body().getStates().get(i).getName();
                              stateList.add(stateName);
                              Log.e("abhi", "onResponse: " +stateList.get(i) );
-                            /* state.setId(response.body().getStates().get(i).getId());
-                             */
                          }
 
                             statesName = new String[stateList.size()];

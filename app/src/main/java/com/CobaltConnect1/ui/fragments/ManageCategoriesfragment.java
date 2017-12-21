@@ -54,8 +54,7 @@ import static com.CobaltConnect1.api.ApiEndPoints.BASE_URL;
 public class ManageCategoriesfragment extends Fragment implements AdapterView.OnItemClickListener,View.OnClickListener{
 
 
-    ArrayList<InventoryItems> apiDataList;
-    BarChart revenueBarChart;
+
     String orderField,orderType = " ";
     EditText etSearch;
     static ArrayList<MarginLocalData> productTestId = new ArrayList<>();
@@ -184,7 +183,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
 
 
                 if (manageCategoryList != null) {
-                    //manageCategoriesAdapter.getFilter().filter(s.toString());
+
                     filterSearch(s.toString());
                 }
 
@@ -208,81 +207,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
         setUpRestAdapter();
         getCategoryList();
 
-        /*revenueBarChart = (BarChart)rootView.findViewById(R.id.barchart);
 
-        // create BarEntry for Bar Group 1
-        ArrayList<BarEntry> bargroup1 = new ArrayList<>();
-        bargroup1.add(new BarEntry(0f, 0));
-        bargroup1.add(new BarEntry(0f, 1));
-        bargroup1.add(new BarEntry(8f, 2));
-        bargroup1.add(new BarEntry(2f, 3));
-        bargroup1.add(new BarEntry(5f, 4));
-        bargroup1.add(new BarEntry(20f, 5));
-        bargroup1.add(new BarEntry(15f, 6));
-        bargroup1.add(new BarEntry(19f, 7));
-
-// creating dataset for Bar Group1
-        BarDataSet barDataSet1 = new BarDataSet(bargroup1, "Bar Group 1");
-
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.JOYFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.COLORFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.LIBERTY_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.PASTEL_COLORS)
-            colors.add(c);
-
-        colors.add(ColorTemplate.getHoloBlue());
-        barDataSet1.setColors(colors);
-
-
-        ArrayList<String> labels = new ArrayList<String>();
-        labels.add("JAN");
-        labels.add("FEB");
-        labels.add("MAR");
-        labels.add("APR");
-        labels.add("MAY");
-        labels.add("JUN");
-        labels.add("JUL");
-        labels.add("AUG");
-        labels.add("SEP");
-        labels.add("OCT");
-        labels.add("NOV");
-        labels.add("DEC");
-        ArrayList<BarDataSet> dataSets = new ArrayList<>();  // combined all dataset into an arraylist
-        dataSets.add(barDataSet1);
-
-// initialize the Bardata with argument labels and dataSet
-        BarData data = new BarData(labels, dataSets);
-        data.setDrawValues(false);
-
-        revenueBarChart.setData(data);
-        revenueBarChart.setGridBackgroundColor(getResources().getColor(R.color.transparent));
-        revenueBarChart.getAxisLeft().setDrawGridLines(false);
-        revenueBarChart.getXAxis().setDrawGridLines(false);
-        XAxis xAxis = revenueBarChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setDrawAxisLine(false);
-        xAxis.enableGridDashedLine(5,5,5);
-        revenueBarChart.getAxisRight().enableGridDashedLine(3,3,3);
-        revenueBarChart.getLegend().setEnabled(false);
-        revenueBarChart.setDescription(null);
-        YAxis leftAxis = revenueBarChart.getAxisLeft();
-        leftAxis.setDrawAxisLine(false);
-        YAxis rightAxis = revenueBarChart.getAxisRight();
-        rightAxis.setDrawLabels(false);
-        rightAxis.setDrawAxisLine(false);
-
-*/
         return rootView;
     }
 
@@ -306,7 +231,6 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
             else {
 
                 totalNoPages = ((totalItems / spSelectedItem)+1);
-                Log.e("abhi", "onItemSelected: ------------total num of pages" + totalNoPages );
                 tvShowStats.setText("Showing " +pageNum + " to " +spSelectedItem + " of "  +totalItems );
             }
 
@@ -316,7 +240,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
     }
 
     private void filterSearch(String constraint) {
-       // Log.e("abhi", "filterSearch: ----------" +constraint );
+
         constraint = constraint.toString().toLowerCase();
         searchManageCategoriesList =new ArrayList<>();
         for (int i = 0; i < manageCategoryList.size(); i++) {
@@ -325,12 +249,11 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                 CategoryList categoryList = new CategoryList();
                 categoryList.setTitle(manageCategoryList.get(i).getTitle());
                 categoryList.setCategoryId(manageCategoryList.get(i).getCategoryId());
-                //categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
-                //categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
+
                 if (productTestId.size() !=0) {
                     for (int j = 0; j < productTestId.size(); j++) {
                         if (manageCategoryList.get(i).getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
-                            // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
+
                             categoryList.setDefaultMargin(productTestId.get(j).getDefaultMargin());
                             categoryList.setMinStock(productTestId.get(j).getMinStock());
                             break;
@@ -393,7 +316,6 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                     if (response.isSuccessful()) {
 
                         if (response.body().getType()!= 0 ) {
-                            Log.e("abhi", "onResponse: " +response.body().getList().size() );
                             setCategoryList(response);
                         }
 
@@ -645,7 +567,7 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
 
 
     private void filterListPages() {
-        //  etSearch.getText().clear();
+
         if (pageNum == 1) {
             tvShowStats.setText("Showing " + pageNum + " to " + pageNum * spSelectedItem + " of " + totalItems);
         } else if (pageNum * spSelectedItem >= totalItems)
@@ -667,15 +589,13 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                 CategoryList categoryList = new CategoryList();
                 categoryList.setCategoryId(manageCategoryList.get(i).getCategoryId());
                 categoryList.setTitle(manageCategoryList.get(i).getTitle());
-                //categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
-                //categoryList.setMinStock(manageCategoryList.get(i).getMinStock());
+
                 if (productTestId.size() !=0) {
                     for (int j = 0; j < productTestId.size(); j++) {
                         if (manageCategoryList.get(i).getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
-                            // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
                             categoryList.setDefaultMargin(productTestId.get(j).getDefaultMargin());
                             categoryList.setMinStock(productTestId.get(j).getMinStock());
-                            Log.e("abhi1", "filterListPages:"+ productTestId.get(j).getDefaultMargin());
+
                             break;
                         }
                         categoryList.setDefaultMargin(manageCategoryList.get(i).getDefaultMargin());
@@ -713,15 +633,13 @@ public class ManageCategoriesfragment extends Fragment implements AdapterView.On
                 CategoryList categoryList = new CategoryList();
                 categoryList.setCategoryId(searchManageCategoriesList.get(i).getCategoryId());
                 categoryList.setTitle(searchManageCategoriesList.get(i).getTitle());
-               // categoryList.setDefaultMargin(searchManageCategoriesList.get(i).getDefaultMargin());
-               // categoryList.setMinStock(searchManageCategoriesList.get(i).getMinStock());
                 if (productTestId.size() !=0) {
                     for (int j = 0; j < productTestId.size(); j++) {
                         if (searchManageCategoriesList.get(i).getCategoryId().equals(productTestId.get(j).getCategoryId()) && productTestId.get(j).getCategoryId() != null) {
-                            // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
+
                             categoryList.setDefaultMargin(productTestId.get(j).getDefaultMargin());
                             categoryList.setMinStock(productTestId.get(j).getMinStock());
-                            Log.e("abhi1", "filterListPages:"+ productTestId.get(j).getDefaultMargin());
+
                             break;
                         }
                         categoryList.setDefaultMargin(searchManageCategoriesList.get(i).getDefaultMargin());

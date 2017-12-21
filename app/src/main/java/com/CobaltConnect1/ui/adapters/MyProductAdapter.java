@@ -120,7 +120,7 @@ public class MyProductAdapter extends ArrayAdapter<Inventory> implements Filtera
 
         if (inventoryItems !=null) {
 
-            //  count = Integer.parseInt(inventoryItems.getMargin());
+
             holder.itemName.setText(inventoryItems.getName());
             holder.previousPrice.setText(inventoryItems.getPreviousPrice());
             holder.newPrice.setText(inventoryItems.getNewPrice());
@@ -292,7 +292,6 @@ public class MyProductAdapter extends ArrayAdapter<Inventory> implements Filtera
                       if (productTestId.size() !=0) {
                           for (int j = 0; j < productTestId.size(); j++) {
                               if (tempItemList.get(i).getProductId().equals(productTestId.get(j).getProductId()) && productTestId.get(j).getProductId() != null) {
-                                 // Log.e(TAG, "performFiltering: if ======================" + productTestId.get(j).getMargin() + "  " + productTestId.get(j).getNewPrice() );
                                   inventoryItems.setNewPrice(productTestId.get(j).getNewPrice());
                                   inventoryItems.setMargin(productTestId.get(j).getMargin());
                                   break;
