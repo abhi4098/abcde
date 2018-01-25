@@ -4,13 +4,13 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#64C5B1</item>
-        <item name="colorPrimaryDark">#64C5B1</item>
+        <item name="colorPrimary">#0ab3e8</item>
+        <item name="colorPrimaryDark">#0ab3e8</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="drawerArrowStyle">@style/DrawerIcon</item>
         <item name="colorControlNormal">@color/signup_light_gray</item>
-        <item name="colorControlActivated">#64C5B1</item>
-        <item name="colorControlHighlight">#64C5B1</item>
+        <item name="colorControlActivated">#0ab3e8</item>
+        <item name="colorControlHighlight">#0ab3e8</item>
     </style>
 
     <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
@@ -45,7 +45,7 @@
 
 
     <style name="MyToolBar" parent="AppTheme">
-        <item name="android:color">#64C5B1</item>
+        <item name="android:color">#0ab3e8</item>
         <item name="android:textColorSecondary">@color/white</item>
     </style>
 

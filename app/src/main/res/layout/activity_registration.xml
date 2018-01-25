@@ -6,14 +6,14 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/signup_background"
+    android:background="@drawable/login_bg"
     tools:context="com.CobaltConnect1.ui.activities.SignInActivity">
 
     <TextView
 
         android:layout_width="160dp"
         android:layout_height="55dp"
-        android:background="@drawable/logo"
+        android:background="@drawable/applogoupdated"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="20dp"

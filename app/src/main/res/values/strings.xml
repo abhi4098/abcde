@@ -8,12 +8,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="text_signIn">Sign In</string>
+    <string name="text_signIn">Login</string>
     <string name="hint_cobalt_id">Enter Cobalt Id</string>
     <string name="hint_password">Password</string>
     <string name="text_remember_me">Remember Me</string>
     <string name="text_forgot_password">Forgot your password ?</string>
-    <string name="button_signIn">Sign In</string>
+    <string name="button_signIn">Login</string>
     <string name="text_account">Don\'t have an account ?</string>
     <string name="text_signUp">Sign Up</string>
 

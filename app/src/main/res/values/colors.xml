@@ -13,18 +13,18 @@
         <color name="mid_value">#c2e4e6</color>
 
 
-        <color name="theme_primary">#5fcdd3</color>
+        <color name="theme_primary">#0ab3e8</color>
         <color name="theme_primary_dark">#0ba3ad</color>
         <color name="theme_translucent_bg">#DD6dc7da</color>
         <color name="theme_highlight_bg">#776Dc7da</color>
 
-    <color name="primary_color">#64C5B1</color>
+    <color name="primary_color">#0ab3e8</color>
     <color name="nav_color">#3f444c</color>
     <color name="background_light">#e6e7e8</color>
     <color name="background_light_gray">#80efefef</color>
-    <color name="profit_widget_color">#18a589</color>
-    <color name="revenue_widget_color">#7a869c</color>
-    <color name="updates_widget_color">#e73c3c</color>
+    <color name="profit_widget_color">#5A4E7C</color>
+    <color name="revenue_widget_color">#4DC480</color>
+    <color name="updates_widget_color">#FF9500</color>
     <color name="transparent">#00000000</color>
     <color name="text_color">#757577</color>
 
