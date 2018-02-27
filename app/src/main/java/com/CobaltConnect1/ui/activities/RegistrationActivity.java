@@ -146,6 +146,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
 
     private void getRegistrationDetails() {
+        Log.e("abhi", "getRegistrationDetails: ...." );
         LoadingDialog.showLoadingDialog(this,"Loading...");
         Call<RegistrationResponse> call = SignUpAdapter.merchantSignUp(new Registration(userFullName, userEmail, userCobaltId, userCloverId, userCloverApiKey, userPassword, userState,"registration"));
         if (NetworkUtils.isNetworkConnected(RegistrationActivity.this)) {
@@ -217,6 +218,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         }
 
         if (isRegistrationValid() && isPasswordValid) {
+            Log.e("abhi", "onClick: ......");
             getRegistrationDetails();
         }
     }
