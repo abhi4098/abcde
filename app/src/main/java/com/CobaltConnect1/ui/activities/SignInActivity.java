@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.CobaltConnect1.R;
 import com.CobaltConnect1.api.ApiAdapter;
 import com.CobaltConnect1.api.RetrofitInterface;
+import com.CobaltConnect1.generated.model.RegisterRequest;
+import com.CobaltConnect1.generated.model.RegisterRequestResponse;
 import com.CobaltConnect1.generated.model.SignIn;
 import com.CobaltConnect1.generated.model.SignInResponse;
 import com.CobaltConnect1.utils.NetworkUtils;
@@ -39,15 +41,17 @@ import static com.CobaltConnect1.api.ApiEndPoints.BASE_URL;
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RetrofitInterface.MerchantLoginClient SignInAdapter;
+    private RetrofitInterface.MerchantRegisterRequestClient RegisterRequestAdapter;
     Button btSignIn ,btSignUp;
     TextView tvSignUp, tvForgotPassword;
     EditText etCobaltPaymentId;
     EditText etPassword;
     CheckBox cbRememberMe;
-    String cobaltId,userPassword,userName,userBusinessName,userContactNo,userEmail;
-    LinearLayout loginView,signUpView;
+    Boolean signUpRequest =false;
+    String cobaltId,userPassword,userName,userBusinessName,userContactNo,userEmail,userRegistrationResponse;
+    LinearLayout loginView,signUpView,registerRequestView;
     View viewBelowlogin,viewBelowSignUp;
-    TextView tvLoginHeader,tvSignUpHeader;
+    TextView tvLoginHeader,tvregistrationResponse;
     EditText etUserName,etuserBusinessName,etuserContactNo,etuserEmail;
 
 
@@ -64,9 +68,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         etPassword = (EditText) findViewById(R.id.user_password);
         loginView = (LinearLayout) findViewById(R.id.loginview);
         signUpView = (LinearLayout) findViewById(R.id.signUp_view);
+        registerRequestView = (LinearLayout) findViewById(R.id.registration_request_confirmation);
         viewBelowSignUp = (View) findViewById(R.id.view_below_signup);
         viewBelowlogin = (View) findViewById(R.id.view_below_login);
         tvLoginHeader = (TextView) findViewById(R.id.login_header);
+        tvregistrationResponse = (TextView) findViewById(R.id.registration_response);
         etUserName = (EditText) findViewById(R.id.userName);
         etuserBusinessName = (EditText) findViewById(R.id.business_name);
         etuserEmail = (EditText) findViewById(R.id.user_email);
@@ -99,6 +105,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void setUpRestAdapter() {
         SignInAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.MerchantLoginClient.class, BASE_URL, SignInActivity.this);
+        RegisterRequestAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.MerchantRegisterRequestClient.class, BASE_URL, SignInActivity.this);
     }
 
 
@@ -146,33 +153,36 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void getRegisterRequestDetails() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        Call<SignInResponse> call = SignInAdapter.merchantSignIn(new SignIn(cobaltId,userPassword,"signin"));
+        Call<RegisterRequestResponse> call = RegisterRequestAdapter.merchantRegisterRequest(new RegisterRequest(userName,userBusinessName,userEmail,userContactNo,"registration-request"));
         if (NetworkUtils.isNetworkConnected(SignInActivity.this)) {
-            call.enqueue(new Callback<SignInResponse>() {
+            call.enqueue(new Callback<RegisterRequestResponse>() {
 
                 @Override
-                public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
+                public void onResponse(Call<RegisterRequestResponse> call, Response<RegisterRequestResponse> response) {
 
                     if (response.isSuccessful()) {
 
 
-                        if (response.body().getTokenid() !=null) {
-                            PrefUtils.storeAuthToken(response.body().getTokenid(), SignInActivity.this);
-                            PrefUtils.storeUserName(response.body().getFullName(), SignInActivity.this);
-                            Intent intent = new Intent(SignInActivity.this, NavigationalDrawerActivity.class);
-                            startActivity(intent);
+                        if (response.body().getType() ==1) {
+                            signUpView.setVisibility(View.GONE);
+                            registerRequestView.setVisibility(View.VISIBLE);
+                            userRegistrationResponse =response.body().getMsg();
+                            tvregistrationResponse.setText(userRegistrationResponse);
+                            tvSignUp.setEnabled(false);
+                            signUpRequest =true;
                             LoadingDialog.cancelLoading();
                         }
                         else
                         {
-                            Toast.makeText(getApplicationContext(),"Invalid Details",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),response.body().getMsg(),Toast.LENGTH_SHORT).show();
                             LoadingDialog.cancelLoading();
                         }
                     }
                 }
 
                 @Override
-                public void onFailure(Call<SignInResponse> call, Throwable t) {
+                public void onFailure(Call<RegisterRequestResponse> call, Throwable t) {
+                    Log.e("abhi", "onFailure: "+t.getMessage() );
                     LoadingDialog.cancelLoading();
                 }
 
@@ -218,12 +228,15 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             userEmail = etuserEmail.getText().toString();
 
             if (isRegistrationValid()) {
-                getRegisterRequestDetails();
+
+               getRegisterRequestDetails();
             }
         }
 
         else  if (view.getId() == R.id.login_header)
         {
+            tvSignUp.setEnabled(true);
+            registerRequestView.setVisibility(View.GONE);
             loginView.setVisibility(View.VISIBLE);
             signUpView.setVisibility(View.GONE);
             viewBelowlogin.setVisibility(View.VISIBLE);
@@ -239,12 +252,23 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         }
         else
         {
-             loginView.setVisibility(View.GONE);
-             signUpView.setVisibility(View.VISIBLE);
-             viewBelowlogin.setVisibility(View.GONE);
-             viewBelowSignUp.setVisibility(View.VISIBLE);
-             tvSignUp.setTextColor(Color.WHITE);
-             tvLoginHeader.setTextColor(Color.parseColor("#757577"));
+            if (signUpRequest)
+            {
+                loginView.setVisibility(View.GONE);
+                signUpView.setVisibility(View.GONE);
+                registerRequestView.setVisibility(View.VISIBLE);
+                tvregistrationResponse.setText(userRegistrationResponse);
+
+            }
+            else {
+                loginView.setVisibility(View.GONE);
+                signUpView.setVisibility(View.VISIBLE);
+                registerRequestView.setVisibility(View.GONE);
+                viewBelowlogin.setVisibility(View.GONE);
+                viewBelowSignUp.setVisibility(View.VISIBLE);
+                tvSignUp.setTextColor(Color.WHITE);
+                tvLoginHeader.setTextColor(Color.parseColor("#757577"));
+            }
 
         }
     }

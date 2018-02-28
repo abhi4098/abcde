@@ -18,6 +18,8 @@ import com.CobaltConnect1.generated.model.ProductUpdate;
 import com.CobaltConnect1.generated.model.ProductUpdateResponse;
 import com.CobaltConnect1.generated.model.Profile;
 import com.CobaltConnect1.generated.model.ProfileResponse;
+import com.CobaltConnect1.generated.model.RegisterRequest;
+import com.CobaltConnect1.generated.model.RegisterRequestResponse;
 import com.CobaltConnect1.generated.model.Registration;
 import com.CobaltConnect1.generated.model.RegistrationResponse;
 import com.CobaltConnect1.generated.model.SignIn;
@@ -44,6 +46,13 @@ public class RetrofitInterface {
 
         @POST("api/")
         Call<RegistrationResponse> merchantSignUp(@Body Registration registrationDetails);
+
+    }
+
+    public interface MerchantRegisterRequestClient {
+
+        @POST("api/")
+        Call<RegisterRequestResponse> merchantRegisterRequest(@Body RegisterRequest registerRequest);
 
     }
 
