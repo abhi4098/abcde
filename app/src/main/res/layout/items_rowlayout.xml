@@ -143,10 +143,10 @@
 
         <Button
             android:id="@+id/increase"
-            android:layout_width="15dp"
+            android:layout_width="20dp"
             android:background="@drawable/update_button_selector"
-            android:layout_height="15dp"
-            android:layout_marginEnd="10dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="2dp"
             android:onClick="increaseInteger"
             />
 
