@@ -1,9 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:background="@color/background_light_gray"
     android:orientation="horizontal"
+    android:weightSum="9"
 
     >
 
@@ -21,6 +22,7 @@
         android:id="@+id/item_name"
         android:layout_width="150dp"
         android:paddingTop="8sp"
+        android:layout_weight="1"
         android:paddingBottom="8sp"
         android:lines="1"
         android:layout_height="wrap_content"
@@ -50,6 +52,7 @@
         android:paddingBottom="8sp"
         android:layout_marginStart="10dp"
         android:gravity="center"
+        android:layout_weight="1"
         android:lines="1"
         android:id="@+id/wholesaler"
         android:textSize="12sp"
@@ -77,6 +80,7 @@
         android:lines="1"
         android:textSize="12sp"
         android:layout_marginEnd="10dp"
+        android:layout_weight="1"
         android:layout_marginStart="10dp"
         android:id="@+id/previous_cost"
 
@@ -101,6 +105,7 @@
         android:layout_marginStart="10dp"
         android:layout_width="85dp"
         android:textSize="12sp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:id="@+id/new_cost"
         android:textStyle="normal"
@@ -115,6 +120,7 @@
         android:layout_marginEnd="5dp"
         android:focusable="false"
         android:layout_marginStart="5dp"
+        android:layout_weight="1"
         android:background="@drawable/rectangular_transparent_gray"
         android:orientation="horizontal">
 
@@ -158,6 +164,7 @@
         android:paddingBottom="8sp"
         android:gravity="center"
         android:lines="1"
+        android:layout_weight="1"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_width="85dp"
@@ -177,6 +184,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_width="85dp"
+        android:layout_weight="1"
         android:textSize="12sp"
         android:layout_height="wrap_content"
         android:id="@+id/new_price"
@@ -189,6 +197,7 @@
     android:layout_width="110dp"
     android:layout_height="wrap_content"
     android:gravity="center"
+    android:layout_weight="1"
     android:layout_marginEnd="5dp"
     android:layout_marginStart="5dp">
 

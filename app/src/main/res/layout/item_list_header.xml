@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="40dp"
     android:background="@color/background_light"
     android:orientation="horizontal"
+   android:weightSum="9"
 
     >
 
@@ -14,6 +15,7 @@
     <LinearLayout
         android:layout_width="170dp"
         android:gravity="start"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_height="match_parent" >
 
@@ -81,6 +83,7 @@
 
     <LinearLayout
         android:layout_width="1dp"
+
         android:layout_gravity="center_vertical"
         android:layout_height="match_parent" >
 
@@ -102,6 +105,7 @@
     <LinearLayout
         android:layout_width="110dp"
         android:gravity="start"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_height="match_parent" >
 
@@ -192,6 +196,7 @@
     <LinearLayout
         android:layout_width="105dp"
         android:gravity="start"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_height="match_parent" >
 
@@ -281,6 +286,7 @@
     <LinearLayout
         android:layout_width="105dp"
         android:gravity="start"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_height="match_parent" >
 
@@ -376,6 +382,7 @@
     <LinearLayout
         android:layout_width="105dp"
         android:gravity="start"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_height="match_parent" >
 
@@ -468,6 +475,7 @@
     <LinearLayout
         android:layout_width="105dp"
         android:gravity="start"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_height="match_parent" >
 
@@ -562,6 +570,7 @@
     <LinearLayout
         android:layout_width="105dp"
         android:gravity="start"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_height="match_parent" >
 
@@ -654,6 +663,7 @@
     <LinearLayout
             android:layout_width="110dp"
             android:gravity="start"
+             android:layout_weight="1"
             android:orientation="horizontal"
             android:layout_height="match_parent" >
 
