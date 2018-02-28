@@ -10,6 +10,11 @@
             android:title="Dashboard " />
 
         <item
+            android:id="@+id/my_products"
+            android:icon="@drawable/iconproduct_gray"
+            android:title="My Products" />
+
+        <item
             android:id="@+id/newly_updated"
             android:icon="@drawable/icon_updates_gray"
             android:title="Products Updates " />
@@ -17,10 +22,7 @@
             android:id="@+id/manage_categories"
             android:icon="@drawable/icon_revnue_gray"
             android:title="Manage Categories" />
-        <item
-            android:id="@+id/my_products"
-            android:icon="@drawable/iconproduct_gray"
-            android:title="My Products" />
+
         <item
             android:id="@+id/purchase_orders"
             android:icon="@drawable/icon_purchase_gray"
