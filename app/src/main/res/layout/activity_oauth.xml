@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_splash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.CobaltConnect1.ui.activities.SplashActivity">
+
+    <ImageView
+        android:layout_width="230dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/applogoupdated"/>
+
+
+    <LinearLayout
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+        android:layout_marginTop="20dp"
+    android:layout_gravity="center"
+        android:background="@drawable/rectangular_background"
+    android:layout_height="wrap_content">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+           android:textColor="@color/black"
+            android:layout_margin="20dp"
+            android:text="CONNECT YOUR CLOVER POINT OF SALE"/>
+
+
+        <TextView
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/start_managing_distributers_orders_inventory_prices_margins_with_cobalt_connect_click_below_clover_icon_to_authorize_cobalt_connect"
+            android:textColor="@color/verfication_green"
+            />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/clover_icon"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:textSize="12sp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"
+            android:id="@+id/oauth_verification_button"
+            android:background="@drawable/button_state_selector"
+            android:text="Click Here"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:textSize="12sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/oauth_go_back"
+                android:background="@drawable/button_state_selector"
+                android:text="Go Back"/>
+        </LinearLayout>
+</LinearLayout>
+
+    </LinearLayout>
+
+
+

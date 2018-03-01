@@ -48,17 +48,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     EditText etPassword;
     CheckBox cbRememberMe;
     Boolean signUpRequest =false;
-    String cobaltId,userPassword,userName,userBusinessName,userContactNo,userEmail,userRegistrationResponse;
+    String cobaltId,userPassword,userName,userBusinessName,userContactNo,userEmail,userRegistrationResponse,userRegisPassword,userRegisRePassword;
     LinearLayout loginView,signUpView,registerRequestView;
     View viewBelowlogin,viewBelowSignUp;
     TextView tvLoginHeader,tvregistrationResponse;
-    EditText etUserName,etuserBusinessName,etuserContactNo,etuserEmail;
+    EditText etUserName,etuserBusinessName,etuserContactNo,etuserEmail,etRegistrationPassword,etRePassword;
 
-    public static final int OAUTH_REQUEST_CODE = 0;
 
-    public static final String ACCESS_TOKEN_KEY = "access_token";
-    public static final String MERCHANT_ID_KEY = "merchant_id";
-    public static final String EMPLOYEE_ID_KEY = "employee_id";
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +79,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         etuserBusinessName = (EditText) findViewById(R.id.business_name);
         etuserEmail = (EditText) findViewById(R.id.user_email);
         etuserContactNo = (EditText) findViewById(R.id.contact_no);
+        etRegistrationPassword = (EditText) findViewById(R.id.password);
+        etRePassword = (EditText) findViewById(R.id.re_password);
+
         btSignIn.setOnClickListener(this);
         btSignUp.setOnClickListener(this);
         tvSignUp.setOnClickListener(this);
@@ -130,8 +129,19 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                         if (response.body().getTokenid() !=null) {
                             PrefUtils.storeAuthToken(response.body().getTokenid(), SignInActivity.this);
                             PrefUtils.storeUserName(response.body().getFullName(), SignInActivity.this);
-                            Intent intent = new Intent(SignInActivity.this, NavigationalDrawerActivity.class);
-                            startActivity(intent);
+                            if (response.body().getCloverId() == null)
+                            {
+                                Intent intent = new Intent(SignInActivity.this, CloverAuthActivity.class);
+                                startActivity(intent);
+
+
+                            }
+                            else {
+                                PrefUtils.storeCloverId(response.body().getCloverId(), SignInActivity.this);
+                                Intent intent = new Intent(SignInActivity.this, NavigationalDrawerActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
                             LoadingDialog.cancelLoading();
                         }
                         else
@@ -159,7 +169,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void getRegisterRequestDetails() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        Call<RegisterRequestResponse> call = RegisterRequestAdapter.merchantRegisterRequest(new RegisterRequest(userName,userBusinessName,userEmail,userContactNo,"registration-request"));
+        Call<RegisterRequestResponse> call = RegisterRequestAdapter.merchantRegisterRequest(new RegisterRequest(userName,userBusinessName,userEmail,userContactNo,userRegisPassword,userRegisRePassword,"registration-request"));
         if (NetworkUtils.isNetworkConnected(SignInActivity.this)) {
             call.enqueue(new Callback<RegisterRequestResponse>() {
 
@@ -170,12 +180,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
 
                         if (response.body().getType() ==1) {
-                            signUpView.setVisibility(View.GONE);
-                            registerRequestView.setVisibility(View.VISIBLE);
-                            userRegistrationResponse =response.body().getMsg();
-                            tvregistrationResponse.setText(userRegistrationResponse);
-                            tvSignUp.setEnabled(false);
-                            signUpRequest =true;
+                            PrefUtils.storeAuthToken(response.body().getTokenid(), SignInActivity.this);
+                            PrefUtils.storeUserName(response.body().getFullName(), SignInActivity.this);
+                            Log.e("abhi", "onResponse: tokenid........... " +response.body().getTokenid() );
+                            Intent intent = new Intent(SignInActivity.this, CloverAuthActivity.class);
+                            startActivity(intent);
+
                             LoadingDialog.cancelLoading();
                         }
                         else
@@ -207,13 +217,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         if (view.getId() == R.id.button_sign_in) {
 
-            Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
-            startActivityForResult(intent, OAUTH_REQUEST_CODE);
 
-            /*Intent intent = new Intent(SignInActivity.this, NavigationalDrawerActivity.class);
-            startActivity(intent);*/
-
-/*
             cobaltId = etCobaltPaymentId.getText().toString();
             userPassword = etPassword.getText().toString();
 
@@ -225,7 +229,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
             if (isSignUpValid()) {
                 getSignInDetails();
-            }*/
+            }
         }
 
         else  if (view.getId() == R.id.button_sign_up)
@@ -235,6 +239,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             userBusinessName = etuserBusinessName.getText().toString();
             userContactNo = etuserContactNo.getText().toString();
             userEmail = etuserEmail.getText().toString();
+            userRegisPassword = etRegistrationPassword.getText().toString();
+            userRegisRePassword = etRePassword.getText().toString();
 
             if (isRegistrationValid()) {
 
@@ -300,13 +306,19 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private boolean isRegistrationValid() {
 
         if (userName == null || userName.equals("") || userContactNo == null || userContactNo.equals("")
-                || userEmail.equals("") || userEmail == null || !isValidEmail(userEmail)) {
+                || userRegisPassword == null || userRegisPassword.equals("")|| userRegisRePassword == null || userRegisRePassword.equals("")|| userEmail.equals("") || userEmail == null || !isValidEmail(userEmail)) {
 
             if (userName == null || userName.equals(""))
                 etUserName.setError(getString(R.string.error_compulsory_field));
 
             if (userContactNo == null || userContactNo.equals(""))
                 etuserContactNo.setError(getString(R.string.error_compulsory_field));
+
+            if (userRegisPassword == null || userRegisPassword.equals(""))
+                etRegistrationPassword.setError(getString(R.string.error_compulsory_field));
+
+            if (userRegisRePassword == null || userRegisRePassword.equals(""))
+                etRePassword.setError(getString(R.string.error_compulsory_field));
 
             if ( userEmail == null || userEmail.equals(""))
                 etuserEmail.setError(getString(R.string.error_compulsory_field));
@@ -327,25 +339,5 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == OAUTH_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
 
-            // Access data from the completed intent
-            String token = data.getStringExtra(ACCESS_TOKEN_KEY);
-            String merchantId = data.getStringExtra(MERCHANT_ID_KEY);
-            String employeeId = data.getStringExtra(EMPLOYEE_ID_KEY);
-            Toast.makeText(SignInActivity.this, token, Toast.LENGTH_LONG).show();
-            Log.e("abhi", "onActivityResult: token" +token + " merchantid" + merchantId + " employeeid" + employeeId  );
-
-           /* Button btn = (Button)findViewById(R.id.button);
-            btn.setVisibility(View.GONE);
-
-            TextView txtView = (TextView)findViewById(R.id.textView);
-            txtView.setText("Access Token = " + token + "\nMerchant Id = " + merchantId +"\nEmployee Id = " + employeeId);*/
-        }
-        else {
-            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
-        }
-    }
 }

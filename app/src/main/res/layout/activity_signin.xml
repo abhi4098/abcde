@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="700dp"
-        android:layout_height="400dp"
+        android:layout_height="500dp"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
         android:background="@drawable/rectangular_view_with_curves"
@@ -275,6 +275,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
+                    android:inputType="number"
                     android:textColorHint="@color/text_color"
                     android:textColor="@color/white"
                     android:lines="1"
@@ -282,6 +283,33 @@
                     android:hint="Contact No."
                     />
 
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:textColorHint="@color/text_color"
+                    android:textColor="@color/white"
+                    android:lines="1"
+                    android:textSize="15sp"
+                    android:hint="Password"
+                    />
+
+                <EditText
+                    android:id="@+id/re_password"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:textColorHint="@color/text_color"
+                    android:textColor="@color/white"
+                    android:lines="1"
+                    android:textSize="15sp"
+                    android:hint="Re-password"
+                    />
 
                 <Button
                     android:layout_width="100dp"

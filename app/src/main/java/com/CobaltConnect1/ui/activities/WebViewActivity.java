@@ -59,16 +59,13 @@ public class WebViewActivity extends Activity {
                     String employeeId = uri.getQueryParameter("employee_id");
                     //String accessToken = uri.getQueryParameter("access_token");
                     String accessToken = url.substring(accessTokenStart + accessTokenFragment.length(), url.length());
-                    Log.e("abhi", "onPageStarted: "+url );
-                    Log.e("abhi", "onPageStarted: " +accessToken);
-                    Log.e("abhi", "onPageStarted: " + merchantId);
-                    Log.e("abhi", "onPageStarted: " + employeeId);
+
 
                     // Sends the info back to the MainActivity
                     Intent output = new Intent();
-                    output.putExtra(SignInActivity.ACCESS_TOKEN_KEY, accessToken);
-                    output.putExtra(SignInActivity.MERCHANT_ID_KEY, merchantId);
-                    output.putExtra(SignInActivity.EMPLOYEE_ID_KEY, employeeId);
+                    output.putExtra(CloverAuthActivity.ACCESS_TOKEN_KEY, accessToken);
+                    output.putExtra(CloverAuthActivity.MERCHANT_ID_KEY, merchantId);
+                    output.putExtra(CloverAuthActivity.EMPLOYEE_ID_KEY, employeeId);
                     setResult(RESULT_OK, output);
                     finish();
                 }

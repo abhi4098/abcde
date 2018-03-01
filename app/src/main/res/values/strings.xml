@@ -50,6 +50,7 @@
     <string name="last_fetch">Last Fetch :</string>
     <string name="next">Next</string>
     <string name="prev">Prev</string>
+    <string name="start_managing_distributers_orders_inventory_prices_margins_with_cobalt_connect_click_below_clover_icon_to_authorize_cobalt_connect"><![CDATA[Start managing Distributers, Orders, Inventory, Prices & Margins with Cobalt Connect. Click below Clover Icon to authorize Cobalt Connect.]]></string>
 
     <string-array name="navigation_drawer_items_array">
         <item>Newly Updated</item>

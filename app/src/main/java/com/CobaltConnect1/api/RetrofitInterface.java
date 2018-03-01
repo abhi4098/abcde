@@ -14,6 +14,8 @@ import com.CobaltConnect1.generated.model.MarginUpdateResponse;
 import com.CobaltConnect1.generated.model.MinimumStockUpdate;
 import com.CobaltConnect1.generated.model.MyCloverProduct;
 import com.CobaltConnect1.generated.model.MyCloverProductResponse;
+import com.CobaltConnect1.generated.model.OauthVerification;
+import com.CobaltConnect1.generated.model.OauthVerificationResponse;
 import com.CobaltConnect1.generated.model.ProductUpdate;
 import com.CobaltConnect1.generated.model.ProductUpdateResponse;
 import com.CobaltConnect1.generated.model.Profile;
@@ -46,6 +48,13 @@ public class RetrofitInterface {
 
         @POST("api/")
         Call<RegistrationResponse> merchantSignUp(@Body Registration registrationDetails);
+
+    }
+
+    public interface MerchantOauthClient {
+
+        @POST("api/")
+        Call<OauthVerificationResponse> merchantOauth(@Body OauthVerification oauthVerification);
 
     }
 

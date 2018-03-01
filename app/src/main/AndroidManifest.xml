@@ -33,6 +33,7 @@
         <activity android:name="com.CobaltConnect1.ui.activities.SignInActivity" />
         <activity android:name="com.CobaltConnect1.ui.activities.ForgotPasswordActivity" />
         <activity android:name=".ui.activities.WebViewActivity" />
+        <activity android:name=".ui.activities.CloverAuthActivity" />
     </application>
 
 </manifest>

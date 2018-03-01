@@ -21,11 +21,20 @@ public class RegisterRequest {
     @SerializedName("type")
     @Expose
     private String type;
-    public RegisterRequest(String name, String businessname,String email,String contact,String type) {
+
+    @SerializedName("password")
+    @Expose
+    private String password;
+    @SerializedName("repassword")
+    @Expose
+    private String repassword;
+    public RegisterRequest(String name, String businessname,String email,String contact,String password,String repassword,String type) {
         this.name = name;
         this.businessname = businessname;
         this.email = email;
         this.contact = contact;
+        this.password = password;
+        this.repassword = repassword;
         this.type = type;
     }
 
