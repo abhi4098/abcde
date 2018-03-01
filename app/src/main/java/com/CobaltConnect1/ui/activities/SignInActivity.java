@@ -54,6 +54,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     TextView tvLoginHeader,tvregistrationResponse;
     EditText etUserName,etuserBusinessName,etuserContactNo,etuserEmail;
 
+    public static final int OAUTH_REQUEST_CODE = 0;
+
+    public static final String ACCESS_TOKEN_KEY = "access_token";
+    public static final String MERCHANT_ID_KEY = "merchant_id";
+    public static final String EMPLOYEE_ID_KEY = "employee_id";
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,10 +207,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         if (view.getId() == R.id.button_sign_in) {
 
+            Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
+            startActivityForResult(intent, OAUTH_REQUEST_CODE);
+
             /*Intent intent = new Intent(SignInActivity.this, NavigationalDrawerActivity.class);
             startActivity(intent);*/
 
-
+/*
             cobaltId = etCobaltPaymentId.getText().toString();
             userPassword = etPassword.getText().toString();
 
@@ -216,7 +225,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
             if (isSignUpValid()) {
                 getSignInDetails();
-            }
+            }*/
         }
 
         else  if (view.getId() == R.id.button_sign_up)
@@ -315,6 +324,28 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             return false;
         } else {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == OAUTH_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+
+            // Access data from the completed intent
+            String token = data.getStringExtra(ACCESS_TOKEN_KEY);
+            String merchantId = data.getStringExtra(MERCHANT_ID_KEY);
+            String employeeId = data.getStringExtra(EMPLOYEE_ID_KEY);
+            Toast.makeText(SignInActivity.this, token, Toast.LENGTH_LONG).show();
+            Log.e("abhi", "onActivityResult: token" +token + " merchantid" + merchantId + " employeeid" + employeeId  );
+
+           /* Button btn = (Button)findViewById(R.id.button);
+            btn.setVisibility(View.GONE);
+
+            TextView txtView = (TextView)findViewById(R.id.textView);
+            txtView.setText("Access Token = " + token + "\nMerchant Id = " + merchantId +"\nEmployee Id = " + employeeId);*/
+        }
+        else {
+            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
         }
     }
 }
