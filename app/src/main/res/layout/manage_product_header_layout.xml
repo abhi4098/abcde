@@ -31,7 +31,7 @@
         </TextView>
 
         <LinearLayout
-            android:layout_width="15dp"
+            android:layout_width="20dp"
             android:gravity="end"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -41,14 +41,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
+                android:layout_height="12dp"
                 android:id="@+id/ll_id_asc"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:layout_gravity="top">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="1dp"
                     android:layout_marginStart="5dp"
@@ -59,16 +59,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
+                android:layout_height="12dp"
                 android:id="@+id/ll_id_dsc"
                 android:layout_gravity="bottom">
 
 
                 <ImageView
                     android:layout_marginTop="1dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_marginStart="5dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="top"
                     android:background="@drawable/arrow_down"/>
             </LinearLayout>
@@ -114,7 +114,7 @@
 
 
         <LinearLayout
-            android:layout_width="15dp"
+            android:layout_width="20dp"
             android:layout_height="match_parent"
             android:gravity="end"
             android:orientation="vertical"
@@ -123,14 +123,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
+                android:layout_height="12dp"
                 android:id="@+id/ll_category_asc"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:layout_gravity="top">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="1dp"
                     android:layout_marginStart="5dp"
@@ -141,16 +141,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
+                android:layout_height="12dp"
                 android:id="@+id/ll_category_dsc"
                 android:layout_gravity="bottom">
 
 
                 <ImageView
                     android:layout_marginTop="1dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_marginStart="5dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="top"
                     android:background="@drawable/arrow_down"/>
             </LinearLayout>
@@ -196,7 +196,7 @@
 
 
         <LinearLayout
-            android:layout_width="15dp"
+            android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="vertical"
@@ -205,14 +205,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
+                android:layout_height="12dp"
                 android:id="@+id/ll_min_stock_asc"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:layout_gravity="top">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="1dp"
                     android:layout_marginStart="5dp"
@@ -223,16 +223,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
+                android:layout_height="12dp"
                 android:id="@+id/ll_min_stock_dsc"
                 android:layout_gravity="bottom">
 
 
                 <ImageView
                     android:layout_marginTop="1dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_marginStart="5dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="top"
                     android:background="@drawable/arrow_down"/>
             </LinearLayout>
@@ -281,7 +281,7 @@
 
 
         <LinearLayout
-            android:layout_width="15dp"
+            android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="vertical"
@@ -290,14 +290,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
+                android:layout_height="12dp"
                 android:id="@+id/ll_default_margin_asc"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:layout_gravity="top">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="1dp"
                     android:layout_marginStart="5dp"
@@ -308,16 +308,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
+                android:layout_height="12dp"
                 android:id="@+id/ll_default_margin_dsc"
                 android:layout_gravity="bottom">
 
 
                 <ImageView
                     android:layout_marginTop="1dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_marginStart="5dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="top"
                     android:background="@drawable/arrow_down"/>
             </LinearLayout>
