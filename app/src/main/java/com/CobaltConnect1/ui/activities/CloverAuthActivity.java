@@ -52,11 +52,11 @@ public class CloverAuthActivity extends AppCompatActivity implements View.OnClic
         oathGoBackBtn.setOnClickListener(this);
 
 
-        setUpRestAdapter();
+      //  setUpRestAdapter();
     }
 
 
-    private void setUpRestAdapter() {
+   /* private void setUpRestAdapter() {
         CloverOauthAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.MerchantOauthClient.class, BASE_URL, CloverAuthActivity.this);
 
     }
@@ -71,14 +71,14 @@ public class CloverAuthActivity extends AppCompatActivity implements View.OnClic
             Toast.makeText(CloverAuthActivity.this, token, Toast.LENGTH_LONG).show();
             Log.e("abhi", "onActivityResult: token" +token + " merchantid" + merchantId + " employeeid" + employeeId  );
 
-           getOauthDetails();
+           //getOauthDetails();
         }
         else {
             Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
         }
     }
-
-    private void getOauthDetails() {
+*/
+    /*private void getOauthDetails() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
         Call<OauthVerificationResponse> call = CloverOauthAdapter.merchantOauth(new OauthVerification(PrefUtils.getAuthToken(this),merchantId,employeeId,token,"oauth"));
         if (NetworkUtils.isNetworkConnected(CloverAuthActivity.this)) {
@@ -119,17 +119,17 @@ public class CloverAuthActivity extends AppCompatActivity implements View.OnClic
             LoadingDialog.cancelLoading();
         }
     }
-
+*/
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.oauth_verification_button) {
+        /*if (view.getId() == R.id.oauth_verification_button) {
             Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
             startActivityForResult(intent, OAUTH_REQUEST_CODE);
         }
         else
         {
             finish();
-        }
+        }*/
 
     }
 }

@@ -6,9 +6,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class OauthVerification {
 
-    @SerializedName("tokenid")
-    @Expose
-    private String tokenid;
     @SerializedName("merchant_id")
     @Expose
     private String merchantId;
@@ -22,8 +19,7 @@ public class OauthVerification {
     @Expose
     private String type;
 
-    public OauthVerification(String tokenid, String merchantId,String employeeId,String accessToken,String type) {
-        this.tokenid = tokenid;
+    public OauthVerification( String merchantId,String employeeId,String accessToken,String type) {
         this.merchantId = merchantId;
         this.accessToken = accessToken;
         this.employeeId = employeeId;
