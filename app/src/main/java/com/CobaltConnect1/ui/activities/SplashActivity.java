@@ -97,7 +97,7 @@ public class SplashActivity extends Activity {
 
                     if (response.isSuccessful()) {
 
-
+                        Log.e(TAG, "onResponse: ........."+response.body().getTokenid() );
                         if (response.body().getTokenid() !=null) {
                             Log.e(TAG, "onResponse: ........."+response.body().getCloverId() );
                             PrefUtils.storeAuthToken(response.body().getTokenid(), SplashActivity.this);
@@ -188,10 +188,6 @@ public class SplashActivity extends Activity {
                 getCloverAuth();
             }
 
-            connect();
-
-            // Get the merchant object
-            getMerchant();
         }
         else {
             Log.e("abhi", "onCreate: ..............inside else"+PrefUtils.getCloverId(this) );
@@ -227,97 +223,19 @@ public class SplashActivity extends Activity {
                 if (mCloverAuth != null && mCloverAuth.authToken !=null) {
                     Log.e(TAG, "onPostExecute: ....auth token" + mCloverAuth.authToken);
                     token  = mCloverAuth.authToken;
-                    Toast.makeText(getApplicationContext(), mCloverAuth.authToken, Toast.LENGTH_SHORT).show();
+                    merchantId =mCloverAuth.merchantId;
+                    Log.e(TAG, "onPostExecute: ....auth token" + mCloverAuth.merchantId);
+                    //Toast.makeText(getApplicationContext(), mCloverAuth.authToken, Toast.LENGTH_SHORT).show();
 
-                   // mToken.setText(getString(R.string.token) + mCloverAuth.authToken);
+                    setUpRestAdapter();
+                    getOauthDetails();
                 } else {
                     Log.e(TAG, "onPostExecute: ....auth_token_error");
-                    Toast.makeText(getApplicationContext(), "auth_token_error", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "auth_token_error", Toast.LENGTH_SHORT).show();
                    // mToken.setText(getString(R.string.auth_error));
                 }
             }
         }.execute();
     }
-    @Override
-    protected void onPause() {
-        disconnect();
-        super.onPause();
-    }
 
-    private void connect() {
-        disconnect();
-        if (mAccount != null) {
-            merchantConnector = new MerchantConnector(this, mAccount, null);
-            merchantConnector.connect();
-        }
-    }
-
-    private void disconnect() {
-        if (merchantConnector != null) {
-            merchantConnector.disconnect();
-            merchantConnector = null;
-        }
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private void getMerchant() {
-
-        new AsyncTask<Void, Void, Merchant>() {
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                Toast.makeText(getApplicationContext(), "merchant_id_pre_error", Toast.LENGTH_SHORT).show();
-                // Show progressBar while waiting
-                //progressBar.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            protected Merchant doInBackground(Void... params) {
-                Merchant merchant = null;
-                try {
-                    merchant = merchantConnector.getMerchant();
-                    Toast.makeText(getApplicationContext(), "merchant_id_error", Toast.LENGTH_SHORT).show();
-
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                } catch (ClientException e) {
-                    e.printStackTrace();
-                } catch (ServiceException e) {
-                    e.printStackTrace();
-                } catch (BindingException e) {
-                    e.printStackTrace();
-                }
-                return merchant;
-            }
-
-            @Override
-            protected void onPostExecute(Merchant merchant) {
-                super.onPostExecute(merchant);
-
-                if (!isFinishing()) {
-                    // Populate the merchant information
-                    if (merchant != null) {
-                        Log.e(TAG, "onPostExecute: merchant.id" +merchant.getId());
-                        merchantId =merchant.getId();
-                        Toast.makeText(getApplicationContext(), merchant.getId(), Toast.LENGTH_SHORT).show();
-                        setUpRestAdapter();
-                        getOauthDetails();
-                        /*merchantName.setText(merchant.getName());
-                        address1.setText(merchant.getAddress().getAddress1());
-                        address2.setText(merchant.getAddress().getAddress2());
-                        address3.setText(merchant.getAddress().getAddress3());
-                        city.setText(merchant.getAddress().getCity());
-                        state.setText(merchant.getAddress().getState());
-                        zip.setText(merchant.getAddress().getZip());
-                        country.setText(merchant.getAddress().getCountry());
-                        phone.setText(merchant.getPhoneNumber());*/
-                    }
-
-                    // Hide the progressBar
-                //    progressBar.setVisibility(View.GONE);
-                }
-            }
-        }.execute();
-    }
 }
