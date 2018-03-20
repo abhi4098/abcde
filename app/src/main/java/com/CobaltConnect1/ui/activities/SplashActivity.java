@@ -53,7 +53,8 @@ public class SplashActivity extends Activity {
     public static final String MERCHANT_ID_KEY = "merchant_id";
     public static final String EMPLOYEE_ID_KEY = "employee_id";
 
-    String token,merchantId,employeeId;
+    String token,merchantId,accountDetails,userName,userEmail;
+
    // private Account account;
 
 
@@ -68,27 +69,9 @@ public class SplashActivity extends Activity {
 
     }
 
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == OAUTH_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-
-            // Access data from the completed intent
-            token = data.getStringExtra(ACCESS_TOKEN_KEY);
-            merchantId = data.getStringExtra(MERCHANT_ID_KEY);
-            employeeId = data.getStringExtra(EMPLOYEE_ID_KEY);
-           // Toast.makeText(SplashActivity.this, token, Toast.LENGTH_LONG).show();
-            Log.e("abhi", "onActivityResult: token" +token + " merchantid" + merchantId + " employeeid" + employeeId  );
-            setUpRestAdapter();
-            getOauthDetails();
-        }
-        else {
-            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
-        }
-    }*/
-
     private void getOauthDetails() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        Call<OauthVerificationResponse> call = CloverOauthAdapter.merchantOauth(new OauthVerification(merchantId,employeeId,token,"oauth"));
+        Call<OauthVerificationResponse> call = CloverOauthAdapter.merchantOauth(new OauthVerification(merchantId,accountDetails,token,"oauth"));
         if (NetworkUtils.isNetworkConnected(SplashActivity.this)) {
             call.enqueue(new Callback<OauthVerificationResponse>() {
 
@@ -177,7 +160,17 @@ public class SplashActivity extends Activity {
         {
             if (mAccount == null) {
                 mAccount = CloverAccount.getAccount(this);
-                Log.e(TAG, "onResume: ...."+mAccount );
+
+                accountDetails = mAccount.name;
+                String currentAccount = accountDetails;
+                Log.e(TAG, "onResume: ...account"+ accountDetails );
+                if (currentAccount !=null) {
+                    String[] separated = currentAccount.split(" | ");
+                    userName= separated[0].concat(" ").concat(separated[1]);
+                    PrefUtils.storeUserName(userName, SplashActivity.this);
+                    userEmail= separated[3];
+                    Log.e(TAG, "onResume: user details " +userName + " " + userEmail);
+                }
 
                 if (mAccount == null) {
                     Toast.makeText(this, "No Account", Toast.LENGTH_SHORT).show();
@@ -188,7 +181,7 @@ public class SplashActivity extends Activity {
                 getCloverAuth();
             }
 
-        }
+       }
         else {
             Log.e("abhi", "onCreate: ..............inside else"+PrefUtils.getCloverId(this) );
             splashTimer();

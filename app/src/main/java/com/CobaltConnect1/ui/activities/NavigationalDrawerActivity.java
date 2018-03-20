@@ -164,9 +164,9 @@ public class NavigationalDrawerActivity extends ConnectCobaltBaseActivity
                 tvAppTitle.setText(item.getTitle());
                 break;
 
-            case R.id.logout:
+            /*case R.id.logout:
                 callRestart();
-                break;
+                break;*/
 
             default:
                 fragment = new DashboardFragment();

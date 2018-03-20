@@ -39,10 +39,10 @@
             android:title="Change Password" />
 
 
-        <item
+       <!-- <item
             android:id="@+id/logout"
             android:icon="@drawable/icon_logout_gray"
-            android:title="Logout" />
+            android:title="Logout" />-->
 
 
 
