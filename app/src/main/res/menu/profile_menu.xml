@@ -3,8 +3,8 @@
     <item
         android:id="@+id/view_profile"
         android:title="@string/view_profile" />
-    <item
+    <!--<item
         android:id="@+id/edit_profile"
-        android:title="@string/edit_profile" />
+        android:title="@string/edit_profile" />-->
 
 </menu>

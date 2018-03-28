@@ -2,9 +2,11 @@ package com.CobaltConnect1.ui.fragments;
 
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -108,10 +110,28 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                         
                         if (response.body().getType() ==1 )
                         {
-                            tvMyProducts.setText(response.body().getMyProducts());
-                            tvProductUpdates.setText(response.body().getProductsUpdate());
-                            tvAffectedProducts.setText(response.body().getAffectedProducts());
-                            tvMissingMargins.setText(response.body().getMissingMargins());
+                           if (response.body().getPackageid().equals("0"))
+                            {
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                builder.setMessage(response.body().getPrompt())
+                                        .setCancelable(false);
+
+                                AlertDialog alert = builder.create();
+                                alert.show();
+
+                          }
+                            else {
+
+                             llMyProducts.setVisibility(View.VISIBLE);
+                             llProductUpdates.setVisibility(View.VISIBLE);
+                             llAffectedProducts.setVisibility(View.VISIBLE);
+                             llMissingProducts.setVisibility(View.VISIBLE);
+                                tvMyProducts.setText(response.body().getMyProducts());
+                                tvProductUpdates.setText(response.body().getProductsUpdate());
+                                tvAffectedProducts.setText(response.body().getAffectedProducts());
+                                tvMissingMargins.setText(response.body().getMissingMargins());
+                            }
                             LoadingDialog.cancelLoading();
                         }
                         else

@@ -59,6 +59,7 @@
             android:orientation="vertical"
             android:layout_weight=".25"
             android:id="@+id/ll_my_products"
+            android:visibility="gone"
             android:background="@drawable/round_corners_profit"
             >
 
@@ -133,6 +134,7 @@
             android:layout_weight=".25"
             android:orientation="vertical"
             android:id="@+id/ll_product_updates"
+            android:visibility="gone"
             android:layout_marginStart="20dp"
             android:background="@drawable/round_corner_revenue"
             >
@@ -205,6 +207,7 @@
             android:orientation="vertical"
             android:layout_weight=".25"
             android:layout_marginStart="20dp"
+            android:visibility="gone"
             android:id="@+id/ll_affected_products"
             android:background="@drawable/round_corners_updates"
             >
@@ -277,6 +280,7 @@
             android:layout_weight=".25"
             android:orientation="vertical"
             android:id="@+id/ll_missing_margins"
+            android:visibility="gone"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="55dp"
             android:background="@drawable/round_corners_missing_updates"

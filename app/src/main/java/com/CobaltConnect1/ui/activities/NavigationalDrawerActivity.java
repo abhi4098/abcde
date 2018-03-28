@@ -149,15 +149,15 @@ public class NavigationalDrawerActivity extends ConnectCobaltBaseActivity
                 tvAppTitle.setText(item.getTitle());
                 break;
 
-            case R.id.purchase_orders:
-            /*    fragment = new StockDetailsfragment();
-                tvAppTitle.setText(item.getTitle());*/
+            /*case R.id.purchase_orders:
+            *//*    fragment = new StockDetailsfragment();
+                tvAppTitle.setText(item.getTitle());*//*
                 break;
 
             case R.id.reporting:
-                /*fragment = new StockDetailsfragment();
-                tvAppTitle.setText(item.getTitle());*/
-                break;
+                *//*fragment = new StockDetailsfragment();
+                tvAppTitle.setText(item.getTitle());*//*
+                break;*/
 
             case R.id.change_password:
                 fragment = new ChangePasswordFragment();

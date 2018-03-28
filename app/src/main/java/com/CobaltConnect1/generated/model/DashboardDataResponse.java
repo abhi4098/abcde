@@ -25,12 +25,36 @@ public class DashboardDataResponse {
     @Expose
     private String missingMargins;
 
+    @SerializedName("packageid")
+    @Expose
+    private String packageid;
+
+    @SerializedName("prompt")
+    @Expose
+    private String prompt;
+
     public Integer getType() {
         return type;
     }
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public String getPackageid() {
+        return packageid;
+    }
+
+    public void setPackageid(String packageid) {
+        this.packageid = packageid;
+    }
+
+    public String getPrompt() {
+        return prompt;
+    }
+
+    public void setPrompt(String prompt) {
+        this.prompt = prompt;
     }
 
     public String getMyProducts() {

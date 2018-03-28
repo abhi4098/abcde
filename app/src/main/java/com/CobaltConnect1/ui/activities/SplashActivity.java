@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.CobaltConnect1.R;
@@ -42,6 +43,8 @@ public class SplashActivity extends Activity {
 
 
     private Account mAccount;
+    TextView errorText;
+
     private CloverAuth.AuthResult mCloverAuth;
     private MerchantConnector merchantConnector;
     private static int SPLASH_TIME_OUT = 2000;
@@ -64,6 +67,7 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        errorText = (TextView) findViewById(R.id.error_text);
 
 
 
@@ -93,6 +97,7 @@ public class SplashActivity extends Activity {
                         else
                         {
                             Toast.makeText(getApplicationContext(),response.body().getMsg(),Toast.LENGTH_SHORT).show();
+                            errorText.setText(response.body().getMsg());
                             LoadingDialog.cancelLoading();
                         }
                     }
@@ -100,6 +105,8 @@ public class SplashActivity extends Activity {
 
                 @Override
                 public void onFailure(Call<OauthVerificationResponse> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                    errorText.setText(t.getMessage());
                     LoadingDialog.cancelLoading();
                 }
 
@@ -199,8 +206,10 @@ public class SplashActivity extends Activity {
                 try {
                     return CloverAuth.authenticate(SplashActivity.this, mAccount);
                 } catch (OperationCanceledException e) {
+                    errorText.setText("Authentication cancelled");
                     Log.e(TAG, "Authentication cancelled", e);
                 } catch (Exception e) {
+                    errorText.setText("Error retrieving authentication");
                     Log.e(TAG, "Error retrieving authentication", e);
                 }
                 return null;
@@ -224,8 +233,8 @@ public class SplashActivity extends Activity {
                     getOauthDetails();
                 } else {
                     Log.e(TAG, "onPostExecute: ....auth_token_error");
-                   // Toast.makeText(getApplicationContext(), "auth_token_error", Toast.LENGTH_SHORT).show();
-                   // mToken.setText(getString(R.string.auth_error));
+                   Toast.makeText(getApplicationContext(), "auth_token_error", Toast.LENGTH_SHORT).show();
+                   errorText.setText("auth token error");
                 }
             }
         }.execute();

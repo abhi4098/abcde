@@ -39,32 +39,6 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="Token -Id:"/>
-
-        <TextView
-            android:id="@+id/token_id"
-            android:layout_width="350dp"
-            android:layout_height="32dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:lines="1"
-            android:textStyle="normal"
-            android:textSize="14sp"
-             />
-
-
-    </LinearLayout>
 
 
     <LinearLayout
@@ -90,6 +64,115 @@
             android:textStyle="normal"
             android:textSize="14sp"
          />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Phone No:"/>
+
+        <TextView
+            android:id="@+id/phone_num"
+            android:layout_width="350dp"
+            android:layout_height="32dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:lines="1"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Address 1:"/>
+
+        <TextView
+            android:id="@+id/address1"
+            android:layout_width="350dp"
+            android:layout_height="32dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:lines="1"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:id="@+id/ll_add2"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Address 2:"/>
+
+        <TextView
+            android:id="@+id/address2"
+            android:layout_width="350dp"
+            android:layout_height="32dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:lines="1"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:id="@+id/ll_add3"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Address 3:"/>
+
+        <TextView
+            android:id="@+id/address3"
+            android:layout_width="350dp"
+            android:layout_height="32dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:lines="1"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            />
 
 
     </LinearLayout>
@@ -152,6 +235,7 @@
     </LinearLayout>
 
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -162,11 +246,11 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:text="State -Id:"/>
+            android:text="City:"/>
 
 
         <TextView
-            android:id="@+id/state_id"
+            android:id="@+id/city"
             android:layout_width="350dp"
             android:layout_height="32dp"
             android:paddingStart="10dp"
@@ -179,6 +263,59 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="State :"/>
+
+
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="350dp"
+            android:layout_height="32dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:lines="1"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Country :"/>
+
+
+        <TextView
+            android:id="@+id/country"
+            android:layout_width="350dp"
+            android:layout_height="32dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:lines="1"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            />
+
+
+    </LinearLayout>
 
 
 

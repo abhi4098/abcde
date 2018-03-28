@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,8 @@ import static com.CobaltConnect1.api.ApiEndPoints.BASE_URL;
 public class ViewProfileFragment extends Fragment {
 
     private RetrofitInterface.MerchantProfileClient ProfileAdapter;
-    TextView tvFullName, tvTokenId, tvEmailId, tvCloverId ,tvCloverToken, tvState;
+    TextView tvFullName, tvPhoneNum, tvEmailId, tvAdd1,tvAdd2,tvAdd3 ,tvCity, tvState,tvcountry;
+    LinearLayout llAdd3,llAdd2;
 
     public ViewProfileFragment() {
     }
@@ -39,11 +41,17 @@ public class ViewProfileFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_view_profile, container, false);
         tvFullName = (TextView) rootView.findViewById(R.id.full_name);
-        tvTokenId = (TextView) rootView.findViewById(R.id.token_id);
+        tvPhoneNum = (TextView) rootView.findViewById(R.id.phone_num);
         tvEmailId = (TextView) rootView.findViewById(R.id.email_id);
-        tvCloverId = (TextView) rootView.findViewById(R.id.clover_id);
-        tvCloverToken = (TextView) rootView.findViewById(R.id.clover_token);
-        tvState = (TextView) rootView.findViewById(R.id.state_id);
+        tvCity = (TextView) rootView.findViewById(R.id.city);
+        tvcountry = (TextView) rootView.findViewById(R.id.country);
+        tvState = (TextView) rootView.findViewById(R.id.state);
+        tvAdd1 = (TextView) rootView.findViewById(R.id.address1);
+        tvAdd2 = (TextView) rootView.findViewById(R.id.address2);
+        tvAdd3 = (TextView) rootView.findViewById(R.id.address3);
+
+        llAdd2 = (LinearLayout) rootView.findViewById(R.id.ll_add2);
+        llAdd3 = (LinearLayout) rootView.findViewById(R.id.ll_add3);
         LoadingDialog.showLoadingDialog(getActivity(),"Loading...");
         setUpRestAdapter();
         getProfileDetails();
@@ -69,7 +77,7 @@ public class ViewProfileFragment extends Fragment {
                         PrefUtils.storeAuthToken(response.body().getTokenid(), getActivity());
                         PrefUtils.storeCloverId(response.body().getCloverId(), getActivity());
                         PrefUtils.storeCloverToken(response.body().getCloverToken(), getActivity());
-                        setProfileDetails();
+                        setProfileDetails(response);
 
 
                     }
@@ -88,13 +96,28 @@ public class ViewProfileFragment extends Fragment {
         }
     }
 
-    private void setProfileDetails() {
+    private void setProfileDetails(Response<ProfileResponse> response) {
         tvFullName.setText(PrefUtils.getUserName(getActivity()));
-        tvTokenId.setText(PrefUtils.getAuthToken(getActivity()));
+        tvPhoneNum.setText(response.body().getPhoneNumber());
         tvEmailId.setText(PrefUtils.getEmail(getActivity()));
-        tvCloverId.setText(PrefUtils.getCloverId(getActivity()));
-        tvCloverToken.setText(PrefUtils.getCloverToken(getActivity()));
-        tvState.setText(PrefUtils.getStateId(getActivity()));
+        tvCity.setText(response.body().getCity());
+        tvcountry.setText(response.body().getCountry());
+        tvState.setText(response.body().getState());
+        tvAdd1.setText(response.body().getAddress1());
+        if (response.body().getAddress2() !=null)
+        {
+            llAdd2.setVisibility(View.VISIBLE);
+            tvAdd2.setText(response.body().getAddress2());
+        }
+
+        if (response.body().getAddress3() !=null)
+        {
+            llAdd3.setVisibility(View.VISIBLE);
+            tvAdd3.setText(response.body().getAddress3());
+        }
+
+
+
         LoadingDialog.cancelLoading();
     }
 

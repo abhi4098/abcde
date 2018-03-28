@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_splash"
     android:layout_width="match_parent"
@@ -10,13 +10,27 @@
     tools:context="com.CobaltConnect1.ui.activities.SplashActivity">
 
     <ImageView
+        android:id="@+id/app_icon"
         android:layout_gravity="center"
+        android:layout_centerInParent="true"
         android:src="@drawable/applogoupdated"
         android:layout_width="230dp"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
         >
 
     </ImageView>
 
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:layout_below="@+id/app_icon"
+        android:background="@color/white"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"/>
 
-</LinearLayout>
+
+
+</RelativeLayout>
