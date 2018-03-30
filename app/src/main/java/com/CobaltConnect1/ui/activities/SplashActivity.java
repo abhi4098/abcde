@@ -75,7 +75,7 @@ public class SplashActivity extends Activity {
 
     private void getOauthDetails() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        Call<OauthVerificationResponse> call = CloverOauthAdapter.merchantOauth(new OauthVerification(merchantId,accountDetails,token,"oauth"));
+        Call<OauthVerificationResponse> call = CloverOauthAdapter.merchantOauth(new OauthVerification(merchantId,accountDetails,token,"auth"));
         if (NetworkUtils.isNetworkConnected(SplashActivity.this)) {
             call.enqueue(new Callback<OauthVerificationResponse>() {
 

@@ -25,7 +25,7 @@ public class ApiAdapter {
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Login.class,new UserProfileDeserializer());
-        Gson gson = gsonBuilder.serializeNulls().create();
+        Gson gson = gsonBuilder.serializeNulls().setLenient().create();
 
         Retrofit restAdapter = new Retrofit.Builder()
                 .baseUrl(baseUrl)
